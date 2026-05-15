@@ -1,0 +1,14 @@
+{
+  "name": "kompucar-website",
+  "version": "1.0.0",
+  "description": "Sitio estático de Kompucar",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve public",
+    "dev": "serve public"
+  },
+  "devDependencies": {
+    "gsap": "^3.15.0",
+    "serve": "^14.2.1"
+  }
+}
