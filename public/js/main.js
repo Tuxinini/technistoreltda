@@ -1,154 +1,206 @@
-/* ========================================
-   TNT Technistore Ltda - Main JavaScript
-   ======================================== */
+﻿'use strict';
+var PRODUCTS=[
+  {brand:'Samsung',name:'Galaxy A16 5G',badge:'Mas Vendido',badgeClass:'blue',price:799000,oldPrice:950000,discount:'16% OFF',rating:5,
+   images:['/wp-content/uploads/2025/02/CELULAR-SAMSUNG-A16.jpg','/wp-content/uploads/2025/02/CELULAR-SAMSUNG-A06-.jpg','/wp-content/uploads/2025/02/CELULAR-SAMSUNG-AO5-S.webp'],
+   specs:[['Pantalla','6.7 Super AMOLED FHD+'],['Procesador','Exynos 1330'],['RAM','8 GB'],['Almacenamiento','128 GB'],['Camara','50 MP + 5 MP'],['Bateria','5000 mAh 25W'],['Sistema','Android 14']]},
+  {brand:'Samsung',name:'Galaxy A06 4G',badge:'Nuevo',badgeClass:'',price:589000,oldPrice:699000,discount:'16% OFF',rating:4,
+   images:['/wp-content/uploads/2025/02/CELULAR-SAMSUNG-A06-.jpg','/wp-content/uploads/2025/02/CELULAR-SAMSUNG-A16.jpg','/wp-content/uploads/2025/02/CELULAR-SAMSUNG-AO5-S.webp'],
+   specs:[['Pantalla','6.7 PLS LCD'],['Procesador','Exynos 1280'],['RAM','4 GB'],['Almacenamiento','64 GB'],['Camara','50 MP'],['Bateria','5000 mAh'],['Sistema','Android 14']]},
+  {brand:'HP',name:'Portatil 14-245 G10 AMD',badge:'Oferta',badgeClass:'',price:1229900,oldPrice:1499000,discount:'18% OFF',rating:5,
+   images:['/wp-content/uploads/2024/12/PORTATIL-HP-14-245-G10-AMD-RYZEN-3.jpg','/wp-content/uploads/2024/12/Lenovo-ThinkBook-14-6ta-Gen-.png','/wp-content/uploads/2024/03/Portatil-Dell-Latitude-5420.png'],
+   specs:[['Procesador','AMD Ryzen 3'],['RAM','8 GB DDR4'],['Almacenamiento','512 GB SSD'],['Pantalla','14 FHD IPS'],['Graficos','AMD Radeon'],['Bateria','10 horas'],['Sistema','Windows 11 Home']]},
+  {brand:'Dell',name:'Latitude 5420 Intel i5',badge:'Corporativo',badgeClass:'blue',price:2899000,oldPrice:3400000,discount:'15% OFF',rating:5,
+   images:['/wp-content/uploads/2024/03/Portatil-Dell-Latitude-5420.png','/wp-content/uploads/2024/12/Lenovo-ThinkBook-14-6ta-Gen-.png','/wp-content/uploads/2024/12/PORTATIL-HP-14-245-G10-AMD-RYZEN-3.jpg'],
+   specs:[['Procesador','Intel Core i5-11th'],['RAM','16 GB DDR4'],['Almacenamiento','512 GB SSD'],['Pantalla','14 FHD IPS'],['Graficos','Intel Iris Xe'],['Bateria','54 Wh'],['Sistema','Windows 11 Pro']]},
+  {brand:'Logitech',name:'Camara MX BRIO 705 4K',badge:'4K',badgeClass:'blue',price:769000,oldPrice:950000,discount:'19% OFF',rating:5,
+   images:['/wp-content/uploads/2024/12/CAMARA-WEB-4K-PREMIUM-MX-BRIO-705-LOGITECH-.png','/wp-content/uploads/2025/01/CAMARA-BRIO-100.webp','/wp-content/uploads/2025/01/CAMARA-MX-BRIO.webp'],
+   specs:[['Resolucion','4K Ultra HD 30fps'],['Angulo','90 grados'],['Microfonos','Estereo ANC'],['Conexion','USB-C'],['Privacidad','Cubierta fisica'],['Compatible','Win/Mac'],['Peso','136 g']]},
+  {brand:'JBL',name:'Flip 6 Bluetooth Speaker',badge:'IP67',badgeClass:'',price:499000,oldPrice:620000,discount:'19% OFF',rating:5,
+   images:['/wp-content/uploads/2025/03/JBL-Flip-6-Altavoz-Portatil-a-Prueba-de-Agua.png','/wp-content/uploads/2025/03/AUDIFONO-REDMI-BUDS-6-ACTIVE.webp','/wp-content/uploads/2025/03/AUDIFONO-REDMI-BUDS-5.png'],
+   specs:[['Potencia','30W RMS'],['Frecuencia','63Hz-20kHz'],['Bateria','12 horas'],['Resistencia','IP67'],['Conexion','BT 5.1'],['Carga','USB-C 15W'],['Peso','550 g']]},
+  {brand:'Xiaomi',name:'Redmi Buds 6 Active ANC',badge:'ANC',badgeClass:'',price:189000,oldPrice:240000,discount:'21% OFF',rating:4,
+   images:['/wp-content/uploads/2025/03/AUDIFONO-REDMI-BUDS-6-ACTIVE.webp','/wp-content/uploads/2025/03/AUDIFONO-REDMI-BUDS-5.png','/wp-content/uploads/2025/03/JBL-Flip-6-Altavoz-Portatil-a-Prueba-de-Agua.png'],
+   specs:[['Driver','12.4mm dinamico'],['ANC','Activo'],['Bateria','6h+18h'],['Carga','USB-C'],['Resistencia','IP54'],['Conexion','BT 5.3'],['Latencia','46ms']]},
+  {brand:'Epson',name:'EcoTank L4260 Wi-Fi',badge:'Sin cartuchos',badgeClass:'blue',price:879000,oldPrice:1050000,discount:'16% OFF',rating:4,
+   images:['/wp-content/uploads/2025/02/IMPRESORA-MULTIFUNCIONAL-EPSON-WIFI-ECOTANK-L4260.webp','/wp-content/uploads/2025/02/CAMARA-HP-320.webp','/wp-content/uploads/2024/12/CAMARA-WEB-4K-PREMIUM-MX-BRIO-705-LOGITECH-.png'],
+   specs:[['Funcion','Impresora/Escaner/Copiadora'],['Velocidad','15 ppm negro'],['Resolucion','5760x1440 dpi'],['Conectividad','Wi-Fi/USB'],['Compatibilidad','Win/Mac'],['Tinta','7500 pag negro'],['Garantia','2 anos']]}
+];
 
-document.addEventListener('DOMContentLoaded', function () {
+/* ── HELPERS ── */
+function fmt(n){return '$'+n.toLocaleString('es-CO');}
+function stars(r){var s='';for(var i=0;i<5;i++)s+='<span class="ts-star '+(i<r?'on':'off')+'">&#9733;</span>';return s;}
+function discountNum(d){return parseFloat(d)||0;}
 
-  // ==========================================
-  // HERO SLIDER
-  // ==========================================
-  const track = document.getElementById('sliderTrack');
-  const dots  = document.querySelectorAll('.dot');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const totalSlides = dots.length;
-  let current = 0;
-  let autoTimer = null;
+function makeCard(p,idx){
+  return '<article class="ts-prod-card" onclick="tsOpenModal('+idx+')" tabindex="0" aria-label="'+p.brand+' '+p.name+'">'+
+    '<span class="ts-prod-badge '+p.badgeClass+'">'+p.badge+'</span>'+
+    '<div class="ts-prod-img-wrap"><img src="'+p.images[0]+'" alt="'+p.name+'" loading="lazy"></div>'+
+    '<div class="ts-prod-info">'+
+      '<p class="ts-prod-brand">'+p.brand+'</p>'+
+      '<p class="ts-prod-name">'+p.name+'</p>'+
+      '<div class="ts-prod-stars">'+stars(p.rating)+'</div>'+
+      '<div class="ts-prod-prices">'+
+        '<span class="ts-prod-price">'+fmt(p.price)+'</span>'+
+        '<span class="ts-prod-old">'+fmt(p.oldPrice)+'</span>'+
+        '<span class="ts-prod-disc-tag">'+p.discount+'</span>'+
+      '</div>'+
+      '<button class="ts-prod-cta" tabindex="-1">Ver Producto</button>'+
+    '</div></article>';
+}
 
-  function goTo(index) {
-    current = (index + totalSlides) % totalSlides;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+/* ── RENDER PRODUCTS ── */
+function renderProducts(searchList){
+  var isSearch=!!searchList;
+  var items;
+
+  if(isSearch){
+    /* busqueda: mostrar todos los resultados, sin dividir */
+    items=searchList.map(function(p){return{p:p,idx:PRODUCTS.indexOf(p)};});
+    fillGrid('ts-products-grid',items);
+    fillGrid('ts-products-grid-extra',[]);
+    var w=document.getElementById('ts-ver-mas-wrap');if(w)w.style.display='none';
+    closeExtra();
+  } else {
+    /* vista normal: ordenar por descuento y mostrar 4 primero */
+    var sorted=PRODUCTS.map(function(p,i){return{p:p,idx:i};})
+      .sort(function(a,b){return discountNum(b.p.discount)-discountNum(a.p.discount);});
+    var featured=sorted.slice(0,4);
+    var extra=sorted.slice(4);
+    fillGrid('ts-products-grid',featured);
+    fillGrid('ts-products-grid-extra',extra);
+    var w2=document.getElementById('ts-ver-mas-wrap');
+    if(w2)w2.style.display=extra.length?'flex':'none';
+    closeExtra();
   }
+}
 
-  function startAuto() {
-    stopAuto();
-    autoTimer = setInterval(() => goTo(current + 1), 4500);
-  }
+function fillGrid(id,items){
+  var g=document.getElementById(id);if(!g)return;
+  g.innerHTML=items.map(function(item){return makeCard(item.p,item.idx);}).join('');
+}
 
-  function stopAuto() {
-    if (autoTimer) clearInterval(autoTimer);
-  }
+renderProducts(null);
 
-  prevBtn && prevBtn.addEventListener('click', () => { goTo(current - 1); startAuto(); });
-  nextBtn && nextBtn.addEventListener('click', () => { goTo(current + 1); startAuto(); });
-
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => { goTo(+dot.dataset.index); startAuto(); });
-  });
-
-  // Touch swipe
-  let touchStartX = 0;
-  track && track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  track && track.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) { diff > 0 ? goTo(current + 1) : goTo(current - 1); startAuto(); }
-  });
-
-  startAuto();
-
-  // ==========================================
-  // SCROLL FADE-IN ANIMATIONS (IntersectionObserver)
-  // ==========================================
-  const animEls = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+/* ── BUSQUEDA ── */
+function doSearch(){
+  var q=(document.getElementById('search-input').value||'').trim().toLowerCase();
+  if(q){
+    var res=PRODUCTS.filter(function(p){
+      return p.name.toLowerCase().indexOf(q)!==-1||p.brand.toLowerCase().indexOf(q)!==-1;
     });
-  }, { threshold: 0.15 });
-
-  animEls.forEach(el => observer.observe(el));
-
-  // ==========================================
-  // COUNTER ANIMATION
-  // ==========================================
-  const counters = document.querySelectorAll('.stat-number[data-target]');
-
-  function animateCounter(el) {
-    const target    = parseInt(el.dataset.target, 10);
-    const prefix    = el.dataset.prefix || '';
-    const separator = el.dataset.separator || '';
-    const duration  = 2000;
-    const start     = performance.now();
-
-    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
-
-    function tick(now) {
-      const elapsed  = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const value    = Math.round(easeOut(progress) * target);
-      let display    = value.toString();
-
-      // Insert separator for thousands (e.g. 1.200)
-      if (separator && value >= 1000) {
-        display = display.replace(/\B(?=(\d{3})+(?!\d))/g, separator);
-      }
-
-      el.textContent = prefix + display;
-
-      if (progress < 1) requestAnimationFrame(tick);
-    }
-
-    requestAnimationFrame(tick);
+    renderProducts(res);
+  } else {
+    renderProducts(null);
   }
+  var s=document.getElementById('ts-productos');if(s)s.scrollIntoView({behavior:'smooth'});
+}
+var si=document.getElementById('search-input');
+if(si)si.addEventListener('keydown',function(e){if(e.key==='Enter')doSearch();});
 
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        counterObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(c => counterObserver.observe(c));
-
-  // ==========================================
-  // ACCORDION
-  // ==========================================
-  document.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', function () {
-      const body     = this.nextElementSibling;
-      const isOpen   = this.classList.contains('open');
-      const allBodies  = document.querySelectorAll('.accordion-body');
-      const allHeaders = document.querySelectorAll('.accordion-header');
-
-      // Close all
-      allBodies.forEach(b => (b.style.maxHeight = '0'));
-      allHeaders.forEach(h => h.classList.remove('open'));
-
-      // Open clicked if it was closed
-      if (!isOpen) {
-        this.classList.add('open');
-        body.style.maxHeight = body.scrollHeight + 'px';
-      }
-    });
-  });
-
-  // Open first accordion item by default
-  const firstHeader = document.querySelector('.accordion-header');
-  const firstBody   = document.querySelector('.accordion-body');
-  if (firstHeader && firstBody) {
-    firstHeader.classList.add('open');
-    firstBody.style.maxHeight = firstBody.scrollHeight + 'px';
+/* ── TOGGLE VER MAS ── */
+var extraOpen=false;
+function closeExtra(){
+  extraOpen=false;
+  var ex=document.getElementById('ts-extra-section');if(ex)ex.classList.remove('open');
+  var btn=document.getElementById('ts-ver-mas-btn');
+  if(btn){btn.classList.remove('open');btn.querySelector('.vm-text').textContent='Ver mas productos';}
+}
+function toggleExtraProducts(){
+  extraOpen=!extraOpen;
+  var ex=document.getElementById('ts-extra-section');
+  var btn=document.getElementById('ts-ver-mas-btn');
+  if(ex)ex.classList.toggle('open',extraOpen);
+  if(btn){
+    btn.classList.toggle('open',extraOpen);
+    btn.querySelector('.vm-text').textContent=extraOpen?'Ver menos':'Ver mas productos';
   }
+  if(extraOpen){
+    setTimeout(function(){ex.scrollIntoView({behavior:'smooth',block:'start'});},100);
+  }
+}
 
-  // ==========================================
-  // STICKY HEADER - highlight active link on scroll
-  // ==========================================
-  const navLinks = document.querySelectorAll('.nav-links a, .nav-right a');
-  window.addEventListener('scroll', () => {
-    // Parallax hint for hero – subtle
-    const hero = document.querySelector('.hero-slider');
-    if (hero) {
-      const scroll = window.pageYOffset;
-      const speed = 0.3;
-      // Only subtle effect; actual parallax inside slides via CSS
-    }
-  });
-
+/* ── MODAL ── */
+var activeProductIdx=0;
+function tsOpenModal(idx){
+  activeProductIdx=idx;var p=PRODUCTS[idx];
+  document.getElementById('ts-modal-brand').textContent=p.brand;
+  document.getElementById('ts-modal-name').textContent=p.name;
+  document.getElementById('ts-modal-disc').textContent=p.discount;
+  document.getElementById('ts-modal-price').textContent=fmt(p.price);
+  document.getElementById('ts-modal-old').textContent=fmt(p.oldPrice);
+  var mi=document.getElementById('ts-modal-main-img');mi.src=p.images[0];mi.alt=p.name;
+  document.getElementById('ts-modal-thumbs').innerHTML=p.images.map(function(src,i){
+    return '<img class="ts-thumb '+(i===0?'active':'')+'" src="'+src+'" alt="Vista '+(i+1)+'" onclick="tsSetThumb('+i+')" tabindex="0">';
+  }).join('');
+  document.getElementById('ts-modal-specs').innerHTML=p.specs.map(function(row){
+    return '<div class="ts-spec-row"><span class="ts-spec-key">'+row[0]+'</span><span class="ts-spec-val">'+row[1]+'</span></div>';
+  }).join('');
+  var msg=encodeURIComponent('Hola! Me interesa el '+p.brand+' '+p.name+' ('+fmt(p.price)+').');
+  var wb=document.getElementById('ts-btn-wsp');if(wb)wb.onclick=function(){window.open('https://wa.me/573225817129?text='+msg,'_blank');};
+  var ov=document.getElementById('ts-modal-overlay');ov.classList.add('open');document.body.style.overflow='hidden';
+  setTimeout(function(){var c=document.querySelector('.ts-modal-close');if(c)c.focus();},60);
+}
+var _mc=document.querySelector('.ts-modal-close');
+if(_mc)_mc.addEventListener('click',function(){var ov=document.getElementById('ts-modal-overlay');if(ov){ov.classList.remove('open');document.body.style.overflow='';}});
+document.addEventListener('click',function(e){
+  if(e.target&&e.target.id==='ts-modal-overlay'){var ov=document.getElementById('ts-modal-overlay');if(ov){ov.classList.remove('open');document.body.style.overflow='';}}
 });
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){var ov=document.getElementById('ts-modal-overlay');if(ov&&ov.classList.contains('open')){ov.classList.remove('open');document.body.style.overflow='';}}
+});
+function tsSetThumb(idx){
+  document.getElementById('ts-modal-main-img').src=PRODUCTS[activeProductIdx].images[idx];
+  document.querySelectorAll('.ts-thumb').forEach(function(t,i){t.classList.toggle('active',i===idx);});
+}
+
+/* ── CARRITO ── */
+var cartTotal=0;
+function updateCartBadge(){var el=document.getElementById('cart-count');if(el)el.textContent=cartTotal;}
+function tsAddToCart(){
+  cartTotal++;updateCartBadge();
+  var btn=document.getElementById('ts-btn-cart');if(!btn)return;
+  var orig=btn.innerHTML;
+  btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Agregado!';
+  btn.style.background='#25D366';
+  setTimeout(function(){btn.innerHTML=orig;btn.style.background='';},1800);
+}
+function openCart(){alert('Tienes '+cartTotal+' producto(s) en el carrito.');}
+
+/* ── CARRUSEL CLIENTES ── */
+var clientPage=0,CLIENT_TOTAL=3;
+function tsGoToClients(page){
+  clientPage=page;
+  var t=document.getElementById('ts-clients-track');
+  if(t)t.style.transform='translateX(-'+(page*100)+'%)';
+  document.querySelectorAll('.ts-ctrl-dot').forEach(function(d,i){d.classList.toggle('active',i===page);});
+}
+function tsNextClients(){tsGoToClients((clientPage+1)%CLIENT_TOTAL);}
+function tsPrevClients(){tsGoToClients((clientPage-1+CLIENT_TOTAL)%CLIENT_TOTAL);}
+var cAuto=setInterval(tsNextClients,3200);
+var cWrap=document.querySelector('.ts-clients-carousel-wrap');
+if(cWrap){cWrap.addEventListener('mouseenter',function(){clearInterval(cAuto);});cWrap.addEventListener('mouseleave',function(){cAuto=setInterval(tsNextClients,3200);});}
+
+/* ── CONTADORES STATS ── */
+function animateStat(el){
+  var target=parseInt(el.dataset.target,10),prefix=el.dataset.prefix||'',sep=el.dataset.separator||'',dur=1800,start=performance.now();
+  function tick(now){
+    var prog=Math.min((now-start)/dur,1),ease=1-Math.pow(1-prog,3),val=Math.round(ease*target);
+    var f=sep?val.toString().replace(/\B(?=(\d{3})+(?!\d))/g,sep):val.toLocaleString('es-CO');
+    el.textContent=prefix+f;if(prog<1)requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+var sObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('.stat-number').forEach(animateStat);sObs.unobserve(e.target);}});},{threshold:0.4});
+var sSection=document.querySelector('.stats-section');if(sSection)sObs.observe(sSection);
+
+/* ── ANIMACIONES SCROLL ── */
+var scObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');scObs.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fade-in,.fade-in-left,.fade-in-right').forEach(function(el){scObs.observe(el);});
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});
+});
+
+/* ── FOOTER AÑO ── */
+var yEl=document.getElementById('footer-year');if(yEl)yEl.textContent=new Date().getFullYear();

@@ -67,7 +67,7 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  height: 82px;
+  height: 48px;
   position: relative;
 }
 .nav-logo {
@@ -86,8 +86,9 @@ img { max-width: 100%; height: auto; display: block; }
   transform: scale(1.04);
   box-shadow: 0 4px 18px rgba(0,174,232,0.25);
 }
+.nav-logo { display: none; }
 .nav-logo img {
-  width: 115px;
+  width: 80px;
   height: auto;
   display: block;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
@@ -850,7 +851,7 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 20px;
   flex-wrap: wrap;
 }
-.footer-logo { width: 70px; opacity: 0.7; }
+.footer-logo { width: 54px; opacity: 0.7; }
 .footer-slim-copy {
   text-align: right;
   font-size: 12px;
@@ -916,4 +917,830 @@ img { max-width: 100%; height: auto; display: block; }
   .products-grid { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
   .clients-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ═══════════════════════════════════════════════
+   HEADER SEARCH ROW
+═══════════════════════════════════════════════ */
+.header-search-row {
+  background: #fff;
+  padding: 7px 20px;
+  border-bottom: 1px solid #eee;
+}
+.header-search-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hs-logo { flex-shrink: 0; }
+.hs-logo img { width: 64px; height: auto; display: block; }
+
+.hs-search-wrap {
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+  background: #f5f7fa;
+  border: 1.5px solid #e0e4ed;
+  border-radius: 28px;
+  overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+.hs-search-wrap:focus-within {
+  border-color: #00aee8;
+  box-shadow: 0 0 0 3px rgba(0,174,232,.12);
+}
+.hs-search-wrap input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  color: #333;
+}
+.hs-search-wrap button {
+  background: #00aee8;
+  border: none;
+  padding: 10px 22px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: background .2s;
+  font-family: 'Lato', sans-serif;
+}
+.hs-search-wrap button:hover { background: #0095c8; }
+
+.hs-cart-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #00aee8;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background .2s;
+  font-family: 'Lato', sans-serif;
+}
+.hs-cart-btn:hover { background: #0095c8; }
+.hs-cart-label { display: block; }
+.hs-cart-badge {
+  background: #E63946;
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+}
+
+/* ═══════════════════════════════════════════════
+   OFFERS
+═══════════════════════════════════════════════ */
+/* ── OFFERS ─────────────────────────────────── */
+.ts-offers-section { padding: 16px 20px; background: #fff; }
+
+.ts-offers-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: 165px 165px;
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Todos los cards usan flex: texto izquierda | imagen derecha */
+.ts-offer-card {
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  transition: transform .25s, box-shadow .25s;
+}
+.ts-offer-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,.25); }
+.ts-offer-card.ts-offer-main { grid-row: 1 / 3; }
+
+/* Lado izquierdo: texto */
+.ts-offer-text {
+  width: 55%;
+  flex-shrink: 0;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 5px;
+  box-sizing: border-box;
+}
+.ts-offer-card.ts-offer-sec .ts-offer-text {
+  width: 60%;
+  padding: 14px 16px;
+  justify-content: center;
+}
+
+/* Lado derecho: imagen */
+.ts-offer-img {
+  flex: 1;
+  overflow: hidden;
+}
+.ts-offer-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Etiqueta / Título / Porcentaje / Subtítulo / Botón */
+.ts-offer-tag {
+  background: #E63946; color: #fff;
+  padding: 3px 10px; border-radius: 16px;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: .5px; text-transform: uppercase;
+  width: fit-content;
+}
+.ts-offer-title {
+  color: #fff; font-weight: 900; line-height: 1.1;
+  font-size: 26px;
+}
+.ts-offer-card.ts-offer-sec .ts-offer-title {
+  font-size: 17px;
+}
+.ts-offer-pct {
+  display: inline-block;
+  background: #00aee8; color: #fff;
+  font-size: 28px; font-weight: 900;
+  padding: 1px 10px; border-radius: 7px;
+  width: fit-content;
+}
+.ts-offer-card.ts-offer-sec .ts-offer-pct {
+  font-size: 18px;
+  padding: 1px 8px;
+}
+.ts-offer-sub {
+  color: rgba(255,255,255,.82);
+  font-size: 11px;
+  line-height: 1.4;
+}
+.ts-offer-btn {
+  background: #fff; color: #00aee8; border: none;
+  padding: 6px 16px; border-radius: 16px;
+  font-weight: 700; font-size: 11px; cursor: pointer;
+  width: fit-content; transition: all .2s;
+  font-family: 'Lato', sans-serif; margin-top: 2px;
+}
+.ts-offer-btn:hover { background: #00aee8; color: #fff; }
+
+/* ═══════════════════════════════════════════════
+   CATEGORIES
+═══════════════════════════════════════════════ */
+.ts-cats-section {
+  background: #fff;
+  padding: 28px 20px;
+  margin-top: 6px;
+  border-top: 1px solid #eee;
+}
+.ts-cats-inner { max-width: 1200px; margin: 0 auto; }
+.ts-section-head {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+}
+.ts-section-head h2 {
+  font-size: 20px; font-weight: 900; color: #222; white-space: nowrap;
+}
+.ts-section-head::after {
+  content: ''; flex: 1; height: 2px;
+  background: #e5e5e5; border-radius: 2px;
+}
+.ts-cats-row {
+  display: flex; gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 6px;
+}
+.ts-cat-card {
+  flex: 0 0 100px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 14px 10px 12px;
+  background: #f5f7fa; border-radius: 12px;
+  border: 2px solid transparent; cursor: pointer;
+  transition: all .25s; text-align: center; text-decoration: none;
+}
+.ts-cat-card:hover {
+  border-color: #00aee8; background: #e8f8fd;
+  transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,174,232,.18);
+}
+.ts-cat-icon {
+  width: 50px; height: 50px;
+  background: #00aee8; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: background .25s;
+}
+.ts-cat-card:hover .ts-cat-icon { background: #0095c8; }
+.ts-cat-label { font-size: 12px; font-weight: 700; color: #333; }
+
+/* ═══════════════════════════════════════════════
+   PRODUCTS GRID
+═══════════════════════════════════════════════ */
+.ts-products-section {
+  background: #f5f7fa;
+  padding: 32px 20px;
+  margin-top: 6px;
+}
+.ts-products-inner { max-width: 1200px; margin: 0 auto; }
+.ts-products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.ts-prod-card {
+  background: #fff;
+  border: 1.5px solid #e5e9f0; border-radius: 10px;
+  overflow: hidden; cursor: pointer;
+  transition: all .3s; position: relative;
+  display: flex; flex-direction: column;
+}
+.ts-prod-card:hover {
+  border-color: #00aee8;
+  box-shadow: 0 8px 32px rgba(0,174,232,.18);
+  transform: translateY(-5px);
+}
+.ts-prod-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: #E63946; color: #fff;
+  padding: 3px 9px; border-radius: 6px;
+  font-size: 10px; font-weight: 800; z-index: 1; letter-spacing: .3px;
+}
+.ts-prod-badge.blue { background: #00aee8; }
+.ts-prod-img-wrap {
+  background: #f9fafb; padding: 20px;
+  display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 1; overflow: hidden; position: relative;
+}
+.ts-prod-img-wrap::after {
+  content: 'TECNISTORE';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%) rotate(-28deg);
+  font-size: 14px; font-weight: 900;
+  color: rgba(0,174,232,.18); letter-spacing: 3px;
+  white-space: nowrap; pointer-events: none; z-index: 2;
+}
+.ts-prod-img-wrap img {
+  max-height: 130px; object-fit: contain;
+  transition: transform .35s; position: relative; z-index: 1;
+}
+.ts-prod-card:hover .ts-prod-img-wrap img { transform: scale(1.08); }
+.ts-prod-info { padding: 14px; flex: 1; display: flex; flex-direction: column; }
+.ts-prod-brand {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .8px; color: #00aee8; margin-bottom: 4px;
+}
+.ts-prod-name {
+  font-size: 13px; font-weight: 700; color: #222;
+  line-height: 1.4; margin-bottom: 8px; flex: 1;
+}
+.ts-prod-stars { display: flex; gap: 2px; margin-bottom: 10px; }
+.ts-star { font-size: 12px; }
+.ts-star.on { color: #00aee8; }
+.ts-star.off { color: #d0d5dd; }
+.ts-prod-prices { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.ts-prod-price { font-size: 17px; font-weight: 900; color: #111; }
+.ts-prod-old { font-size: 11px; color: #aaa; text-decoration: line-through; }
+.ts-prod-disc-tag {
+  background: #00aee8; color: #fff;
+  font-size: 10px; font-weight: 800;
+  padding: 1px 6px; border-radius: 8px;
+  letter-spacing: .3px; white-space: nowrap;
+}
+.ts-prod-cta {
+  width: 100%; background: #00aee8; color: #fff;
+  border: none; padding: 10px; border-radius: 6px;
+  font-weight: 700; font-size: 13px; cursor: pointer;
+  transition: background .2s; font-family: 'Lato', sans-serif;
+}
+.ts-prod-cta:hover { background: #0095c8; }
+
+/* ═══════════════════════════════════════════════
+   PRODUCT MODAL
+═══════════════════════════════════════════════ */
+.ts-modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(6,13,26,.7);
+  z-index: 3000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  opacity: 0; visibility: hidden;
+  transition: opacity .28s, visibility .28s;
+  backdrop-filter: blur(4px);
+}
+.ts-modal-overlay.open { opacity: 1; visibility: visible; }
+.ts-modal-box {
+  background: #fff; border-radius: 16px;
+  width: 100%; max-width: 860px; max-height: 90vh; overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr;
+  transform: scale(.92) translateY(16px); transition: transform .28s;
+  position: relative;
+}
+.ts-modal-overlay.open .ts-modal-box { transform: scale(1) translateY(0); }
+.ts-modal-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 34px; height: 34px; background: #f0f3f8;
+  border: none; border-radius: 50%; cursor: pointer;
+  font-size: 18px; display: flex; align-items: center; justify-content: center;
+  z-index: 10; transition: background .2s;
+}
+.ts-modal-close:hover { background: #dde4ef; }
+.ts-modal-gallery {
+  background: #f5f7fa; padding: 28px;
+  display: flex; flex-direction: column; gap: 14px; position: relative;
+}
+.ts-modal-gallery::before {
+  content: 'TECNISTORE';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%) rotate(-28deg);
+  font-size: 24px; font-weight: 900;
+  color: rgba(0,174,232,.14); letter-spacing: 4px;
+  white-space: nowrap; pointer-events: none; z-index: 2;
+}
+.ts-modal-main-img {
+  width: 100%; aspect-ratio: 1; object-fit: contain;
+  border-radius: 10px; background: #fff;
+  position: relative; z-index: 1;
+}
+.ts-modal-thumbs { display: flex; gap: 10px; }
+.ts-thumb {
+  width: 60px; height: 60px; border-radius: 8px;
+  object-fit: contain; background: #fff; padding: 4px;
+  border: 2px solid transparent; cursor: pointer; transition: border-color .2s;
+}
+.ts-thumb.active, .ts-thumb:hover { border-color: #00aee8; }
+.ts-modal-info { padding: 28px; overflow-y: auto; max-height: 90vh; }
+.ts-modal-brand {
+  font-size: 11px; font-weight: 700; color: #00aee8;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.ts-modal-name {
+  font-size: 19px; font-weight: 900; color: #222;
+  margin: 6px 0 4px; line-height: 1.3;
+}
+.ts-modal-disc-badge {
+  display: inline-block; background: #E63946; color: #fff;
+  font-size: 11px; font-weight: 700; padding: 3px 9px;
+  border-radius: 6px; margin-bottom: 8px;
+}
+.ts-modal-prices {
+  display: flex; align-items: baseline; gap: 10px; margin: 10px 0 18px;
+}
+.ts-modal-price { font-size: 28px; font-weight: 900; color: #222; }
+.ts-modal-old { font-size: 15px; color: #999; text-decoration: line-through; }
+.ts-specs-title {
+  font-size: 13px; font-weight: 700; color: #333;
+  padding-bottom: 8px; border-bottom: 2px solid #e5e9f0; margin-bottom: 8px;
+}
+.ts-spec-row {
+  display: flex; justify-content: space-between; padding: 7px 0;
+  font-size: 13px; border-bottom: 1px solid #f5f7fa;
+}
+.ts-spec-key { color: #777; font-weight: 500; }
+.ts-spec-val { color: #222; font-weight: 700; text-align: right; max-width: 60%; }
+.ts-modal-actions { display: flex; gap: 12px; margin-top: 18px; }
+.ts-btn-cart {
+  flex: 1; background: #00aee8; color: #fff;
+  border: none; padding: 13px 16px; border-radius: 8px;
+  font-weight: 700; font-size: 14px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background .2s; font-family: 'Lato', sans-serif;
+}
+.ts-btn-cart:hover { background: #0095c8; }
+.ts-btn-wsp {
+  background: #25D366; color: #fff;
+  border: none; padding: 13px 18px; border-radius: 8px;
+  font-weight: 700; font-size: 14px; cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  transition: background .2s; font-family: 'Lato', sans-serif;
+}
+.ts-btn-wsp:hover { background: #1da851; }
+
+/* ═══════════════════════════════════════════════
+   GARANTÍAS
+═══════════════════════════════════════════════ */
+.ts-guar-section {
+  background: #060d1a;
+  padding: 44px 20px;
+}
+.ts-guar-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 20px; max-width: 1200px; margin: 0 auto;
+}
+.ts-guar-card {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; text-align: center;
+}
+.ts-guar-icon {
+  width: 68px; height: 68px;
+  background: rgba(0,174,232,.2);
+  border: 2px solid rgba(0,174,232,.35);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.ts-guar-card h3 { font-size: 15px; font-weight: 700; color: #fff; }
+.ts-guar-card p { font-size: 12.5px; color: rgba(255,255,255,.6); line-height: 1.5; }
+
+/* ═══════════════════════════════════════════════
+   STATS — Brand col
+═══════════════════════════════════════════════ */
+.stats-inner {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 40px !important;
+  align-items: center !important;
+}
+.stats-brand-col { display: flex; flex-direction: column; gap: 12px; }
+.stats-brand-logo img { width: 100px; height: auto; }
+.stats-brand-tagline {
+  font-size: 15px; color: #555; line-height: 1.7;
+}
+.stats-brand-years {
+  display: inline-block;
+  font-size: 13px; color: #00aee8; font-weight: 700;
+  background: rgba(0,174,232,.08);
+  padding: 8px 14px; border-radius: 8px; width: fit-content;
+}
+.stats-counters-col .stats-counters {
+  border-top: none !important; padding-top: 0 !important; margin-top: 0 !important;
+  grid-template-columns: 1fr !important; gap: 24px !important;
+}
+
+/* ═══════════════════════════════════════════════
+   CLIENTS 3×3
+═══════════════════════════════════════════════ */
+.ts-clients-section { background: #fff; padding: 56px 20px; }
+.ts-clients-inner { max-width: 1200px; margin: 0 auto; }
+.ts-clients-carousel-wrap { overflow: hidden; }
+.ts-clients-track {
+  display: flex;
+  transition: transform .55s cubic-bezier(.25,.46,.45,.94);
+}
+.ts-clients-page {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+/* Imagen recortada por fila — cada fila de clientes-tnt-1080x330 mide ~110px */
+.ts-client-img-slide {
+  width: 100%;
+  height: 110px;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+}
+.ts-client-img-slide img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  left: 0;
+  display: block;
+}
+.ts-client-row-1 img { top: 0; }
+.ts-client-row-2 img { top: -110px; }
+.ts-client-row-3 img { top: -220px; }
+
+/* herencia del viejo estilo por si acaso */
+.ts-client-logo-card {
+  background: #f5f7fa; border: 1.5px solid #e5e9f0;
+  border-radius: 12px; padding: 20px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 80px;
+}
+.ts-client-logo-card svg { width: 100%; max-width: 160px; height: auto; }
+.ts-clients-controls {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin-top: 24px;
+}
+.ts-ctrl-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1.5px solid #e5e9f0; background: #fff;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; transition: all .2s;
+}
+.ts-ctrl-btn:hover { background: #00aee8; color: #fff; border-color: #00aee8; }
+.ts-ctrl-dots { display: flex; gap: 7px; }
+.ts-ctrl-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #e0e4ed; border: none; cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.ts-ctrl-dot.active { background: #00aee8; transform: scale(1.35); }
+
+/* ════════════════════════════════════════════════════
+   TABLET  ≤ 1024px
+════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .ts-products-grid { grid-template-columns: repeat(3, 1fr); }
+  .ts-guar-grid      { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .stats-inner       { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+}
+
+/* ════════════════════════════════════════════════════
+   MOBILE GRANDE  ≤ 768px
+════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Top bar ── */
+  .top-bar-left .tb-item:nth-child(3),
+  .top-bar-left .tb-sep { display: none; }
+  .top-bar { font-size: 11px; }
+  .tb-item { padding: 0 8px; }
+
+  /* ── Header Search Row ── */
+  .header-search-row  { padding: 8px 14px; }
+  .header-search-inner { gap: 10px; }
+  .hs-logo img        { width: 52px; }
+  .hs-search-wrap     { flex: 1; }
+  .hs-search-wrap input { padding: 9px 12px; font-size: 13px; }
+  .hs-search-wrap button { padding: 9px 14px; font-size: 12px; }
+  .hs-cart-label      { display: none; }
+  .hs-cart-btn        { padding: 9px 12px; gap: 4px; }
+
+  /* ── Nav ── */
+  .nav-container { height: 40px; }
+  .nav-links a, .nav-right a { padding: 6px 10px; font-size: 11px; letter-spacing: .6px; }
+
+  /* ── Offers ── */
+  .ts-offers-section  { padding: 10px 12px; }
+  .ts-offers-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 180px 130px 130px;
+    gap: 8px;
+  }
+  .ts-offer-card.ts-offer-main { grid-row: auto; }
+  .ts-offer-text              { width: 58% !important; padding: 12px 14px; }
+  .ts-offer-title             { font-size: 20px !important; }
+  .ts-offer-pct               { font-size: 20px !important; padding: 1px 8px !important; }
+  .ts-offer-card.ts-offer-sec .ts-offer-text { padding: 10px 12px; }
+  .ts-offer-card.ts-offer-sec .ts-offer-title { font-size: 15px !important; }
+  .ts-offer-card.ts-offer-sec .ts-offer-pct  { font-size: 16px !important; }
+  .ts-offer-sub  { font-size: 10px; }
+  .ts-offer-btn  { padding: 5px 12px; font-size: 10px; }
+  .ts-offer-tag  { font-size: 9px; padding: 2px 7px; }
+
+  /* ── Categories ── */
+  .ts-cats-section    { padding: 14px 12px 18px; }
+  .ts-cats-row        { gap: 10px; }
+  .ts-cat-card        { flex: 0 0 88px; padding: 12px 8px 10px; }
+  .ts-cat-icon        { width: 44px; height: 44px; }
+  .ts-cat-icon svg    { width: 22px; height: 22px; }
+  .ts-cat-label       { font-size: 11px; }
+
+  /* ── Products ── */
+  .ts-products-section  { padding: 16px 12px; }
+  .ts-products-grid     { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .ts-prod-img-wrap     { padding: 14px; }
+  .ts-prod-img-wrap img { max-height: 110px; }
+  .ts-prod-info         { padding: 10px; }
+  .ts-prod-name         { font-size: 12px; }
+  .ts-prod-price        { font-size: 15px; }
+  .ts-ver-mas-btn       { width: 100%; max-width: 320px; justify-content: center; }
+
+  /* ── Modal ── */
+  .ts-modal-box         { grid-template-columns: 1fr; max-height: 92vh; overflow-y: auto; }
+  .ts-modal-gallery     { padding: 16px; border-radius: 14px 14px 0 0; }
+  .ts-modal-main-img    { max-height: 180px; object-fit: contain; aspect-ratio: auto; }
+  .ts-modal-thumbs      { gap: 8px; }
+  .ts-thumb             { width: 48px; height: 48px; }
+  .ts-modal-info        { padding: 16px; }
+  .ts-modal-name        { font-size: 16px; }
+  .ts-modal-price       { font-size: 24px; }
+  .ts-modal-actions     { flex-direction: column; gap: 8px; }
+  .ts-btn-cart, .ts-btn-wsp { width: 100%; justify-content: center; }
+
+  /* ── Guarantees ── */
+  .ts-guar-section      { padding: 28px 16px; }
+  .ts-guar-grid         { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .ts-guar-card h3      { font-size: 13px; }
+  .ts-guar-card p       { font-size: 11.5px; }
+
+  /* ── Stats ── */
+  .stats-section        { padding: 40px 16px; }
+  .stats-inner          { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .stats-brand-logo img { width: 80px; }
+  .stats-brand-tagline  { font-size: 13px; }
+  .stats-counters       { grid-template-columns: repeat(3, 1fr) !important; }
+  .stat-number          { font-size: 26px; }
+  .stat-label           { font-size: 9.5px; }
+  .stats-counters-col .stats-counters { grid-template-columns: repeat(3, 1fr) !important; }
+
+  /* ── Clients ── */
+  .ts-clients-section   { padding: 28px 12px; }
+  .ts-clients-page      { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .ts-client-logo-card  { padding: 12px; min-height: 56px; }
+  .ts-client-logo-card svg { height: 32px; }
+
+  /* ── Contact ── */
+  .contact-section      { padding: 40px 16px; }
+  .contact-inner        { grid-template-columns: 1fr; gap: 28px; }
+  .contact-title        { font-size: 28px; }
+  .contact-sub          { font-size: 14px; }
+  .offices-block-grid   { grid-template-columns: 1fr 1fr; gap: 6px 16px; }
+  .contact-map          { min-height: 260px; border-radius: 10px; }
+  .contact-map iframe   { min-height: 260px; }
+
+  /* ── Footer ── */
+  .footer-slim-inner    { flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+  .footer-slim-copy     { text-align: center; }
+
+  /* ── WhatsApp flotante ── */
+  .whatsapp-btn         { width: 50px; height: 50px; bottom: 18px; right: 18px; }
+  .whatsapp-btn svg     { width: 26px; height: 26px; }
+}
+
+/* ════════════════════════════════════════════════════
+   MOBILE PEQUEÑO  ≤ 430px
+════════════════════════════════════════════════════ */
+@media (max-width: 430px) {
+
+  /* Header: logo + cart en fila 1, búsqueda en fila 2 */
+  .header-search-inner  { flex-wrap: wrap; }
+  .hs-logo              { order: 1; }
+  .hs-cart-btn          { order: 2; margin-left: auto; }
+  .hs-search-wrap       { order: 3; flex: 0 0 100%; max-width: 100%; }
+
+  /* Offers: más compacto */
+  .ts-offers-grid { grid-template-rows: 160px 120px 120px; }
+  .ts-offer-text  { width: 62% !important; }
+
+  /* Categories: 4 por fila */
+  .ts-cat-card    { flex: 0 0 76px; }
+  .ts-cat-icon    { width: 40px; height: 40px; }
+  .ts-cat-icon svg { width: 20px; height: 20px; }
+
+  /* Products: 2 columnas compactas */
+  .ts-products-grid     { gap: 8px; }
+  .ts-prod-img-wrap     { padding: 10px; }
+  .ts-prod-img-wrap img { max-height: 95px; }
+  .ts-prod-info         { padding: 8px 9px; }
+  .ts-prod-name         { font-size: 11.5px; }
+  .ts-prod-price        { font-size: 14px; }
+  .ts-prod-cta          { padding: 8px; font-size: 11.5px; }
+
+  /* Stats: 3 contadores en fila */
+  .stat-number { font-size: 22px; }
+  .stat-label  { font-size: 9px; }
+
+  /* Clients: 1 columna */
+  .ts-clients-page { grid-template-columns: 1fr; }
+
+  /* Garantías: 2x2 */
+  .ts-guar-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ts-guar-icon { width: 52px; height: 52px; }
+  .ts-guar-card h3 { font-size: 12.5px; }
+  .ts-guar-card p  { font-size: 11px; }
+}
+
+/* ══════════════════════════════════════════════════
+   PRODUCTOS EXPANDIBLES
+══════════════════════════════════════════════════ */
+
+/* Sección extra: oculta por defecto, se abre con animación */
+.ts-extra-section {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.55s cubic-bezier(0, 0, 0.2, 1);
+}
+.ts-extra-section.open {
+  max-height: 2400px;
+}
+.ts-extra-section .ts-products-grid {
+  margin-top: 16px;
+}
+
+/* Botón Ver más */
+.ts-ver-mas-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+.ts-ver-mas-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #00aee8;
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 28px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s, transform .2s, box-shadow .2s;
+  font-family: 'Lato', sans-serif;
+  box-shadow: 0 4px 16px rgba(0,174,232,.3);
+}
+.ts-ver-mas-btn:hover {
+  background: #0095c8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,174,232,.4);
+}
+.vm-arrow {
+  transition: transform .35s ease;
+  flex-shrink: 0;
+}
+.ts-ver-mas-btn.open .vm-arrow {
+  transform: rotate(180deg);
+}
+
+/* ══════════════════════════════════════════════════
+   ARMONIZACIÓN GENERAL
+══════════════════════════════════════════════════ */
+
+/* Secciones — altura consistente y ritmo visual */
+.ts-offers-section,
+.ts-cats-section,
+.ts-products-section {
+  border-top: 1px solid #eef1f6;
+}
+
+/* Sección de categorías más compacta */
+.ts-cats-section { padding: 20px 20px 24px; }
+
+/* Productos section: fondo sutil para separar del resto */
+.ts-products-section { background: #f7f9fc; margin-top: 0; border-top: none; }
+
+/* Section heads consistentes */
+.ts-section-head h2 {
+  font-size: 19px;
+  font-weight: 800;
+  color: #111;
+  position: relative;
+  padding-bottom: 10px;
+}
+.ts-section-head h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 36px;
+  height: 3px;
+  background: #00aee8;
+  border-radius: 2px;
+}
+.ts-section-head::after { display: none; } /* Quita la línea antigua */
+
+/* Garantías: uniformidad de tamaño de ícono */
+.ts-guar-icon {
+  width: 60px;
+  height: 60px;
+}
+
+/* Clientes: sección más compacta */
+.ts-clients-section { padding: 40px 20px; }
+.ts-client-logo-card {
+  padding: 16px;
+  min-height: 68px;
+}
+
+/* Stats: ajuste tipográfico */
+.stats-brand-tagline {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.stat-number { font-size: 34px; }
+.stat-label  { font-size: 11px; letter-spacing: .5px; }
+
+/* Footer: un poco más de padding */
+.site-footer-slim { padding: 20px; }
+
+/* Tarjetas de producto: sombra suave por defecto */
+.ts-prod-card {
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+/* Badge de descuento destacado en el card */
+.ts-prod-badge.badge-hot {
+  background: #ff6b00;
+  animation: pulse-badge 2s infinite;
+}
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .75; }
+}
+
+/* Header: sombra unificada */
+.site-header {
+  box-shadow: 0 3px 18px rgba(0,0,0,.14);
 }
