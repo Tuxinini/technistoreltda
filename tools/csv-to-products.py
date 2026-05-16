@@ -40,6 +40,8 @@ with open(CSV_PATH, encoding='utf-8-sig') as f:
         price     = to_int(price_str) if price_str else old_price
         if price == 0:
             price = old_price
+        if price == 0 and old_price == 0:
+            continue
         discount  = round((1 - price / old_price) * 100) if old_price > 0 and price < old_price else 0
         images    = parse_images(row.get('Imágenes', ''))
         short_desc = strip_html(row.get('Descripción corta', ''))

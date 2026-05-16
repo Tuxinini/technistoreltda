@@ -1621,19 +1621,6 @@ var ALL_PRODUCTS = [
     "shortDesc": ""
   },
   {
-    "name": "COMPUTADOR HP AMD RYZEN 5 -7520U - TODO EN UNO",
-    "brand": "",
-    "category": "Equipos de Escritorio",
-    "price": 0,
-    "oldPrice": 0,
-    "discount": "",
-    "images": [
-      "https://tntltda.com/wp-content/uploads/2025/02/COMPUTADOR-HP-AMD-RYZEN-5-7520U-TODO-EN-UNO.webp",
-      "https://tntltda.com/wp-content/uploads/2025/02/COMPUTADOR-HP-AMD-RYZEN-5-7520U-TODO-EN-UNO-.webp"
-    ],
-    "shortDesc": ""
-  },
-  {
     "name": "IMPRESORA MULTIFUNCIONAL EPSON WIFI ECOTANK L4260",
     "brand": "",
     "category": "Equipos de Escritorio",
