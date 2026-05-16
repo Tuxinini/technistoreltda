@@ -141,7 +141,7 @@ var activeCat = 'Todos';
 function renderCats() {
   document.getElementById('tienda-cats').innerHTML = CATS.map(function(c) {
     return '<button class="tienda-cat-btn' + (c === activeCat ? ' active' : '') +
-      '" onclick="setCat(\'' + c.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + '\')">' + c + '</button>';
+      '" onclick="setCat(\'' + c.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + '\')">' + esc(c) + '</button>';
   }).join('');
 }
 
@@ -154,24 +154,29 @@ function setCat(cat) {
 /* ── FORMAT ── */
 function fmt(n) { return '$' + n.toLocaleString('es-CO'); }
 
+/* ── HTML ESCAPE ── */
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
 /* ── RENDER CARD ── */
 function makeCard(p) {
   var img = p.images && p.images.length ? p.images[0] : '';
-  var badge = p.discount ? '<span class="ts-prod-badge">' + p.discount + '</span>' : '';
-  var brandHtml = p.brand ? '<p class="ts-prod-brand">' + p.brand + '</p>' : '';
+  var badge = p.discount ? '<span class="ts-prod-badge">' + esc(p.discount) + '</span>' : '';
+  var brandHtml = p.brand ? '<p class="ts-prod-brand">' + esc(p.brand) + '</p>' : '';
   var oldHtml = p.oldPrice && p.oldPrice !== p.price
     ? '<span class="ts-prod-old">' + fmt(p.oldPrice) + '</span>' : '';
-  var discHtml = p.discount ? '<span class="ts-prod-disc-tag">' + p.discount + '</span>' : '';
+  var discHtml = p.discount ? '<span class="ts-prod-disc-tag">' + esc(p.discount) + '</span>' : '';
   var waMsg = encodeURIComponent('Hola! Me interesa ' + (p.brand ? p.brand + ' ' : '') + p.name + ' (' + fmt(p.price) + ').');
   var imgTag = img
-    ? '<img src="' + img + '" alt="' + p.name + '" loading="lazy" onerror="this.parentNode.classList.add(\'tienda-img-error\');this.style.display=\'none\'">'
+    ? '<img src="' + img + '" alt="' + esc(p.name) + '" loading="lazy" onerror="this.parentNode.classList.add(\'tienda-img-error\');this.style.display=\'none\'">'
     : '<div class="tienda-img-error" style="min-height:180px"></div>';
   return '<article class="ts-prod-card">' +
     badge +
     '<div class="ts-prod-img-wrap">' + imgTag + '</div>' +
     '<div class="ts-prod-info">' +
       brandHtml +
-      '<p class="ts-prod-name">' + p.name + '</p>' +
+      '<p class="ts-prod-name">' + esc(p.name) + '</p>' +
       '<div class="ts-prod-prices">' +
         '<span class="ts-prod-price">' + fmt(p.price) + '</span>' +
         oldHtml + discHtml +
