@@ -1,55 +1,236 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head><meta charset="UTF-8">
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Próximamente</title>
-        <style>
-            html *:not(body):not(.hsr-coming-soon-body > *) {
-                display: none;
-            }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda | Tecnistore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
 
-            .hsr-coming-soon-body {
-                display: flex !important;
-            }
-        </style>
-    </head>
-    <body data-rsssl="1" class="hostinger">
-        <div class="hsr-coming-soon-body">
-            <img alt="logo" class="hsr-logo" src="/wp-content/plugins/hostinger/assets/images/logo-black.svg">
-            <img alt="illustration" class="hsr-coming-soon-illustration" src="/wp-content/plugins/hostinger/assets/images/illustration.png">
-            <h3>
-                Próximamente            </h3>
-            <p>
-                Se está creando el nuevo sitio WordPress y se publicará en breve            </p>
-        </div>
+<!-- ═══════════ TOP BAR ═══════════ -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="top-bar-left">
+      <span class="tb-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        <a href="tel:+573225817129">+57 322-581-7129</a>
+      </span>
+      <span class="tb-sep">|</span>
+      <span class="tb-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <a href="mailto:comercial1@tntltda.com">comercial1@tntltda.com</a>
+      </span>
+    </div>
+    <div class="top-bar-right">
+      <a href="https://wa.me/573225817129" class="tb-wa" target="_blank">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
 
-        <script type="speculationrules">
-{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/Divi/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="site-header">
+  <div class="header-search-row">
+    <div class="header-search-inner">
+      <a href="/" class="hs-logo">
+        <img src="/wp-content/uploads/2021/03/Tnt.png" alt="Tecnistore">
+      </a>
+      <div class="hs-search-wrap">
+        <input type="text" id="tienda-search-input" placeholder="Buscar productos, marcas, categorías...">
+        <button type="button" onclick="headerSearch()" aria-label="Buscar">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Buscar
+        </button>
+      </div>
+      <button class="hs-cart-btn" onclick="openCart()" aria-label="Carrito">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
+        <span class="hs-cart-label">Carrito</span>
+        <span class="hs-cart-badge" id="cart-count">0</span>
+      </button>
+    </div>
+  </div>
+  <nav class="nav-container">
+    <div class="nav-links">
+      <a href="/">INICIO</a>
+      <a href="/#nosotros">NOSOTROS</a>
+      <a href="/tienda/" class="active">TIENDA</a>
+    </div>
+    <div class="nav-logo">
+      <a href="/"><img src="/wp-content/uploads/2021/03/Tnt.png" alt="Tecnistore"></a>
+    </div>
+    <div class="nav-right">
+      <a href="/#contacto">CONTACTO</a>
+      <a href="/mi-cuenta/" class="nav-btn-login">INICIAR SESIÓN</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+<div class="tienda-hero">
+  <h1>Nuestro Catálogo</h1>
+  <p>Encuentra la mejor tecnología al mejor precio</p>
+</div>
+
+<!-- ═══════════ TOOLBAR ═══════════ -->
+<div class="tienda-toolbar">
+  <div class="tienda-cats" id="tienda-cats"></div>
+  <div class="tienda-search-sort">
+    <input type="text" class="tienda-search" id="tienda-q" placeholder="Buscar..." oninput="applyFilters()">
+    <select class="tienda-sort" id="tienda-sort" onchange="applyFilters()">
+      <option value="default">Relevancia</option>
+      <option value="price-asc">Menor precio</option>
+      <option value="price-desc">Mayor precio</option>
+      <option value="discount">Mayor descuento</option>
+    </select>
+  </div>
+</div>
+
+<!-- ═══════════ CONTADOR ═══════════ -->
+<div class="tienda-contador" id="tienda-contador">Cargando productos...</div>
+
+<!-- ═══════════ GRID ═══════════ -->
+<main class="tienda-grid" id="tienda-grid"></main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site-footer-slim">
+  <div class="footer-slim-inner">
+    <img src="/wp-content/uploads/2021/03/Tnt.png" alt="Tecnistore" class="footer-logo">
+    <div class="footer-slim-copy">
+      <p>Copyright &copy; <span id="footer-year"></span> Tecnistore</p>
+      <p>&copy; TNT Technistore Ltda. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-btn" href="https://wa.me/573225817129?text=Hola!%20mi%20nombre%20es..." target="_blank" rel="noopener" title="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="/js/products-data.js"></script>
+<script>
+'use strict';
+
+/* ── CART (localStorage) ── */
+var cartCount = parseInt(localStorage.getItem('ts-cart') || '0', 10);
+function updateCartBadge() {
+  var el = document.getElementById('cart-count');
+  if (el) el.textContent = cartCount;
+}
+function openCart() {
+  alert('Tienes ' + cartCount + ' producto(s) en el carrito.');
+}
+updateCartBadge();
+
+/* ── CATEGORIES ── */
+var CATS = ['Todos'];
+(function() {
+  var seen = {};
+  ALL_PRODUCTS.forEach(function(p) {
+    if (!seen[p.category]) { seen[p.category] = 1; CATS.push(p.category); }
+  });
+})();
+
+var activeCat = 'Todos';
+
+function renderCats() {
+  document.getElementById('tienda-cats').innerHTML = CATS.map(function(c) {
+    return '<button class="tienda-cat-btn' + (c === activeCat ? ' active' : '') +
+      '" onclick="setCat(\'' + c.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + '\')">' + c + '</button>';
+  }).join('');
+}
+
+function setCat(cat) {
+  activeCat = cat;
+  renderCats();
+  applyFilters();
+}
+
+/* ── FORMAT ── */
+function fmt(n) { return '$' + n.toLocaleString('es-CO'); }
+
+/* ── RENDER CARD ── */
+function makeCard(p) {
+  var img = p.images && p.images.length ? p.images[0] : '';
+  var badge = p.discount ? '<span class="ts-prod-badge">' + p.discount + '</span>' : '';
+  var brandHtml = p.brand ? '<p class="ts-prod-brand">' + p.brand + '</p>' : '';
+  var oldHtml = p.oldPrice && p.oldPrice !== p.price
+    ? '<span class="ts-prod-old">' + fmt(p.oldPrice) + '</span>' : '';
+  var discHtml = p.discount ? '<span class="ts-prod-disc-tag">' + p.discount + '</span>' : '';
+  var waMsg = encodeURIComponent('Hola! Me interesa ' + (p.brand ? p.brand + ' ' : '') + p.name + ' (' + fmt(p.price) + ').');
+  var imgTag = img
+    ? '<img src="' + img + '" alt="' + p.name + '" loading="lazy" onerror="this.parentNode.classList.add(\'tienda-img-error\');this.style.display=\'none\'">'
+    : '<div class="tienda-img-error" style="min-height:180px"></div>';
+  return '<article class="ts-prod-card">' +
+    badge +
+    '<div class="ts-prod-img-wrap">' + imgTag + '</div>' +
+    '<div class="ts-prod-info">' +
+      brandHtml +
+      '<p class="ts-prod-name">' + p.name + '</p>' +
+      '<div class="ts-prod-prices">' +
+        '<span class="ts-prod-price">' + fmt(p.price) + '</span>' +
+        oldHtml + discHtml +
+      '</div>' +
+      '<a class="ts-prod-cta" href="https://wa.me/573225817129?text=' + waMsg + '" target="_blank" rel="noopener">Pedir por WhatsApp</a>' +
+    '</div></article>';
+}
+
+/* ── FILTER + SORT ── */
+function applyFilters() {
+  var q = (document.getElementById('tienda-q').value || '').trim().toLowerCase();
+  var sort = document.getElementById('tienda-sort').value;
+
+  var filtered = ALL_PRODUCTS.filter(function(p) {
+    var catOk = activeCat === 'Todos' || p.category === activeCat;
+    var qOk = !q ||
+      p.name.toLowerCase().indexOf(q) !== -1 ||
+      (p.brand || '').toLowerCase().indexOf(q) !== -1;
+    return catOk && qOk;
+  });
+
+  if (sort === 'price-asc') filtered.sort(function(a, b) { return a.price - b.price; });
+  else if (sort === 'price-desc') filtered.sort(function(a, b) { return b.price - a.price; });
+  else if (sort === 'discount') {
+    filtered.sort(function(a, b) {
+      var da = a.oldPrice ? (1 - a.price / a.oldPrice) : 0;
+      var db = b.oldPrice ? (1 - b.price / b.oldPrice) : 0;
+      return db - da;
+    });
+  }
+
+  document.getElementById('tienda-contador').textContent =
+    'Mostrando ' + filtered.length + ' de ' + ALL_PRODUCTS.length + ' productos';
+
+  var grid = document.getElementById('tienda-grid');
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="tienda-no-results">' +
+      '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#8ba3c7" stroke-width="1.5">' +
+      '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>' +
+      '<p>No se encontraron productos.</p></div>';
+  } else {
+    grid.innerHTML = filtered.map(makeCard).join('');
+  }
+}
+
+/* ── HEADER SEARCH SYNC ── */
+function headerSearch() {
+  var val = document.getElementById('tienda-search-input').value;
+  document.getElementById('tienda-q').value = val;
+  applyFilters();
+}
+document.getElementById('tienda-search-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') headerSearch();
+});
+
+/* ── INIT ── */
+document.getElementById('footer-year').textContent = new Date().getFullYear();
+renderCats();
+applyFilters();
 </script>
-		<script type="application/javascript">
-			(function() {
-				var file     = ["\/wp-content\/et-cache\/9\/et-divi-dynamic-9-late.css"];
-				var handle   = document.getElementById('divi-style-inline-inline-css');
-				var location = handle.parentNode;
-
-				if (0===document.querySelectorAll('link[href="' + file + '"]').length) {
-					var link  = document.createElement('link');
-					link.rel  = 'stylesheet';
-					link.id   = 'et-dynamic-late-css';
-					link.href = file;
-
-					location.insertBefore(link, handle.nextSibling);
-				}
-			})();
-		</script>
-		<img class="btn-whatsapp" src="https://clientes.dongee.com/whatsapp.png" width="64" height="64" alt="Whatsapp" onclick="window.location.href='https://wa.me/573225817129?text=Hola!%20mi%20nombre%20es...'">
-
-<link rel="stylesheet" id="formidable-css" href="/wp-content/plugins/formidable/css/formidableforms.css?ver=4271742" type="text/css" media="all">
-<style id="global-styles-inline-css" type="text/css">
-:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:root { --wp--style--global--content-size: 823px;--wp--style--global--wide-size: 1080px; }:where(body) { margin: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
-/*# sourceURL=global-styles-inline-css */
-</style>
-<link rel="stylesheet" id="hostinger_main_styles-css" href="/wp-content/plugins/hostinger/assets//css/coming-soon.min.css?ver=3.0.66" type="text/css" media="all">
-    </body>
-</html><!-- Page cached by LiteSpeed Cache 7.8.1 on 2026-05-13 04:48:43 -->
+</body>
+</html>
