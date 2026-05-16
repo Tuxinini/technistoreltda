@@ -154,10 +154,10 @@ function tsSetThumb(idx){
 }
 
 /* ── CARRITO ── */
-var cartTotal=0;
+var cartTotal=parseInt(localStorage.getItem('ts-cart')||'0',10);
 function updateCartBadge(){var el=document.getElementById('cart-count');if(el)el.textContent=cartTotal;}
 function tsAddToCart(){
-  cartTotal++;updateCartBadge();
+  cartTotal++;localStorage.setItem('ts-cart',cartTotal);updateCartBadge();
   var btn=document.getElementById('ts-btn-cart');if(!btn)return;
   var orig=btn.innerHTML;
   btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Agregado!';
