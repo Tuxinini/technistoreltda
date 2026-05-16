@@ -6,11 +6,32 @@ OUT_PATH = 'public/js/products-data.js'
 def strip_html(text):
     return re.sub(r'<[^>]+>', '', text or '').strip()
 
-def normalize_category(cats_str):
+CATEGORY_MAP = {
+    'Celulares y Tablets':    'Celulares',
+    'Computadores Portátiles':'Portátiles',
+    'Equipos de Escritorio':  'Empresas',
+    'Sin categoría':          'Empresas',
+}
+
+PERIFERICOS_KW = ['teclado', 'mouse', 'camara', 'cámara', 'diadema', 'apuntador', 'brio', 'webcam', 'logitech']
+LINEA_HOGAR_KW = ['jbl', 'altavoz', 'parlante', 'speaker', 'bocina']
+CELULARES_KW   = ['celular', 'tablet', 'motorola']
+
+def classify_by_name(name):
+    n = name.lower()
+    if any(k in n for k in CELULARES_KW):   return 'Celulares'
+    if any(k in n for k in LINEA_HOGAR_KW): return 'Línea hogar'
+    if any(k in n for k in PERIFERICOS_KW): return 'Periféricos'
+    return 'Accesorios'
+
+def normalize_category(cats_str, product_name=''):
     if not cats_str:
-        return 'Sin categoría'
+        return classify_by_name(product_name)
     first = [c.strip() for c in cats_str.split(',')][0]
-    return first.split('>')[0].strip() if '>' in first else first
+    raw = first.split('>')[0].strip() if '>' in first else first
+    if raw in CATEGORY_MAP:
+        return CATEGORY_MAP[raw]
+    return classify_by_name(product_name)
 
 def parse_images(img_str):
     return [u.strip() for u in (img_str or '').split(',') if u.strip()]
@@ -34,7 +55,7 @@ with open(CSV_PATH, encoding='utf-8-sig') as f:
         if not name:
             continue
         brand     = row.get('Marcas', '').strip()
-        category  = normalize_category(row.get('Categorías', ''))
+        category  = normalize_category(row.get('Categorías', ''), name)
         old_price = to_int(row.get('Precio normal', ''))
         price_str = row.get('Precio rebajado', '').strip()
         price     = to_int(price_str) if price_str else old_price

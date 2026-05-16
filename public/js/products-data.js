@@ -2,7 +2,7 @@ var ALL_PRODUCTS = [
   {
     "name": "Servicio técnico computadores",
     "brand": "",
-    "category": "Sin categoría",
+    "category": "Empresas",
     "price": 49000,
     "oldPrice": 49000,
     "discount": "",
@@ -14,7 +14,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR SAMSUNG A05",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 367900,
     "oldPrice": 399900,
     "discount": "8% OFF",
@@ -26,7 +26,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR SAMSUNG A05",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 389900,
     "oldPrice": 499900,
     "discount": "22% OFF",
@@ -38,7 +38,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR SAMSUNG A15",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 587900,
     "oldPrice": 729000,
     "discount": "19% OFF",
@@ -50,7 +50,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR SAMSUNG A34",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 969000,
     "oldPrice": 1120000,
     "discount": "13% OFF",
@@ -62,7 +62,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR SAMSUNG A35",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 1249000,
     "oldPrice": 1550000,
     "discount": "19% OFF",
@@ -74,7 +74,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR SAMSUNG A54",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 1319000,
     "oldPrice": 1699000,
     "discount": "22% OFF",
@@ -86,7 +86,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR XIAOMI NOTE 13 PRO",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 959000,
     "oldPrice": 1109000,
     "discount": "14% OFF",
@@ -98,7 +98,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR REALME C55",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 699000,
     "oldPrice": 859000,
     "discount": "19% OFF",
@@ -110,7 +110,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR MOTOROLA G54",
     "brand": "",
-    "category": "Suministros para oficina",
+    "category": "Celulares",
     "price": 649000,
     "oldPrice": 839000,
     "discount": "23% OFF",
@@ -122,7 +122,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR MOTOROLA G84",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 789000,
     "oldPrice": 899000,
     "discount": "12% OFF",
@@ -134,7 +134,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TABLET LENOVO TAB M8 TB300FU",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 473000,
     "oldPrice": 639000,
     "discount": "26% OFF",
@@ -146,7 +146,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TABLET LENOVO TAB M9  TB310XU",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 749000,
     "oldPrice": 890000,
     "discount": "16% OFF",
@@ -158,7 +158,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TABLET LENOVO M10 TB328XU",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 549000,
     "oldPrice": 719000,
     "discount": "24% OFF",
@@ -170,7 +170,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TABLET LENOVO TAB M10 PLUS TB125FU",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 979000,
     "oldPrice": 1150000,
     "discount": "15% OFF",
@@ -182,7 +182,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TABLET LENOVO TAB M11 TB330FU",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 879000,
     "oldPrice": 990000,
     "discount": "11% OFF",
@@ -194,7 +194,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TABLET LENOVO P12 TB370FU",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 1989000,
     "oldPrice": 2490000,
     "discount": "20% OFF",
@@ -206,7 +206,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TABLET GALAXY TAB A7 LITE T225",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 829000,
     "oldPrice": 990000,
     "discount": "16% OFF",
@@ -218,7 +218,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TABLET GALAXY TAB A9+ SM-X210",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 679000,
     "oldPrice": 890000,
     "discount": "24% OFF",
@@ -230,7 +230,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TABLET REDMI PAD SE 23073RPBFL",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 719000,
     "oldPrice": 929000,
     "discount": "23% OFF",
@@ -242,7 +242,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TABLET TOUCH 770N",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 289900,
     "oldPrice": 379000,
     "discount": "24% OFF",
@@ -254,7 +254,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA DDR3 8GB HIKSEMI",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 49900,
     "oldPrice": 59900,
     "discount": "17% OFF",
@@ -267,7 +267,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA DDR4 4GB BAJADAS DE MAQUINA",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 49900,
     "oldPrice": 59900,
     "discount": "17% OFF",
@@ -279,7 +279,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA DDR4 8GB PATRIOT",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 89990,
     "oldPrice": 101000,
     "discount": "11% OFF",
@@ -291,7 +291,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA DDR4 8GB HIKSEMI (HIKVISION)",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 84700,
     "oldPrice": 99000,
     "discount": "14% OFF",
@@ -303,7 +303,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA DDR4 16GB HIKSEMI (HIKVISION)",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 159700,
     "oldPrice": 187000,
     "discount": "15% OFF",
@@ -315,7 +315,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA DDR4 16GB PATRIOT",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 159700,
     "oldPrice": 187000,
     "discount": "15% OFF",
@@ -327,7 +327,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA DDR4 32GB XUE",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 289900,
     "oldPrice": 321000,
     "discount": "10% OFF",
@@ -339,7 +339,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA DDR5 8GB 4800Mhz ADATA",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 189000,
     "oldPrice": 221000,
     "discount": "14% OFF",
@@ -351,7 +351,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA DDR5 16GB 5200Mhz ADATA",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 209900,
     "oldPrice": 255000,
     "discount": "18% OFF",
@@ -363,7 +363,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA DDR5 32GB 4800Mhz ADATA",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 379000,
     "oldPrice": 436000,
     "discount": "13% OFF",
@@ -375,7 +375,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA PARA PC RAM DDR3 4GB PARA PC ADATA",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 49900,
     "oldPrice": 59900,
     "discount": "17% OFF",
@@ -387,7 +387,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA PARA PC DDR4 8GB PARA PC 3200MHZ HIKSEMI (HIKVISION)",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 87900,
     "oldPrice": 99000,
     "discount": "11% OFF",
@@ -399,7 +399,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA PARA PC DDR4 16GB PARA PC ARMOR BLANCA 3200MHZ (HIKVISION)",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 159000,
     "oldPrice": 188000,
     "discount": "15% OFF",
@@ -411,7 +411,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA PARA PC - DDR4 8GB RGB FUTURE O AKIRA 3200MHZ (HIKVISION)",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 119700,
     "oldPrice": 128000,
     "discount": "6% OFF",
@@ -423,7 +423,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA PARA PC DDR4 16GB RGB FUTURE O AKIRA 3200MHZ (HIKVISION)",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 169900,
     "oldPrice": 187000,
     "discount": "9% OFF",
@@ -435,7 +435,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA PARA PC DDR4 8GB GAMER HIKSEMI WAVE 3600MHZ (HIKVISION)",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 219000,
     "oldPrice": 255000,
     "discount": "14% OFF",
@@ -447,7 +447,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA PARA PC DDR4 16GB GAMER HIKSEMI WAVE 3600MHZ (HIKVISION) 3 AÑOS DE GARANTIA",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 309900,
     "oldPrice": 355000,
     "discount": "13% OFF",
@@ -459,7 +459,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MEMORIA PARA PC RAM DDR5 DE 16GB 5600MHZ",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 235000,
     "oldPrice": 277000,
     "discount": "15% OFF",
@@ -471,7 +471,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR XIAOMI 14C",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 529000,
     "oldPrice": 599000,
     "discount": "12% OFF",
@@ -483,7 +483,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR MOTOROLA G34",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 629000,
     "oldPrice": 699000,
     "discount": "10% OFF",
@@ -496,7 +496,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL LENOVO V14 G4 AMN AMD RYZEN 3-7320U",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 1299000,
     "oldPrice": 1450000,
     "discount": "10% OFF",
@@ -508,7 +508,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL LENOVO V14 G4 IRU 83A000CQLM",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 2499999,
     "oldPrice": 2999000,
     "discount": "17% OFF",
@@ -520,7 +520,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL LENOVO THINKBOOK 14 G6",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 2390000,
     "oldPrice": 2700000,
     "discount": "11% OFF",
@@ -533,7 +533,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL ASUS X1504Z-NJ1200",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 1429000,
     "oldPrice": 1990000,
     "discount": "28% OFF",
@@ -547,7 +547,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL ASUS X415JA-EB1079T",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 1929000,
     "oldPrice": 2280000,
     "discount": "15% OFF",
@@ -560,7 +560,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL ASUS ZENBOOK UM325UAZ",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 2990000,
     "oldPrice": 3455000,
     "discount": "13% OFF",
@@ -573,7 +573,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL ASUS VIVOBOOK X1504ZA",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 1829000,
     "oldPrice": 2230000,
     "discount": "18% OFF",
@@ -586,7 +586,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL ASUS VIVOBOOK X1605ZA",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 2590000,
     "oldPrice": 3100000,
     "discount": "16% OFF",
@@ -599,7 +599,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL ASUS E1504FA-NJ940 AMD RYZEN",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 1959000,
     "oldPrice": 2557000,
     "discount": "23% OFF",
@@ -612,7 +612,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL ASUS M3604YA- MB193 AMD RYZEN",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 2489900,
     "oldPrice": 3090000,
     "discount": "19% OFF",
@@ -625,7 +625,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL ASUS VIVOBOOK GO 15 OLED AMD RYZEN",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 2190000,
     "oldPrice": 2789000,
     "discount": "21% OFF",
@@ -638,7 +638,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL DELL FGA INSPIRON 15",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 2349000,
     "oldPrice": 2789000,
     "discount": "16% OFF",
@@ -651,7 +651,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL HP 14-DQ0533LA",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 990000,
     "oldPrice": 1270000,
     "discount": "22% OFF",
@@ -664,7 +664,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL HP 14 -245 G10 AMD RYZEN 3",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 1229900,
     "oldPrice": 1567000,
     "discount": "22% OFF",
@@ -677,7 +677,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL HP 14 -245 G10 AMD RYZEN 5",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 1549000,
     "oldPrice": 1870000,
     "discount": "17% OFF",
@@ -690,7 +690,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL GAMER ACER NITRO 5",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 3490000,
     "oldPrice": 3990000,
     "discount": "13% OFF",
@@ -703,7 +703,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL GAMER LENOVO LOQ 15IRH8",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 3149000,
     "oldPrice": 3670000,
     "discount": "14% OFF",
@@ -716,7 +716,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL GAMER ASUS TUF GAMING FA506NF-HN004",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 2890000,
     "oldPrice": 3300000,
     "discount": "12% OFF",
@@ -729,7 +729,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL GAMER MSI KATANA THIN GF63 12UC",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 4329000,
     "oldPrice": 5100000,
     "discount": "15% OFF",
@@ -742,7 +742,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL GAMER MSI KATANA GF76 12UC",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 6390000,
     "oldPrice": 7050000,
     "discount": "9% OFF",
@@ -755,7 +755,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL GAMER ACER NITRO 5",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 5390000,
     "oldPrice": 5990000,
     "discount": "10% OFF",
@@ -768,7 +768,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL CORPORATIVO LENOVO V14 G3 IAP",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 2349000,
     "oldPrice": 2780000,
     "discount": "16% OFF",
@@ -781,7 +781,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL CORPORATIVO LENOVO V14 G4 IRU",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 2490000,
     "oldPrice": 3890000,
     "discount": "36% OFF",
@@ -794,7 +794,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL CORPORATIVO LENOVO V14 G4",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 2559000,
     "oldPrice": 2990000,
     "discount": "14% OFF",
@@ -807,7 +807,7 @@ var ALL_PRODUCTS = [
   {
     "name": "PORTÁTIL CORPORATIVO DELL LATITUDE 3440",
     "brand": "",
-    "category": "Computadores Portátiles",
+    "category": "Portátiles",
     "price": 2190000,
     "oldPrice": 2500000,
     "discount": "12% OFF",
@@ -820,7 +820,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CAMARA WEB 4K PREMIUM MX BRIO 705 LOGITECH",
     "brand": "",
-    "category": "OFERTAS HOY",
+    "category": "Periféricos",
     "price": 769000,
     "oldPrice": 840600,
     "discount": "9% OFF",
@@ -833,7 +833,7 @@ var ALL_PRODUCTS = [
   {
     "name": "COMBO DE TECLADO LOGITECH MK270",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 103900,
     "oldPrice": 189000,
     "discount": "45% OFF",
@@ -846,7 +846,7 @@ var ALL_PRODUCTS = [
   {
     "name": "COMBO DE TECLADO LOGITECH MK220",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 97900,
     "oldPrice": 109900,
     "discount": "11% OFF",
@@ -859,7 +859,7 @@ var ALL_PRODUCTS = [
   {
     "name": "COMBO DE TECLADO LOGITECH PERFORMANCE MK850",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 289900,
     "oldPrice": 355000,
     "discount": "18% OFF",
@@ -873,7 +873,7 @@ var ALL_PRODUCTS = [
   {
     "name": "COMBO DE TECLADO LOGITECH MK295",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 146900,
     "oldPrice": 199000,
     "discount": "26% OFF",
@@ -887,7 +887,7 @@ var ALL_PRODUCTS = [
   {
     "name": "COMBO DE TECLADO LOGITECH MK235",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 95000,
     "oldPrice": 123000,
     "discount": "23% OFF",
@@ -900,7 +900,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TECLADO LOGITECH INALAMBRICO K270",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 84900,
     "oldPrice": 109000,
     "discount": "22% OFF",
@@ -913,7 +913,7 @@ var ALL_PRODUCTS = [
   {
     "name": "COMBO DE TECLADO LOGITECH MK345",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 134900,
     "oldPrice": 178000,
     "discount": "24% OFF",
@@ -926,7 +926,7 @@ var ALL_PRODUCTS = [
   {
     "name": "COMBO DE TECLADO LOGITECH MK540",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 169000,
     "oldPrice": 223000,
     "discount": "24% OFF",
@@ -939,7 +939,7 @@ var ALL_PRODUCTS = [
   {
     "name": "COMBO TECLADO LOGITECH ALAMBRICO MK120",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 74900,
     "oldPrice": 102000,
     "discount": "27% OFF",
@@ -951,7 +951,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TECLADO LOGITECH WAVE KEYS",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 259000,
     "oldPrice": 340000,
     "discount": "24% OFF",
@@ -964,7 +964,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TECLADO LOGITECH MX KEYS MINI ROSA",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 394900,
     "oldPrice": 440000,
     "discount": "10% OFF",
@@ -977,7 +977,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TECLADO LOGITECH POP KEYS",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 375900,
     "oldPrice": 438000,
     "discount": "14% OFF",
@@ -990,7 +990,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CAMARA LOGITECH BRIO 100",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 169000,
     "oldPrice": 219000,
     "discount": "23% OFF",
@@ -1003,7 +1003,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CAMARA LOGITECH MX BRIO",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 784000,
     "oldPrice": 910000,
     "discount": "14% OFF",
@@ -1016,7 +1016,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MOUSE LOGITECH ERGO M575",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 190000,
     "oldPrice": 245000,
     "discount": "22% OFF",
@@ -1029,7 +1029,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MOUSE LOGITECH M350",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 97900,
     "oldPrice": 128000,
     "discount": "24% OFF",
@@ -1042,7 +1042,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MOUSE LOGITECH M170",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 48900,
     "oldPrice": 61000,
     "discount": "20% OFF",
@@ -1055,7 +1055,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MOUSE LOGITECH MX VERTICAL",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 389000,
     "oldPrice": 456000,
     "discount": "15% OFF",
@@ -1068,7 +1068,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MOUSE LOGITECH G502",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 397900,
     "oldPrice": 456000,
     "discount": "13% OFF",
@@ -1081,7 +1081,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MOUSE LOGITECH LIFT LEFT",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 315900,
     "oldPrice": 399000,
     "discount": "21% OFF",
@@ -1094,7 +1094,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MOUSE LOGITECH G305",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 174000,
     "oldPrice": 233000,
     "discount": "25% OFF",
@@ -1106,7 +1106,7 @@ var ALL_PRODUCTS = [
   {
     "name": "MOUSE LOGITECH ALAMBRICO G203",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 128000,
     "oldPrice": 179000,
     "discount": "28% OFF",
@@ -1119,7 +1119,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DIADEMA LOGITECH G435",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 289000,
     "oldPrice": 347000,
     "discount": "17% OFF",
@@ -1132,7 +1132,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DIADEMA LOGITECH  H111",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 44000,
     "oldPrice": 57000,
     "discount": "23% OFF",
@@ -1145,7 +1145,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DIADEMA LOGITECH H390",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 119000,
     "oldPrice": 158000,
     "discount": "25% OFF",
@@ -1158,7 +1158,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DIADEMA LOGITECH ZONE 300",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 299900,
     "oldPrice": 357000,
     "discount": "16% OFF",
@@ -1171,7 +1171,7 @@ var ALL_PRODUCTS = [
   {
     "name": "APUNTADOR LOGITECH R500",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 184900,
     "oldPrice": 254000,
     "discount": "27% OFF",
@@ -1184,7 +1184,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO SATA 240GB CRUCIAL BX500",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 119000,
     "oldPrice": 177000,
     "discount": "33% OFF",
@@ -1196,7 +1196,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO SATA 240GB KINGSTON",
     "brand": "",
-    "category": "Suministros para oficina",
+    "category": "Accesorios",
     "price": 129000,
     "oldPrice": 179000,
     "discount": "28% OFF",
@@ -1208,7 +1208,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO SATA 256GB HIKSEMI",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 119000,
     "oldPrice": 177000,
     "discount": "33% OFF",
@@ -1220,7 +1220,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO SATA 256GB ADATA",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 109900,
     "oldPrice": 145000,
     "discount": "24% OFF",
@@ -1232,7 +1232,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO SATA 500GB CRUCIAL BX500",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 149900,
     "oldPrice": 203000,
     "discount": "26% OFF",
@@ -1244,7 +1244,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO SATA 500GB CRUCIAL BX500",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 149900,
     "oldPrice": 189000,
     "discount": "21% OFF",
@@ -1256,7 +1256,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO SATA 512GB HIKSEMI",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 148900,
     "oldPrice": 189000,
     "discount": "21% OFF",
@@ -1268,7 +1268,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO SATA 960GB HIKSEMI C100",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 259000,
     "oldPrice": 310000,
     "discount": "16% OFF",
@@ -1280,7 +1280,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO SATA 1024GB HIKSEMI",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 269000,
     "oldPrice": 319000,
     "discount": "16% OFF",
@@ -1292,7 +1292,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO SATA 1TB CRUCIAL BX500",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 279000,
     "oldPrice": 330000,
     "discount": "15% OFF",
@@ -1304,7 +1304,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO SATA 1TB KINGSTON KC600",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 414000,
     "oldPrice": 499000,
     "discount": "17% OFF",
@@ -1316,7 +1316,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO DURO 128GB M.2 ADATA XPG",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 59000,
     "oldPrice": 77000,
     "discount": "23% OFF",
@@ -1328,7 +1328,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO M.2 256GB PATRIOT",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 99900,
     "oldPrice": 133000,
     "discount": "25% OFF",
@@ -1340,7 +1340,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO M.2 256GB  HIKSEMI -HIKVISION- 3 AÑOS DE GARANTIA",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 99900,
     "oldPrice": 133000,
     "discount": "25% OFF",
@@ -1352,7 +1352,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO M.2 256GB XUE",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 99900,
     "oldPrice": 133000,
     "discount": "25% OFF",
@@ -1364,7 +1364,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO M.2 512 GB HIKSEMI (HIKVISION) 3 AÑOS DE GARANTIA",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 149000,
     "oldPrice": 177000,
     "discount": "16% OFF",
@@ -1376,7 +1376,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO M.2 512 GB WD",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 139900,
     "oldPrice": 177000,
     "discount": "21% OFF",
@@ -1388,7 +1388,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO M.2 500GB KINGSTON NV2 4.0 3500MB/s",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 174900,
     "oldPrice": 210000,
     "discount": "17% OFF",
@@ -1400,7 +1400,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO M.2 1024GB HIKSEMI (HIKVISION) 3 AÑOS DE GARANTIA",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 274900,
     "oldPrice": 333000,
     "discount": "17% OFF",
@@ -1412,7 +1412,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO M.2 1TB ADATA LEYEND 700",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 259900,
     "oldPrice": 299000,
     "discount": "13% OFF",
@@ -1424,7 +1424,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO M.2 1TB KINGSTON NV2 4.0 3500MB/s",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 265000,
     "oldPrice": 320000,
     "discount": "17% OFF",
@@ -1436,7 +1436,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO DURO EXTERNO ANTIGOLPES DE 1TB ADATA H330",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 279000,
     "oldPrice": 350000,
     "discount": "20% OFF",
@@ -1448,7 +1448,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO DURO EXTERNO 4TB WD ELEMENTS",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 569000,
     "oldPrice": 630000,
     "discount": "10% OFF",
@@ -1460,7 +1460,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO DURO EXTERNO DE 2TB LACIE RUGGED USB-C",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 669000,
     "oldPrice": 756000,
     "discount": "12% OFF",
@@ -1472,7 +1472,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO DURO EXTERNO DE 4TB LACIE RUGGED USB-C",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 919000,
     "oldPrice": 1230000,
     "discount": "25% OFF",
@@ -1484,7 +1484,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO EXTERNO SOLIDO 512GB",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 185000,
     "oldPrice": 220000,
     "discount": "16% OFF",
@@ -1496,7 +1496,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO EXTERNO SOLIDO 512 GB POCKET TIPO LLAVERO",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 189000,
     "oldPrice": 233000,
     "discount": "19% OFF",
@@ -1508,7 +1508,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO EXTERNO SOLIDO 1TB USB-C Y USB -A",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 319000,
     "oldPrice": 370000,
     "discount": "14% OFF",
@@ -1520,7 +1520,7 @@ var ALL_PRODUCTS = [
   {
     "name": "DISCO EXTERNO SOLIDO 2TB  USB-C Y USB -A",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Accesorios",
     "price": 469000,
     "oldPrice": 510000,
     "discount": "8% OFF",
@@ -1532,7 +1532,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR SAMSUNG AO5",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 439000,
     "oldPrice": 567000,
     "discount": "23% OFF",
@@ -1545,7 +1545,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR SAMSUNG AO5 S",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 529000,
     "oldPrice": 716000,
     "discount": "26% OFF",
@@ -1558,7 +1558,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR SAMSUNG A06",
     "brand": "",
-    "category": "Suministros para oficina",
+    "category": "Celulares",
     "price": 419000,
     "oldPrice": 589000,
     "discount": "29% OFF",
@@ -1571,7 +1571,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR SAMSUNG A16",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 883000,
     "oldPrice": 1020000,
     "discount": "13% OFF",
@@ -1584,7 +1584,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CELULAR XIAOMI NOTE 14 PRO 4G",
     "brand": "",
-    "category": "Celulares y Tablets",
+    "category": "Celulares",
     "price": 1089000,
     "oldPrice": 1300000,
     "discount": "16% OFF",
@@ -1597,7 +1597,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CAMARA HP 320",
     "brand": "",
-    "category": "Partes y accesorios",
+    "category": "Periféricos",
     "price": 119000,
     "oldPrice": 145000,
     "discount": "18% OFF",
@@ -1610,7 +1610,7 @@ var ALL_PRODUCTS = [
   {
     "name": "TORRE ARCHON 2 RGB PROCESADOR R5 5600GT",
     "brand": "",
-    "category": "Equipos de Escritorio",
+    "category": "Empresas",
     "price": 2449000,
     "oldPrice": 2999000,
     "discount": "18% OFF",
@@ -1623,7 +1623,7 @@ var ALL_PRODUCTS = [
   {
     "name": "IMPRESORA MULTIFUNCIONAL EPSON WIFI ECOTANK L4260",
     "brand": "",
-    "category": "Equipos de Escritorio",
+    "category": "Empresas",
     "price": 1190000,
     "oldPrice": 1450000,
     "discount": "18% OFF",
@@ -1636,7 +1636,7 @@ var ALL_PRODUCTS = [
   {
     "name": "JBL Flip 6 Altavoz Portátil a Prueba de Agua",
     "brand": "",
-    "category": "OFERTAS HOY",
+    "category": "Línea hogar",
     "price": 569000,
     "oldPrice": 635000,
     "discount": "10% OFF",
@@ -1650,7 +1650,7 @@ var ALL_PRODUCTS = [
   {
     "name": "RELOJ REDMI WATCH 5 ACTIVE",
     "brand": "",
-    "category": "Dispositivos Especiales",
+    "category": "Accesorios",
     "price": 154000,
     "oldPrice": 225000,
     "discount": "32% OFF",
@@ -1664,7 +1664,7 @@ var ALL_PRODUCTS = [
   {
     "name": "RELOJ REDMI WATCH 5 LITE",
     "brand": "",
-    "category": "Dispositivos Especiales",
+    "category": "Accesorios",
     "price": 229900,
     "oldPrice": 299999,
     "discount": "23% OFF",
@@ -1677,7 +1677,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CARGADOR XIAOMI 33W TIPO A / TIPO C",
     "brand": "",
-    "category": "Dispositivos Especiales",
+    "category": "Accesorios",
     "price": 69000,
     "oldPrice": 87000,
     "discount": "21% OFF",
@@ -1690,7 +1690,7 @@ var ALL_PRODUCTS = [
   {
     "name": "CABLE TIPO C - TIPO C 1.50 CM",
     "brand": "",
-    "category": "Dispositivos Especiales",
+    "category": "Accesorios",
     "price": 35000,
     "oldPrice": 46000,
     "discount": "24% OFF",
@@ -1703,7 +1703,7 @@ var ALL_PRODUCTS = [
   {
     "name": "AUDIFONO REDMI BUDS  6 ACTIVE",
     "brand": "",
-    "category": "Dispositivos Especiales",
+    "category": "Accesorios",
     "price": 79000,
     "oldPrice": 91000,
     "discount": "13% OFF",
@@ -1716,7 +1716,7 @@ var ALL_PRODUCTS = [
   {
     "name": "AUDIFONO REDMI BUDS 5",
     "brand": "",
-    "category": "Dispositivos Especiales",
+    "category": "Accesorios",
     "price": 169000,
     "oldPrice": 203000,
     "discount": "17% OFF",
