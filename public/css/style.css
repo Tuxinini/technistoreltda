@@ -842,3 +842,68 @@ h3 { font-size: 18px; font-weight: 700; }
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-6px); }
 }
+
+/* ══ MEDIA QUERIES ══ */
+
+/* Tablet (≤ 1024px) */
+@media (max-width: 1024px) {
+  .ts-offers-grid { grid-template-columns: 1fr; }
+  .ts-offers-secondary { flex-direction: row; }
+  .ts-offer-sec .ts-offer-bg { min-height: 160px; }
+  .ts-products-grid { grid-template-columns: repeat(2, 1fr); }
+  .ts-guar-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-inner { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+  .stats-brand-logo { display: flex; justify-content: center; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .contact-map { height: 320px; }
+}
+
+/* Móvil (≤ 768px) */
+@media (max-width: 768px) {
+  .header-search-row { padding: 6px 0; }
+  .hs-search-wrap { display: none; }
+  .hs-cart-label { display: none; }
+  .nav-logo-center { display: none; }
+  .nav-links-left, .nav-links-right { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-mobile-menu { display: flex; }
+  .nav-inner { justify-content: space-between; }
+
+  .ts-offers-section { padding: 16px; }
+  .ts-offers-secondary { flex-direction: column; }
+  .ts-offer-main .ts-offer-bg { min-height: 280px; padding: 28px 20px; }
+  .ts-offer-main .ts-offer-img { width: 130px; }
+  .ts-offer-sec .ts-offer-bg { min-height: 140px; padding: 20px; }
+  .ts-offer-sec .ts-offer-img { width: 90px; }
+
+  .ts-products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .ts-prod-img-wrap { height: 160px; }
+
+  .ts-cats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .ts-cat-card { padding: 28px 16px; min-height: 130px; }
+  .ts-cat-icon { width: 56px; height: 56px; }
+
+  .ts-guar-grid { grid-template-columns: 1fr; }
+
+  .stats-counters-col { align-items: center; }
+  .stat-number { font-size: 52px; }
+
+  .contact-title { font-size: 26px; }
+  .offices-block-grid { grid-template-columns: 1fr; }
+  .contact-map { height: 260px; }
+
+  .ts-modal-box { flex-direction: column; max-height: 95vh; }
+  .ts-modal-gallery { border-right: none; border-bottom: 1px solid #f0f0f0; padding: 16px; }
+  .ts-modal-main-img { height: 180px; }
+  .ts-modal-info { padding: 16px; }
+
+  .tb-item:last-child { display: none; }
+}
+
+/* Móvil pequeño (≤ 480px) */
+@media (max-width: 480px) {
+  .ts-products-grid { grid-template-columns: 1fr; }
+  .ts-cats-grid { grid-template-columns: repeat(2, 1fr); }
+  .ts-offer-main .ts-offer-img { display: none; }
+  .ts-offer-sec .ts-offer-img { display: none; }
+}
