@@ -622,3 +622,50 @@ h3 { font-size: 18px; font-weight: 700; }
 .ts-cat-card:hover .ts-cat-icon { transform: rotate(10deg) scale(1.12); }
 .ts-cat-icon svg { color: #fff; }
 .ts-cat-label { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.3px; }
+
+/* ══ SECCIÓN GARANTÍAS ══ */
+.ts-guar-section {
+  padding: 80px 0;
+  background: var(--color-dark);
+}
+.ts-guar-section .section-title { color: #fff; }
+.ts-guar-section .section-title::after { background: var(--color-primary); }
+.ts-guar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.ts-guar-card {
+  padding: 32px 24px;
+  border-radius: var(--radius);
+  border: 1.5px solid rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+.ts-guar-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--color-primary);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.4s ease;
+}
+.ts-guar-card:hover { background: var(--color-mid); border-color: rgba(0,174,232,0.3); transform: translateY(-4px); }
+.ts-guar-card:hover::before { transform: scaleY(1); }
+.ts-guar-icon {
+  width: 64px; height: 64px;
+  background: rgba(0,174,232,0.12);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+  transition: background var(--transition);
+}
+.ts-guar-card:hover .ts-guar-icon { background: rgba(0,174,232,0.22); }
+.ts-guar-card h3 { color: #fff; font-size: 16px; margin-bottom: 8px; }
+.ts-guar-card p { color: var(--color-text-light); font-size: 13.5px; line-height: 1.6; }
