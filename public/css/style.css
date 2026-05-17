@@ -283,3 +283,104 @@ h3 { font-size: 18px; font-weight: 700; }
   transition: background var(--transition);
 }
 .nav-mobile-menu a:hover { background: rgba(0,174,232,0.15); }
+
+/* ══ SECCIÓN PROMOCIONES ══ */
+.ts-offers-section { padding: 32px 20px; max-width: var(--max-width); margin: 0 auto; }
+.ts-offers-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+.ts-offers-secondary { display: flex; flex-direction: column; gap: 20px; }
+
+.ts-offer-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.ts-offer-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+.ts-offer-card:hover .ts-offer-img img { transform: scale(1.06); }
+.ts-offer-card:focus { outline: 3px solid var(--color-primary); outline-offset: 3px; }
+
+.ts-offer-bg {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+}
+.ts-offer-main .ts-offer-bg { min-height: 380px; }
+.ts-offer-sec .ts-offer-bg { min-height: 172px; padding: 28px 28px; }
+
+.ts-offer-content { flex: 1; z-index: 2; }
+.ts-offer-tag {
+  display: inline-block;
+  background: rgba(0,174,232,0.25);
+  color: var(--color-primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(0,174,232,0.4);
+}
+.ts-offer-title {
+  color: #fff;
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.ts-offer-pct {
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 900;
+  color: var(--color-accent);
+  line-height: 1;
+  margin-bottom: 8px;
+  animation: pulse-pct 2.5s ease-in-out infinite;
+}
+@keyframes pulse-pct {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+.ts-offer-sub { color: rgba(255,255,255,0.7); font-size: 13px; margin-bottom: 20px; }
+.ts-offer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background var(--transition), transform var(--transition);
+}
+.ts-offer-btn:hover { background: #0097cc; transform: translateX(4px); }
+
+.ts-offer-img {
+  flex-shrink: 0;
+  margin-left: 16px;
+  z-index: 1;
+}
+.ts-offer-main .ts-offer-img { width: 200px; }
+.ts-offer-sec .ts-offer-img { width: 110px; }
+.ts-offer-img img {
+  width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
+  transition: transform var(--transition);
+}
+
+.ts-offer-sec .ts-offer-title { font-size: 20px; margin-bottom: 4px; }
+.ts-offer-sec .ts-offer-pct { font-size: 28px; margin-bottom: 8px; animation: none; }
+.ts-offer-sec .ts-offer-sub { display: none; }
