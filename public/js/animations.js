@@ -74,7 +74,7 @@
     });
   }, { threshold: 0.3 });
 
-  var statsSection = document.querySelector('.stats-section');
+  var statsSection = document.querySelector('.stats-section, .empresas-section');
   if (statsSection) observer.observe(statsSection);
 })();
 

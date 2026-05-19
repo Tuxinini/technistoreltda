@@ -1,0 +1,178 @@
+/* ═══════════════════════════════════
+   EQUIPO PAGE — equipo.css
+   ═══════════════════════════════════ */
+
+/* ── HERO ── */
+.eq-hero {
+  background: linear-gradient(160deg, var(--color-dark) 0%, #0a2448 100%);
+  padding: 80px 0 72px;
+  position: relative;
+  overflow: hidden;
+}
+.eq-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -80px;
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(0,174,232,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.eq-hero-inner {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.eq-hero-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: rgba(0,174,232,0.12);
+  border: 1px solid rgba(0,174,232,0.25);
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.eq-hero h1 {
+  color: #fff;
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+.eq-hero p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* ── GRID SECTION ── */
+.eq-section {
+  padding: 80px 0 96px;
+  background: #fff;
+}
+.eq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* ── CARD ── */
+.eq-card {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.eq-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.eq-photo-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.14);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.eq-card:hover .eq-photo-wrap {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.22);
+}
+
+.eq-photo-bg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eq-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(6,13,26,0.82) 0%, rgba(6,13,26,0.1) 55%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 22px 20px;
+  opacity: 0;
+  transition: opacity 0.32s ease;
+}
+.eq-card:hover .eq-overlay { opacity: 1; }
+
+.eq-overlay-text {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+}
+
+.eq-info {
+  padding: 16px 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.eq-name-placeholder {
+  height: 18px;
+  background: linear-gradient(90deg, #e8eef4 0%, #d0dce8 50%, #e8eef4 100%);
+  background-size: 200% 100%;
+  border-radius: 6px;
+  animation: shimmer 1.8s infinite;
+  width: 70%;
+}
+.eq-role-placeholder {
+  height: 13px;
+  background: linear-gradient(90deg, #e8eef4 0%, #d0dce8 50%, #e8eef4 100%);
+  background-size: 200% 100%;
+  border-radius: 6px;
+  animation: shimmer 1.8s infinite 0.3s;
+  width: 45%;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── CTA FINAL ── */
+.eq-cta {
+  padding: 72px 0;
+  background: var(--color-dark);
+}
+.eq-cta-inner {
+  text-align: center;
+}
+.eq-cta h2 {
+  color: #fff;
+  font-size: clamp(24px, 3vw, 36px);
+  margin-bottom: 12px;
+}
+.eq-cta p {
+  color: rgba(255,255,255,0.6);
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+.eq-cta p a {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+.eq-cta p a:hover { text-decoration: underline; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .eq-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+}
+@media (max-width: 768px) {
+  .eq-hero { padding: 60px 0 52px; }
+  .eq-section { padding: 56px 0 72px; }
+  .eq-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+@media (max-width: 480px) {
+  .eq-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}

@@ -39,8 +39,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/loader.css">
 </head>
 <body>
+
+  <!-- ══ SPLASH LOADER ══ -->
+  <div id="page-loader" role="status" aria-label="Cargando Tecnistore">
+    <img src="/wp-content/uploads/2021/03/Tnt.png" alt="" class="pl-bg-logo" aria-hidden="true">
+    <div class="pl-content">
+      <img src="/wp-content/uploads/2021/03/Tnt.png" alt="Tecnistore" class="pl-logo">
+      <span class="pl-name">Tecnistore</span>
+      <div class="pl-bar-track">
+        <div class="pl-bar-fill"></div>
+      </div>
+      <div class="pl-dots">
+        <span class="pl-dot"></span>
+        <span class="pl-dot"></span>
+        <span class="pl-dot"></span>
+      </div>
+    </div>
+  </div>
+
   <!-- ══ TOP BAR ══ -->
   <div class="top-bar" role="banner">
     <div class="top-bar-inner container">
@@ -89,7 +108,7 @@
       <div class="nav-inner container">
         <div class="nav-links-left">
           <a href="#inicio">INICIO</a>
-          <a href="#nosotros">NOSOTROS</a>
+          <a href="/empresas/">EMPRESAS</a>
           <a href="/tienda/">TIENDA</a>
         </div>
         <div class="nav-logo-center">
@@ -105,7 +124,7 @@
       </div>
       <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
         <a href="#inicio" onclick="closeMobileMenu()">INICIO</a>
-        <a href="#nosotros" onclick="closeMobileMenu()">NOSOTROS</a>
+        <a href="/empresas/" onclick="closeMobileMenu()">EMPRESAS</a>
         <a href="/tienda/">TIENDA</a>
         <a href="#contacto" onclick="closeMobileMenu()">CONTACTO</a>
         <a href="/mi-cuenta/">INICIAR SESIÓN</a>
@@ -177,8 +196,6 @@
           <span class="vm-text">Ver más productos</span>
           <svg class="vm-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-      </div>
-      <div style="text-align:center; margin-top:32px;">
         <a href="/tienda/" class="ts-tienda-btn">Ver todos los productos</a>
       </div>
     </div>
@@ -297,47 +314,56 @@
 
         <div class="ts-guar-card reveal delay-4">
           <div class="ts-guar-icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
           </div>
-          <h3>Soporte 24/7</h3>
-          <p>Equipo de soporte por WhatsApp, email y chat en línea</p>
+          <h3>Factura Electrónica</h3>
+          <p>Emitimos facturas electrónicas seguras y conformes con la normativa DIAN vigente.</p>
         </div>
 
       </div>
     </div>
   </section>
-  <!-- ══ SECCIÓN EMPRESA / STATS ══ -->
-  <section class="stats-section" id="nosotros">
-    <div class="container stats-inner">
-
-      <div class="stats-brand-col reveal-left">
-        <div class="stats-brand-logo">
-          <img src="/wp-content/uploads/2021/03/Tnt.png" alt="Tecnistore — TNT Technistore Ltda." width="200">
-        </div>
-        <p class="stats-brand-tagline">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Somos tu aliado tecnológico de confianza, comprometidos con llevar la mejor tecnología a tu hogar y empresa al mejor precio del mercado colombiano.
-        </p>
-        <span class="stats-brand-years">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Más de 28 años transformando vidas con tecnología de calidad
-        </span>
-      </div>
-
-      <div class="stats-counters-col reveal-right">
-        <div class="stat-item">
-          <div class="stat-number" data-target="28" data-prefix="+">+0</div>
-          <div class="stat-label">AÑOS LIDERANDO EL<br>MERCADO DE TECNOLOGÍA</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" data-target="500" data-prefix="+">+0</div>
-          <div class="stat-label">CLIENTES CORPORATIVOS<br>SATISFECHOS</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" data-target="1200" data-prefix="+" data-separator=".">+0</div>
-          <div class="stat-label">HOGARES FELICES<br>CON NUESTROS PRODUCTOS</div>
+  <!-- ══ BANNER EMPRESAS ══ -->
+  <section class="emp-cta-banner" aria-label="Soluciones para empresas">
+    <div class="emp-cta-deco emp-cta-deco--tl" aria-hidden="true"></div>
+    <div class="emp-cta-deco emp-cta-deco--br" aria-hidden="true"></div>
+    <div class="emp-cta-deco emp-cta-deco--ring" aria-hidden="true"></div>
+    <div class="container emp-cta-inner reveal">
+      <div class="emp-cta-left">
+        <span class="emp-cta-badge">SOLUCIONES CORPORATIVAS</span>
+        <h2 class="emp-cta-title">Tecnología pensada<br><em>para tu empresa</em></h2>
+        <p class="emp-cta-sub">Equipos certificados, cotizaciones a medida y asesoría especializada. Todo en un solo lugar.</p>
+        <div class="emp-cta-chips">
+          <span class="emp-cta-chip">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Precios por volumen
+          </span>
+          <span class="emp-cta-chip">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Garantía de fábrica
+          </span>
+          <span class="emp-cta-chip">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Factura electrónica
+          </span>
+          <span class="emp-cta-chip">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Envío a todo Colombia
+          </span>
         </div>
       </div>
-
+      <div class="emp-cta-right">
+        <a href="/empresas/" class="emp-cta-btn" aria-label="Ir a soluciones para empresas">
+          <span class="emp-cta-btn-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+          </span>
+          <span class="emp-cta-btn-text">
+            <span class="emp-cta-btn-main">Solicitar Cotización</span>
+            <span class="emp-cta-btn-sub">Respuesta en menos de 24 horas</span>
+          </span>
+          <svg class="emp-cta-btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
     </div>
   </section>
   <!-- ══ SECCIÓN CLIENTES / MARCAS ══ -->
@@ -373,9 +399,7 @@
     <div class="container contact-inner">
 
       <div class="contact-info reveal-left">
-        <span class="contact-badge">CONTÁCTANOS</span>
         <h2 class="contact-title">Estamos aquí<br>para ayudarte</h2>
-        <p class="contact-sub">Visítanos, escríbenos o llámanos. Con gusto atenderemos tu solicitud.</p>
 
         <div class="contact-items">
           <div class="contact-item">
@@ -417,17 +441,6 @@
           </div>
         </div>
 
-        <div class="offices-block">
-          <div class="offices-block-label">LÍNEAS DE ATENCIÓN</div>
-          <div class="offices-block-grid">
-            <a href="tel:3164648758">316-464-8758</a>
-            <a href="tel:3017298980">301-729-8980</a>
-            <a href="tel:3175098003">317-509-8003</a>
-            <a href="tel:3225817129">322-581-7129</a>
-            <a href="tel:3144300573">314-430-0573</a>
-            <a href="tel:3118089016">311-808-9016</a>
-          </div>
-        </div>
       </div>
 
       <div class="contact-map reveal-right">
@@ -445,9 +458,19 @@
   <footer class="site-footer">
     <div class="footer-inner container">
       <img src="/wp-content/uploads/2021/03/Tnt.png" alt="Tecnistore" class="footer-logo" width="130" loading="lazy">
+      <div class="footer-lines">
+        <div class="footer-lines-label">Líneas de Atención</div>
+        <div class="footer-lines-grid">
+          <a href="tel:3164648758">316-464-8758</a>
+          <a href="tel:3017298980">301-729-8980</a>
+          <a href="tel:3175098003">317-509-8003</a>
+          <a href="tel:3225817129">322-581-7129</a>
+          <a href="tel:3144300573">314-430-0573</a>
+          <a href="tel:3118089016">311-808-9016</a>
+        </div>
+      </div>
       <div class="footer-copy">
-        <p>Copyright &copy; <span id="footer-year"></span> Tecnistore</p>
-        <p>&copy; TNT Technistore Ltda. Todos los derechos reservados.</p>
+        <p>Copyright &copy; <span id="footer-year"></span> Tecnistore &nbsp;|&nbsp; &copy; TNT Technistore Ltda. Todos los derechos reservados.</p>
       </div>
     </div>
   </footer>
@@ -455,7 +478,9 @@
   <a class="whatsapp-float" href="https://wa.me/573225817129?text=Hola!%20me%20interesa%20un%20producto%20de%20Tecnistore" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp" title="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
   </a>
+  <script src="/js/products-data.js"></script>
   <script src="/js/main.js"></script>
   <script src="/js/animations.js"></script>
+  <script src="/js/loader.js"></script>
 </body>
 </html>

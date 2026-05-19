@@ -204,3 +204,139 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
 
 /* ── FOOTER AÑO ── */
 var yEl=document.getElementById('footer-year');if(yEl)yEl.textContent=new Date().getFullYear();
+
+/* ══ FILTROS DE CATEGORÍA ══ */
+var currentCatItems=[];
+
+function extractBrand(name){
+  var brands=['Samsung','Xiaomi','Motorola','Lenovo','Asus','HP','Dell','Acer','MSI','Logitech',
+    'Epson','JBL','Realme','WD','Kingston','Crucial','Adata','Patriot','Hiksemi','Hikvision',
+    'Redmi','Xue','Lacie','Touch','Microsoft'];
+  var u=name.toUpperCase();
+  for(var i=0;i<brands.length;i++){
+    if(u.indexOf(brands[i].toUpperCase())!==-1)return brands[i];
+  }
+  return '';
+}
+
+function makeCardAll(p,idx){
+  var img=p.images&&p.images[0]?p.images[0]:'';
+  var disc=p.discount||'';
+  var brand=extractBrand(p.name);
+  return '<article class="ts-prod-card" onclick="tsOpenModalAll('+idx+')" tabindex="0" aria-label="'+p.name+'">' +
+    (disc?'<span class="ts-prod-badge">'+ disc +'</span>':'') +
+    '<div class="ts-prod-img-wrap"><img src="'+img+'" alt="'+p.name+'" loading="lazy"></div>' +
+    '<div class="ts-prod-info">' +
+      (brand?'<p class="ts-prod-brand">'+brand+'</p>':'') +
+      '<p class="ts-prod-name">'+p.name+'</p>' +
+      '<div class="ts-prod-prices">' +
+        '<span class="ts-prod-price">'+fmt(p.price)+'</span>' +
+        (p.oldPrice&&p.oldPrice!==p.price?'<span class="ts-prod-old">'+fmt(p.oldPrice)+'</span>':'') +
+        (disc?'<span class="ts-prod-disc-tag">'+disc+'</span>':'') +
+      '</div>' +
+      '<button class="ts-prod-cta" tabindex="-1">Ver Producto</button>' +
+    '</div></article>';
+}
+
+function fillGridAll(id,items){
+  var g=document.getElementById(id);if(!g)return;
+  g.innerHTML=items.map(function(item,i){return makeCardAll(item,i);}).join('');
+}
+
+function filterAndRenderAll(cat){
+  var filtered;
+  if(cat==='all'){
+    var sorted=PRODUCTS.map(function(p,i){return{p:p,idx:i};})
+      .sort(function(a,b){return discountNum(b.p.discount)-discountNum(a.p.discount);});
+    fillGrid('ts-products-grid',sorted.slice(0,4));
+    fillGrid('ts-products-grid-extra',sorted.slice(4));
+    currentCatItems=[];
+    var w=document.getElementById('ts-ver-mas-wrap');
+    if(w)w.style.display=sorted.length>4?'flex':'none';
+    closeExtra();
+    return;
+  }
+  filtered=(typeof ALL_PRODUCTS!=='undefined'?ALL_PRODUCTS:[])
+    .filter(function(p){return p.category===cat;})
+    .sort(function(a,b){return(parseFloat(b.discount)||0)-(parseFloat(a.discount)||0);});
+  currentCatItems=filtered;
+  fillGridAll('ts-products-grid',filtered.slice(0,8));
+  fillGridAll('ts-products-grid-extra',filtered.slice(8));
+  var w2=document.getElementById('ts-ver-mas-wrap');
+  if(w2)w2.style.display=filtered.length>8?'flex':'none';
+  closeExtra();
+}
+
+function tsOpenModalAll(idx){
+  var p=currentCatItems[idx];if(!p)return;
+  var brand=extractBrand(p.name);
+  document.getElementById('ts-modal-brand').textContent=brand||p.category||'';
+  document.getElementById('ts-modal-name').textContent=p.name;
+  document.getElementById('ts-modal-disc').textContent=p.discount||'';
+  document.getElementById('ts-modal-price').textContent=fmt(p.price);
+  document.getElementById('ts-modal-old').textContent=(p.oldPrice&&p.oldPrice!==p.price)?fmt(p.oldPrice):'';
+  var mi=document.getElementById('ts-modal-main-img');mi.src=p.images[0]||'';mi.alt=p.name;
+  document.getElementById('ts-modal-thumbs').innerHTML=(p.images||[]).map(function(src,i){
+    return '<img class="ts-thumb ts-modal-thumb '+(i===0?'active':'')+'" src="'+src+'" alt="Vista '+(i+1)+'" onclick="tsSetThumbAll('+i+','+idx+')" tabindex="0">';
+  }).join('');
+  document.getElementById('ts-modal-specs').innerHTML=
+    '<div class="ts-spec-row" style="padding:10px 0;font-size:13.5px;color:var(--color-text-muted)">'+
+    'Consulta por WhatsApp para obtener especificaciones detalladas y disponibilidad.</div>';
+  var msg=encodeURIComponent('Hola! Me interesa el producto: '+p.name+' ('+fmt(p.price)+').');
+  var wb=document.getElementById('ts-btn-wsp');if(wb)wb.onclick=function(){window.open('https://wa.me/573225817129?text='+msg,'_blank');};
+  var ov=document.getElementById('ts-modal-overlay');ov.classList.add('open');document.body.style.overflow='hidden';
+  setTimeout(function(){var c=document.querySelector('.ts-modal-close');if(c)c.focus();},60);
+}
+
+function tsSetThumbAll(imgIdx,prodIdx){
+  var p=currentCatItems[prodIdx];if(!p)return;
+  document.getElementById('ts-modal-main-img').src=p.images[imgIdx]||'';
+  document.querySelectorAll('.ts-thumb').forEach(function(t,i){t.classList.toggle('active',i===imgIdx);});
+}
+
+/* ── INIT FILTROS ── */
+(function initCatFilters(){
+  var btns=document.querySelectorAll('.ts-cat-filter');
+  btns.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      btns.forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false');});
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+      filterAndRenderAll(btn.dataset.cat);
+    });
+  });
+})();
+
+/* ── FORMULARIO EMPRESAS → WHATSAPP ── */
+(function(){
+  var form=document.getElementById('empresas-form');
+  if(!form)return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var empresa=form.querySelector('[name=empresa]').value.trim();
+    var nit=form.querySelector('[name=nit]').value.trim();
+    var contacto=form.querySelector('[name=contacto]').value.trim();
+    var cargo=form.querySelector('[name=cargo]').value.trim();
+    var tel=form.querySelector('[name=tel]').value.trim();
+    var email=form.querySelector('[name=email]').value.trim();
+    var sector=form.querySelector('[name=sector]').value;
+    var cantidad=form.querySelector('[name=cantidad]').value;
+    var tipos=[];
+    form.querySelectorAll('[name=tipo]:checked').forEach(function(c){tipos.push(c.value);});
+    var mensaje=form.querySelector('[name=mensaje]').value.trim();
+    if(!empresa||!nit||!contacto||!tel||!email){
+      alert('Por favor completa los campos obligatorios (*).');return;
+    }
+    var txt='*Cotización Empresarial — Tecnistore*\n\n'+
+      '🏢 *Empresa:* '+empresa+'\n'+
+      '📋 *NIT:* '+nit+'\n'+
+      '👤 *Contacto:* '+contacto+(cargo?' ('+cargo+')':'')+'\n'+
+      '📞 *Teléfono:* '+tel+'\n'+
+      '✉️ *Correo:* '+email+'\n'+
+      (sector?'🏭 *Sector:* '+sector+'\n':'')+
+      (tipos.length?'💻 *Equipos:* '+tipos.join(', ')+'\n':'')+
+      (cantidad?'📦 *Cantidad:* '+cantidad+'\n':'')+
+      (mensaje?'📝 *Mensaje:* '+mensaje:'');
+    window.open('https://wa.me/573225817129?text='+encodeURIComponent(txt),'_blank');
+  });
+})();
