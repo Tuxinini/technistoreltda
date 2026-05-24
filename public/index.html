@@ -683,8 +683,10 @@
   <script>
 (function() {
   var track = document.getElementById('ts-carousel-track');
+  if (!track) return;
   var dots  = document.querySelectorAll('.ts-carousel-dot');
-  var total = 3;
+  var slides = track.querySelectorAll('.ts-carousel-slide');
+  var total  = slides.length;
   var current = 0;
   var timer;
 
@@ -710,7 +712,7 @@
     d.addEventListener('click', function(e) {
       e.stopPropagation();
       stopAuto();
-      goTo(parseInt(this.getAttribute('data-index')));
+      goTo(parseInt(this.getAttribute('data-index'), 10));
       startAuto();
     });
   });
