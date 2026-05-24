@@ -799,7 +799,7 @@ h3 { font-size: 20px; font-weight: 700; }
 .ts-client-logo svg { width: 120px; height: 48px; }
 
 /* ══ SECCIÓN CONTACTO ══ */
-.contact-section { padding: 108px 0; background: #fff; }
+.contact-section { padding: 108px 0; }
 .contact-inner {
   display: grid;
   grid-template-columns: 55% 1fr;
@@ -1655,6 +1655,7 @@ h3 { font-size: 20px; font-weight: 700; }
   .ts-carousel-arrow { width: 36px; height: 36px; opacity: 1; }
 }
 @media (max-width: 480px) {
+  .ts-carousel-slide { height: 230px; }
   .ts-carousel-content { padding: 0 24px; }
 }
 
