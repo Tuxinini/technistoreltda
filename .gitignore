@@ -11,3 +11,10 @@ media-assets/
 UsersfloreDownloadssuperpowers/
 Video/
 public/wp-content/uploads/media-images.zip
+
+# Credenciales WooCommerce — nunca al repo
+public/js/woo-config.js
+config.php
+
+# Archivos WordPress scrapeados
+public/wp-content/
