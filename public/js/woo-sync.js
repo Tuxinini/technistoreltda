@@ -1,0 +1,193 @@
+'use strict';
+/* ══ WOO-SYNC.JS — Sincronización de productos con WooCommerce ══
+   Flujo:
+   1. Lee caché de localStorage (válido por WOO_CONFIG.cacheTTL minutos)
+   2. Si caché expirado o vacío → consulta la API y actualiza caché
+   3. Filtra productos sin stock antes de entregarlos a la tienda
+   4. Si la API falla → usa caché anterior aunque esté vencido (fallback)
+   ═══════════════════════════════════════════════════════════════ */
+(function () {
+  var CACHE_KEY = 'ts-woo-cache-v2';
+
+  /* ──────────────────────────────────────────
+     MAPEO DE CATEGORÍAS WooCommerce → Tienda
+     ────────────────────────────────────────── */
+  var CAT_MAP = [
+    { re: /celular|smartphone|m[oó]vil|tel[eé]fono|samsung|xiaomi|motorola|redmi|realme|honor|infinix/i, cat: 'Celulares' },
+    { re: /tablet|ipad/i,                                                                                cat: 'Tablets' },
+    { re: /audio|auricular|aud[íi]fono|parlant|bocina|speaker|jbl|headset|diadema/i,                    cat: 'Audio' },
+    { re: /accesorio|perif[eé]ri|teclado|mouse|webcam|c[aá]mara web|logitech|gaming|gamepad/i,          cat: 'Accesorios' },
+    { re: /port[aá]til|laptop|notebook|computador port/i,                                               cat: 'Portátiles' },
+    { re: /empresa|corporativ|servidor|server|workstation/i,                                            cat: 'Empresas' },
+    { re: /red|router|switch|access point|networking|wifi|tp-link|ubiquiti|cisco|mikrotik/i,            cat: 'Redes' },
+    { re: /impres|printer|plotter|t[oó]ner|cartucho|epson|canon|hp laser|brother|kyocera/i,             cat: 'Impresión' },
+    { re: /memoria|disco|ssd|hdd|storage|almacenamiento|pendrive|usb flash|micro sd|kingston|adata/i,   cat: 'Memorias' },
+    { re: /hogar|smart home|televisor|\btv\b|smart tv|lavadora|nevera|electrodom/i,                     cat: 'Línea hogar' },
+    { re: /pos|punto de venta|terminal|datafono|dat[aá]fono|caja registradora|bixolon/i,                cat: 'POS' },
+  ];
+
+  function resolveCategory(wooCategories) {
+    var names = (wooCategories || []).map(function (c) { return c.name || ''; });
+    for (var i = 0; i < names.length; i++) {
+      for (var j = 0; j < CAT_MAP.length; j++) {
+        if (CAT_MAP[j].re.test(names[i])) return CAT_MAP[j].cat;
+      }
+    }
+    /* Sin coincidencia exacta: usar el nombre tal cual (puede aparecer como nueva categoría) */
+    return names[0] || 'Empresas';
+  }
+
+  /* ──────────────────────────────────────────
+     FILTRO DE STOCK
+     - outofstock                 → ocultar
+     - manage_stock + qty <= 0   → ocultar
+     - onbackorder                → mostrar (pedido bajo encargo)
+     ────────────────────────────────────────── */
+  function isInStock(p) {
+    if (p.stock_status === 'outofstock') return false;
+    if (p.manage_stock && p.stock_quantity !== null && p.stock_quantity <= 0) return false;
+    return true;
+  }
+
+  /* ──────────────────────────────────────────
+     MAPEO WooCommerce → formato interno
+     ────────────────────────────────────────── */
+  function mapProduct(p) {
+    if (!isInStock(p)) return null;
+    if (p.status !== 'publish') return null;
+
+    var regular = parseFloat(p.regular_price) || parseFloat(p.price) || 0;
+    var sale    = parseFloat(p.sale_price) || 0;
+    var price   = (p.on_sale && sale > 0) ? sale : regular;
+    var oldPrice = regular;
+    var discount = '';
+    if (p.on_sale && sale > 0 && regular > sale) {
+      discount = Math.round((1 - sale / regular) * 100) + '% OFF';
+    }
+
+    var images = (p.images || []).map(function (img) { return img.src || ''; }).filter(Boolean);
+    var shortDesc = (p.short_description || '').replace(/<[^>]+>/g, '').trim();
+
+    return {
+      id:        p.id,
+      name:      p.name,
+      category:  resolveCategory(p.categories),
+      price:     Math.round(price),
+      oldPrice:  Math.round(oldPrice),
+      discount:  discount,
+      images:    images,
+      shortDesc: shortDesc,
+      /* Guardamos stock_status para posible badge "Bajo encargo" */
+      stockStatus: p.stock_status
+    };
+  }
+
+  /* ──────────────────────────────────────────
+     FETCH CON PAGINACIÓN
+     ────────────────────────────────────────── */
+  function buildURL(cfg, page) {
+    return '/api/products.php?page=' + page;
+  }
+
+  function fetchPage(cfg, page) {
+    return fetch(buildURL(cfg, page))
+      .then(function (r) {
+        if (!r.ok) return Promise.reject('HTTP ' + r.status);
+        var totalPages = parseInt(r.headers.get('X-WP-TotalPages') || '1', 10);
+        var totalProds = parseInt(r.headers.get('X-WP-Total') || '0', 10);
+        return r.json().then(function (data) {
+          return { data: data, totalPages: totalPages, totalProds: totalProds };
+        });
+      });
+  }
+
+  function fetchAll(cfg) {
+    return fetchPage(cfg, 1).then(function (res) {
+      var all   = res.data;
+      var pages = res.totalPages;
+      if (pages <= 1) return all;
+      var pending = [];
+      for (var p = 2; p <= pages; p++) {
+        pending.push(fetchPage(cfg, p).then(function (r) { return r.data; }));
+      }
+      return Promise.all(pending).then(function (results) {
+        results.forEach(function (r) { all = all.concat(r); });
+        return all;
+      });
+    });
+  }
+
+  /* ──────────────────────────────────────────
+     API PÚBLICA
+     ────────────────────────────────────────── */
+
+  /**
+   * initWooProducts(onReady, onError)
+   * Lee caché o consulta la API.
+   * onReady(products, meta) → products: array mapeado, meta: { fromCache, syncedAt, total }
+   */
+  window.initWooProducts = function (onReady, onError) {
+    var cfg = window.WOO_CONFIG;
+    if (!cfg) {
+      if (onError) onError('WooCommerce no configurado');
+      return;
+    }
+
+    var ttl = (cfg.cacheTTL || 30) * 60 * 1000;
+
+    /* Intenta caché válida */
+    try {
+      var cached = JSON.parse(localStorage.getItem(CACHE_KEY));
+      if (cached && cached.ts && (Date.now() - cached.ts) < ttl && cached.products && cached.products.length) {
+        console.log('[WooSync] Caché válida — ' + cached.products.length + ' productos');
+        if (onReady) onReady(cached.products, { fromCache: true, syncedAt: cached.ts, total: cached.products.length });
+        return;
+      }
+    } catch (e) {}
+
+    /* Fetch fresco */
+    console.log('[WooSync] Consultando WooCommerce...');
+    fetchAll(cfg)
+      .then(function (raw) {
+        var products = raw.map(mapProduct).filter(Boolean);
+        var ts = Date.now();
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: ts, products: products }));
+        console.log('[WooSync] Sincronizado — ' + products.length + '/' + raw.length + ' productos disponibles');
+        if (onReady) onReady(products, { fromCache: false, syncedAt: ts, total: products.length });
+      })
+      .catch(function (err) {
+        console.warn('[WooSync] Error al conectar con WooCommerce:', err);
+        /* Fallback: caché aunque esté vencida */
+        try {
+          var stale = JSON.parse(localStorage.getItem(CACHE_KEY));
+          if (stale && stale.products && stale.products.length) {
+            console.warn('[WooSync] Usando caché vencida como respaldo');
+            if (onReady) onReady(stale.products, { fromCache: true, syncedAt: stale.ts, total: stale.products.length, stale: true });
+            return;
+          }
+        } catch (e2) {}
+        if (onError) onError(err);
+      });
+  };
+
+  /**
+   * refreshWooProducts(onReady, onError)
+   * Fuerza actualización ignorando la caché.
+   */
+  window.refreshWooProducts = function (onReady, onError) {
+    localStorage.removeItem(CACHE_KEY);
+    window.initWooProducts(onReady, onError);
+  };
+
+  /**
+   * getWooCacheAge()
+   * Devuelve los minutos desde la última sincronización, o null si no hay caché.
+   */
+  window.getWooCacheAge = function () {
+    try {
+      var c = JSON.parse(localStorage.getItem(CACHE_KEY));
+      if (!c || !c.ts) return null;
+      return Math.round((Date.now() - c.ts) / 60000);
+    } catch (e) { return null; }
+  };
+})();
