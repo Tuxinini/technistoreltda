@@ -153,18 +153,18 @@ function tsSetThumb(idx){
   document.querySelectorAll('.ts-thumb').forEach(function(t,i){t.classList.toggle('active',i===idx);});
 }
 
-/* ── CARRITO ── */
-var cartTotal=parseInt(localStorage.getItem('ts-cart')||'0',10);
-function updateCartBadge(){var el=document.getElementById('cart-count');if(el)el.textContent=cartTotal;}
+/* ── CARRITO (cart.js gestiona la lógica central) ── */
 function tsAddToCart(){
-  cartTotal++;localStorage.setItem('ts-cart',cartTotal);updateCartBadge();
+  var p=PRODUCTS[activeProductIdx];if(!p)return;
+  if(typeof addToCart==='function'){
+    addToCart({name:p.brand+' '+p.name,price:p.price,image:p.images&&p.images[0]?p.images[0]:'',category:''});
+  }
   var btn=document.getElementById('ts-btn-cart');if(!btn)return;
   var orig=btn.innerHTML;
-  btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Agregado!';
+  btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> ¡Agregado!';
   btn.style.background='#25D366';
   setTimeout(function(){btn.innerHTML=orig;btn.style.background='';},1800);
 }
-function openCart(){alert('Tienes '+cartTotal+' producto(s) en el carrito.');}
 
 /* ── CARRUSEL CLIENTES ── */
 var clientPage=0,CLIENT_TOTAL=3;
@@ -305,6 +305,74 @@ function tsSetThumbAll(imgIdx,prodIdx){
       filterAndRenderAll(btn.dataset.cat);
     });
   });
+})();
+
+/* ── OFERTAS HOY desde WooCommerce (vía proxy /api/products.php) ── */
+(function loadOfertasHoy() {
+  function fetchPage(page) {
+    return fetch('/api/products.php?page=' + page)
+      .then(function(r) {
+        if (!r.ok) return Promise.reject('HTTP ' + r.status);
+        var totalPages = parseInt(r.headers.get('X-WP-TotalPages') || '1', 10);
+        return r.json().then(function(data) { return { data: data, totalPages: totalPages }; });
+      });
+  }
+
+  function fetchAll() {
+    return fetchPage(1).then(function(res) {
+      var all = res.data;
+      var pages = res.totalPages;
+      if (pages <= 1) return all;
+      var pending = [];
+      for (var p = 2; p <= pages; p++) {
+        pending.push(fetchPage(p).then(function(r) { return r.data; }));
+      }
+      return Promise.all(pending).then(function(results) {
+        results.forEach(function(r) { all = all.concat(r); });
+        return all;
+      });
+    });
+  }
+
+  fetchAll()
+    .then(function(raw) {
+      var ofertasRaw = raw.filter(function(p) {
+        return (p.categories || []).some(function(c) {
+          return c.name && c.name.toUpperCase().indexOf('OFERTA') !== -1;
+        });
+      });
+      var products = ofertasRaw
+        .filter(function(p) {
+          if (p.stock_status === 'outofstock') return false;
+          if (p.manage_stock && p.stock_quantity !== null && p.stock_quantity <= 0) return false;
+          return true;
+        })
+        .map(function(p) {
+          var regular = parseFloat(p.regular_price) || parseFloat(p.price) || 0;
+          var sale    = parseFloat(p.sale_price) || 0;
+          var price   = (p.on_sale && sale > 0) ? sale : regular;
+          var discount = '';
+          if (p.on_sale && sale > 0 && regular > sale) {
+            discount = Math.round((1 - sale / regular) * 100) + '% OFF';
+          }
+          return {
+            name:     p.name,
+            price:    Math.round(price),
+            oldPrice: Math.round(regular),
+            discount: discount,
+            images:   (p.images || []).map(function(img) { return img.src || ''; }).filter(Boolean),
+            category: 'Ofertas'
+          };
+        });
+      if (!products.length) return;
+      currentCatItems = products;
+      fillGridAll('ts-products-grid', products.slice(0, 4));
+      fillGridAll('ts-products-grid-extra', products.slice(4));
+      var w = document.getElementById('ts-ver-mas-wrap');
+      if (w) w.style.display = products.length > 4 ? 'flex' : 'none';
+      closeExtra();
+    })
+    .catch(function(err) { console.warn('[OfertasHoy] No se pudo cargar desde WooCommerce:', err); });
 })();
 
 /* ── FORMULARIO EMPRESAS → WHATSAPP ── */
