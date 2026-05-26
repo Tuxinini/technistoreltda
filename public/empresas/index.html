@@ -9,16 +9,483 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/equipo.css">
+  <link rel="stylesheet" href="/css/style.css?v=20260523">
+  <link rel="stylesheet" href="/css/equipo.css?v=20260523">
+  <style>
+    /* ── CSS CRÍTICO EMPRESAS (inline para evitar caché) ── */
+    .eq-section--dark {
+      background: linear-gradient(180deg, #060d1a 0%, #0a1f3d 100%) !important;
+      position: relative !important;
+      overflow: hidden !important;
+      padding: 90px 0 100px !important;
+    }
+    .eq-section-title {
+      text-align: center;
+      color: #fff;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 900;
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+      display: block;
+    }
+    .eq-section-title::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: #00aee8;
+      margin: 16px auto 0;
+      border-radius: 2px;
+    }
+    .eq-section-sub {
+      text-align: center;
+      color: rgba(255,255,255,0.65);
+      font-size: 16px;
+      margin: 0 auto 60px;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+    /* GOTAS ANIMADAS */
+    .eq-blob {
+      position: absolute !important;
+      border-radius: 50% !important;
+      filter: blur(80px) !important;
+      pointer-events: none !important;
+      z-index: 0 !important;
+    }
+    .eq-blob--1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,174,232,0.40) 0%, transparent 65%) !important;
+      top: -140px; left: -120px;
+      animation: emp-blob-1 14s ease-in-out infinite !important;
+    }
+    .eq-blob--2 {
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(0,140,200,0.36) 0%, transparent 65%) !important;
+      bottom: -100px; right: -80px;
+      animation: emp-blob-2 16s ease-in-out infinite !important;
+    }
+    .eq-blob--3 {
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(0,174,232,0.28) 0%, transparent 65%) !important;
+      top: 35%; left: 45%;
+      animation: emp-blob-3 18s ease-in-out infinite !important;
+    }
+    @keyframes emp-blob-1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%      { transform: translate(50px, 30px) scale(1.10); }
+      66%      { transform: translate(-30px, 60px) scale(0.95); }
+    }
+    @keyframes emp-blob-2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%      { transform: translate(-60px, -40px) scale(1.12); }
+    }
+    @keyframes emp-blob-3 {
+      0%, 100% { transform: translate(-50%, 0) scale(1); }
+      25%      { transform: translate(-40%, -30px) scale(1.08); }
+      50%      { transform: translate(-55%, 20px) scale(0.94); }
+      75%      { transform: translate(-45%, 40px) scale(1.05); }
+    }
+    /* GRID DE 4 INTEGRANTES */
+    .eq-grid--4 {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 26px !important;
+      position: relative;
+      z-index: 1;
+    }
+    .eq-card {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: emp-card-in 0.7s cubic-bezier(0.4, 0, 0.2, 1) both !important;
+    }
+    .eq-card:nth-child(1) { animation-delay: 0.05s !important; }
+    .eq-card:nth-child(2) { animation-delay: 0.18s !important; }
+    .eq-card:nth-child(3) { animation-delay: 0.31s !important; }
+    .eq-card:nth-child(4) { animation-delay: 0.44s !important; }
+    @keyframes emp-card-in {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .eq-photo-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.35);
+      cursor: pointer;
+      background: #0a1f3d;
+      transition: box-shadow 0.4s ease, transform 0.4s ease;
+    }
+    .eq-photo-wrap:hover {
+      box-shadow: 0 20px 56px rgba(0,174,232,0.45) !important;
+      transform: translateY(-6px) !important;
+    }
+    /* IMAGEN BLANCO/NEGRO → COLOR */
+    .eq-photo-img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+      display: block !important;
+      filter: grayscale(100%) brightness(0.90) contrast(1.05) !important;
+      transition: filter 0.55s ease, transform 0.55s ease !important;
+      will-change: filter, transform;
+    }
+    .eq-photo-wrap:hover .eq-photo-img,
+    .eq-card:hover .eq-photo-img {
+      filter: grayscale(0%) brightness(1) contrast(1) !important;
+      transform: scale(1.06) !important;
+    }
+    /* OVERLAY */
+    .eq-overlay {
+      position: absolute !important;
+      inset: 0 !important;
+      background: linear-gradient(0deg, rgba(6,13,26,0.92) 0%, rgba(6,13,26,0.30) 50%, transparent 100%) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-end !important;
+      padding: 22px 20px !important;
+      opacity: 0 !important;
+      transition: opacity 0.4s ease !important;
+      pointer-events: none !important;
+    }
+    .eq-photo-wrap:hover .eq-overlay,
+    .eq-card:hover .eq-overlay { opacity: 1 !important; }
+    .eq-overlay-name { display:block; font-size:16px; font-weight:800; color:#fff; line-height:1.2; }
+    .eq-overlay-role { display:block; font-size:12px; font-weight:600; color:#00aee8; margin-top:4px; text-transform:uppercase; letter-spacing:0.5px; }
+    .eq-info { padding: 16px 6px 0; display:flex; flex-direction:column; gap:3px; text-align:center; }
+    .eq-name { font-size:17px; font-weight:800; color:#fff; margin:0; }
+    .eq-role { font-size:13px; font-weight:600; color:#00aee8; margin:0; letter-spacing:0.5px; }
+    /* BOTONES CON HOVER */
+    .emp-cat-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; font-size: 14px; font-weight: 700;
+      font-family: var(--font-main); border-radius: 50px;
+      text-decoration: none; cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease,
+                  border-color 0.3s ease, box-shadow 0.3s ease,
+                  transform 0.25s ease;
+    }
+    .emp-cat-btn svg { transition: transform 0.3s ease; }
+    .emp-cat-btn:hover { transform: translateY(-3px); }
+    .emp-cat-btn:hover svg { transform: scale(1.15); }
+    .emp-cat-btn--solid {
+      background: #00aee8; color: #fff;
+      border: 2px solid #00aee8;
+      box-shadow: 0 4px 16px rgba(0,174,232,0.32);
+    }
+    .emp-cat-btn--solid:hover {
+      background: #0097cc !important; border-color: #0097cc !important;
+      box-shadow: 0 10px 28px rgba(0,174,232,0.55) !important;
+    }
+    .emp-cat-btn--outline {
+      background: #fff; color: #00aee8;
+      border: 2px solid #00aee8;
+    }
+    .emp-cat-btn--outline:hover {
+      background: #00aee8 !important; color: #fff !important;
+      box-shadow: 0 10px 28px rgba(0,174,232,0.45) !important;
+    }
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .eq-grid--4 { grid-template-columns: repeat(2, 1fr) !important; gap: 22px !important; }
+    }
+    @media (max-width: 480px) {
+      .eq-grid--4 { grid-template-columns: 1fr !important; max-width: 320px; margin: 0 auto; }
+    }
+
+    /* ── MISIÓN Y VISIÓN ── */
+    .mv-section {
+      position: relative;
+      padding: 100px 0 110px;
+      background: linear-gradient(160deg, #060d1a 0%, #071628 50%, #050b16 100%);
+      overflow: hidden;
+    }
+    .mv-bg-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .mv-bg-glow--l {
+      background: radial-gradient(circle, rgba(0,174,232,0.12) 0%, transparent 65%);
+      top: -160px; left: -160px;
+    }
+    .mv-bg-glow--r {
+      background: radial-gradient(circle, rgba(0,100,200,0.10) 0%, transparent 65%);
+      bottom: -200px; right: -140px;
+    }
+    .mv-header {
+      text-align: center;
+      margin-bottom: 64px;
+      position: relative;
+      z-index: 1;
+    }
+    .mv-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #00aee8;
+      background: rgba(0,174,232,0.10);
+      border: 1px solid rgba(0,174,232,0.25);
+      padding: 5px 18px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .mv-title {
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 900;
+      color: #fff;
+      margin: 0 0 16px;
+      letter-spacing: -0.5px;
+    }
+    .mv-title::after {
+      content: '';
+      display: block;
+      width: 60px; height: 4px;
+      background: linear-gradient(90deg, #00aee8, #0066cc);
+      border-radius: 2px;
+      margin: 18px auto 0;
+    }
+    .mv-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .mv-card {
+      position: relative;
+      border-radius: 24px;
+      padding: 48px 44px 44px;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .mv-card:hover {
+      transform: translateY(-6px);
+    }
+    .mv-card--mision {
+      background: linear-gradient(145deg, #0d2240 0%, #0a1a35 100%);
+      border: 1px solid rgba(0,174,232,0.22);
+      box-shadow: 0 12px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .mv-card--mision:hover {
+      box-shadow: 0 24px 72px rgba(0,174,232,0.22), inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+    .mv-card--vision {
+      background: linear-gradient(145deg, #00aee8 0%, #005ab5 100%);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 12px 48px rgba(0,174,232,0.25);
+    }
+    .mv-card--vision:hover {
+      box-shadow: 0 24px 72px rgba(0,174,232,0.45);
+    }
+    /* Número decorativo de fondo */
+    .mv-card-number {
+      position: absolute;
+      top: -10px; right: 24px;
+      font-size: 120px;
+      font-weight: 900;
+      line-height: 1;
+      color: rgba(255,255,255,0.04);
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -4px;
+    }
+    .mv-card--vision .mv-card-number {
+      color: rgba(255,255,255,0.08);
+    }
+    /* Icono */
+    .mv-card-icon-wrap {
+      width: 64px; height: 64px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .mv-card--mision .mv-card-icon-wrap {
+      background: rgba(0,174,232,0.15);
+      color: #00aee8;
+      border: 1px solid rgba(0,174,232,0.25);
+    }
+    .mv-card--vision .mv-card-icon-wrap {
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    /* Tag */
+    .mv-card-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .mv-card--mision .mv-card-tag { color: #00aee8; }
+    .mv-card--vision .mv-card-tag { color: rgba(255,255,255,0.75); }
+    /* Título */
+    .mv-card-title {
+      font-size: clamp(20px, 2vw, 26px);
+      font-weight: 900;
+      line-height: 1.25;
+      margin: 0 0 18px;
+      color: #fff;
+    }
+    /* Texto */
+    .mv-card-text {
+      font-size: 15px;
+      line-height: 1.75;
+      margin: 0 0 28px;
+    }
+    .mv-card--mision .mv-card-text { color: rgba(255,255,255,0.62); }
+    .mv-card--vision .mv-card-text { color: rgba(255,255,255,0.85); }
+    /* Bullets */
+    .mv-card-bullets {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+    }
+    .mv-card-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .mv-card--mision .mv-card-bullets li { color: rgba(255,255,255,0.75); }
+    .mv-card--mision .mv-card-bullets li svg { color: #00aee8; flex-shrink: 0; }
+    .mv-card--vision .mv-card-bullets li { color: rgba(255,255,255,0.92); }
+    .mv-card--vision .mv-card-bullets li svg { color: #fff; flex-shrink: 0; }
+    /* Responsive */
+    @media (max-width: 860px) {
+      .mv-grid { grid-template-columns: 1fr; }
+      .mv-card { padding: 36px 28px 32px; }
+    }
+
+    /* ── NUESTROS CLIENTES ── */
+    .cl-section {
+      padding: 80px 0 88px;
+      background: #f7f9fc;
+      overflow: hidden;
+    }
+    .cl-header { text-align: center; margin-bottom: 52px; }
+    .cl-title {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 900;
+      color: #060d1a;
+      margin-bottom: 12px;
+      position: relative;
+      display: inline-block;
+    }
+    .cl-title::after {
+      content: '';
+      display: block;
+      width: 60px; height: 4px;
+      background: #00aee8;
+      border-radius: 2px;
+      margin: 14px auto 0;
+    }
+    .cl-sub {
+      font-size: 15px;
+      color: #5a6a7e;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    /* pista deslizante */
+    .cl-track-wrap {
+      width: 100%;
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+      margin-bottom: 20px;
+    }
+    .cl-track {
+      display: flex;
+      width: max-content;
+      animation: cl-scroll-left 40s linear infinite;
+      gap: 20px;
+    }
+    .cl-track--rev {
+      animation: cl-scroll-right 44s linear infinite;
+    }
+    @keyframes cl-scroll-left {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @keyframes cl-scroll-right {
+      from { transform: translateX(-50%); }
+      to   { transform: translateX(0); }
+    }
+    .cl-track-wrap:hover .cl-track { animation-play-state: paused; }
+    /* tarjeta logo */
+    .cl-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid #e4eaf2;
+      border-radius: 14px;
+      padding: 18px 20px 14px;
+      min-width: 140px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: default;
+    }
+    .cl-logo:hover {
+      box-shadow: 0 8px 28px rgba(0,174,232,0.18);
+      transform: translateY(-4px);
+    }
+    .cl-ph {
+      width: 88px; height: 56px;
+      background: linear-gradient(135deg, #dde5f0 0%, #c5d1e3 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cl-ph::after {
+      content: '';
+      display: block;
+      width: 48px; height: 20px;
+      background: rgba(255,255,255,0.55);
+      border-radius: 4px;
+    }
+    .cl-logo span {
+      font-size: 11px;
+      font-weight: 700;
+      color: #3d5068;
+      letter-spacing: 0.4px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  </style>
   <link rel="stylesheet" href="/css/loader.css">
 </head>
 <body>
 
   <div id="page-loader" role="status" aria-label="Cargando Tecnistore">
-    <img src="/wp-content/uploads/2021/03/Tnt.png" alt="" class="pl-bg-logo" aria-hidden="true">
+    <img src="/images/logo.png" alt="" class="pl-bg-logo" aria-hidden="true">
     <div class="pl-content">
-      <img src="/wp-content/uploads/2021/03/Tnt.png" alt="Tecnistore" class="pl-logo">
+      <img src="/images/logo.png" alt="Tecnistore" class="pl-logo">
       <span class="pl-name">Tecnistore</span>
       <div class="pl-bar-track"><div class="pl-bar-fill"></div></div>
       <div class="pl-dots"><span class="pl-dot"></span><span class="pl-dot"></span><span class="pl-dot"></span></div>
@@ -28,20 +495,29 @@
   <div class="top-bar" role="banner">
     <div class="top-bar-inner container">
       <div class="top-bar-left">
-        <span class="tb-item"><a href="tel:6016336364">(601) 633-6364</a></span>
+        <span class="tb-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <a href="https://wa.me/573017298980" target="_blank" rel="noopener">+57 301-729-8980</a>
+        </span>
         <span class="tb-sep">|</span>
-        <span class="tb-item"><a href="mailto:comercial1@tntltda.com">comercial1@tntltda.com</a></span>
+        <span class="tb-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <a href="https://wa.me/573118089616" target="_blank" rel="noopener">+57 311-808-9616</a>
+        </span>
+        <span class="tb-sep">|</span>
+        <span class="tb-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <a href="https://wa.me/573225817129" target="_blank" rel="noopener">+57 322-581-7129</a>
+        </span>
       </div>
-      <div class="top-bar-right">
-        <a href="https://wa.me/573225817129" class="tb-wa" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
+      <div class="top-bar-right"></div>
     </div>
   </div>
 
   <header class="site-header">
     <div class="header-search-row">
       <div class="header-search-inner container">
-        <a href="/" class="hs-logo" aria-label="Tecnistore inicio"><img src="/wp-content/uploads/2021/03/Tnt.png" alt="Tecnistore" width="140" height="50"></a>
+        <a href="/" class="hs-logo" aria-label="Tecnistore inicio"><img src="/images/logo.png" alt="Tecnistore" width="140" height="50"></a>
         <div style="flex:1"></div>
         <button class="hs-cart-btn" onclick="window.location.href='/tienda/'" style="gap:6px">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
@@ -52,12 +528,12 @@
     <nav class="nav-container" aria-label="Navegacion principal">
       <div class="nav-inner container">
         <div class="nav-links-left"><a href="/">INICIO</a><a href="/empresas/" style="color:var(--color-primary)">EMPRESAS</a><a href="/tienda/">TIENDA</a></div>
-        <div class="nav-logo-center"><a href="/"><img src="/wp-content/uploads/2021/03/Tnt.png" alt="Tecnistore" width="110" height="40"></a></div>
-        <div class="nav-links-right"><a href="/#contacto">CONTACTO</a><a href="/mi-cuenta/" class="nav-btn-login">INICIAR SESION</a></div>
+        <div class="nav-logo-center"><a href="/"><img src="/images/logo.png" alt="Tecnistore" width="110" height="40"></a></div>
+        <div class="nav-links-right"><a href="/#contacto">CONTACTO</a></div>
         <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
       <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
-        <a href="/">INICIO</a><a href="/empresas/">EMPRESAS</a><a href="/tienda/">TIENDA</a><a href="/#contacto">CONTACTO</a><a href="/mi-cuenta/">INICIAR SESION</a>
+        <a href="/">INICIO</a><a href="/empresas/">EMPRESAS</a><a href="/tienda/">TIENDA</a><a href="/#contacto">CONTACTO</a>
       </div>
     </nav>
   </header>
@@ -76,7 +552,7 @@
     <div class="container">
       <div class="empresas-top-grid">
         <div class="empresas-brand-panel">
-          <div class="emp-logo-wrap"><img src="/wp-content/uploads/2021/03/Tnt.png" class="emp-logo" alt="Tecnistore"></div>
+          <div class="emp-logo-wrap"><img src="/images/logo.png" class="emp-logo" alt="Tecnistore"></div>
           <p class="emp-tagline">Nuestro diferencial esta en la atencion consultiva y transparente. Trabajamos con factura electronica, garantias reales de fabricante y soporte antes, durante y despues de la compra.</p>
           <div class="emp-pills">
             <span class="emp-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Garantia de fabrica</span>
@@ -105,54 +581,336 @@
     </div>
   </section>
 
-  <!-- ══ NUESTRO EQUIPO ══ -->
-  <section class="eq-section" style="background:var(--color-dark);padding:72px 0 80px;">
+  <!-- ══ MISIÓN Y VISIÓN ══ -->
+  <section class="mv-section">
+    <div class="mv-bg-glow mv-bg-glow--l" aria-hidden="true"></div>
+    <div class="mv-bg-glow mv-bg-glow--r" aria-hidden="true"></div>
     <div class="container">
-      <h2 style="text-align:center;color:#fff;font-size:clamp(28px,3.5vw,40px);font-weight:900;margin-bottom:12px;">Nuestro Equipo</h2>
-      <p style="text-align:center;color:rgba(255,255,255,0.55);font-size:15px;margin-bottom:48px;">Las personas que hacen posible mas de 28 anos de excelencia tecnologica.</p>
-      <div class="eq-grid">
-        <div class="eq-card ">
-          <div class="eq-photo-wrap">
-            <div class="eq-photo-bg" style="background:linear-gradient(145deg,#00aee8,#005d7e)"><svg width="80" height="80" viewBox="0 0 24 24" fill="rgba(255,255,255,0.72)" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
-            <div class="eq-overlay"><span class="eq-overlay-text">Equipo Tecnistore</span></div>
+      <div class="mv-header">
+        <span class="mv-eyebrow">QUIÉNES SOMOS</span>
+        <h2 class="mv-title">Nuestra razón de ser</h2>
+        <p class="mv-sub">Los principios que guían cada decisión y cada solución que entregamos.</p>
+      </div>
+      <div class="mv-grid">
+
+        <!-- MISIÓN -->
+        <div class="mv-card mv-card--mision">
+          <div class="mv-card-number" aria-hidden="true">01</div>
+          <div class="mv-card-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M12 8v4l3 3"/></svg>
           </div>
-          <div class="eq-info"><div class="eq-name-placeholder"></div><div class="eq-role-placeholder"></div></div>
+          <span class="mv-card-tag">Misión</span>
+          <h3 class="mv-card-title">Potenciamos a las empresas con tecnología que transforma</h3>
+          <p class="mv-card-text">Ayudamos a las empresas a crecer con tecnología confiable, soporte experto y soluciones integrales que optimizan su operación diaria. Más de 28 años siendo el respaldo tecnológico de quienes más lo necesitan.</p>
+          <ul class="mv-card-bullets">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Asesoría consultiva especializada
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Equipos certificados con garantía real
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Soporte antes, durante y después
+            </li>
+          </ul>
         </div>
-        <div class="eq-card ">
-          <div class="eq-photo-wrap">
-            <div class="eq-photo-bg" style="background:linear-gradient(145deg,#0a3060,#1a5580)"><svg width="80" height="80" viewBox="0 0 24 24" fill="rgba(255,255,255,0.72)" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
-            <div class="eq-overlay"><span class="eq-overlay-text">Equipo Tecnistore</span></div>
+
+        <!-- VISIÓN -->
+        <div class="mv-card mv-card--vision">
+          <div class="mv-card-number" aria-hidden="true">02</div>
+          <div class="mv-card-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           </div>
-          <div class="eq-info"><div class="eq-name-placeholder"></div><div class="eq-role-placeholder"></div></div>
+          <span class="mv-card-tag">Visión</span>
+          <h3 class="mv-card-title">Ser el aliado tecnológico de referencia en Colombia</h3>
+          <p class="mv-card-text">Queremos ser el aliado tecnológico de referencia para las empresas que buscan innovación, respaldo y soluciones hechas a la medida, con presencia en todo el territorio nacional.</p>
+          <ul class="mv-card-bullets">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Innovación continua en soluciones
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Cobertura y alcance nacional
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Referente de confianza en tecnología
+            </li>
+          </ul>
         </div>
-        <div class="eq-card ">
-          <div class="eq-photo-wrap">
-            <div class="eq-photo-bg" style="background:linear-gradient(145deg,#ff6b2b,#9c3a10)"><svg width="80" height="80" viewBox="0 0 24 24" fill="rgba(255,255,255,0.72)" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
-            <div class="eq-overlay"><span class="eq-overlay-text">Equipo Tecnistore</span></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PRODUCTOS Y SERVICIOS ══ -->
+  <section style="padding:80px 0;background:var(--color-bg-light);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:20px;">
+        <span style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--color-primary);background:rgba(0,174,232,0.08);padding:5px 16px;border-radius:20px;border:1px solid rgba(0,174,232,0.2);text-transform:uppercase;">Sector Corporativo</span>
+      </div>
+      <h2 style="text-align:center;font-size:clamp(26px,3.5vw,40px);font-weight:900;margin-bottom:16px;color:var(--color-text);">Productos y Servicios para Empresas</h2>
+      <p style="text-align:center;font-size:16px;color:var(--color-text-muted);max-width:760px;margin:0 auto 56px;line-height:1.7;">En Technistore acompañamos a las empresas con productos, infraestructura y soporte especializado en tecnología, redes, seguridad y mantenimiento — soluciones confiables, prácticas y a un precio justo.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:56px;">
+        <!-- Bloque 1 -->
+        <div style="background:#fff;border-radius:16px;padding:32px 28px;box-shadow:0 8px 32px rgba(0,0,0,0.07);border-top:3px solid var(--color-primary);">
+          <div style="width:56px;height:56px;background:rgba(0,174,232,0.10);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           </div>
-          <div class="eq-info"><div class="eq-name-placeholder"></div><div class="eq-role-placeholder"></div></div>
+          <h3 style="font-size:18px;font-weight:800;margin-bottom:12px;color:var(--color-text);">Equipos de Cómputo</h3>
+          <p style="font-size:14px;line-height:1.7;color:var(--color-text-muted);">Portátiles, computadores de escritorio, servidores y equipos todo-en-uno de las mejores marcas con garantía de fábrica y factura electrónica.</p>
         </div>
-        <div class="eq-card ">
-          <div class="eq-photo-wrap">
-            <div class="eq-photo-bg" style="background:linear-gradient(145deg,#1a5580,#00aee8)"><svg width="80" height="80" viewBox="0 0 24 24" fill="rgba(255,255,255,0.72)" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
-            <div class="eq-overlay"><span class="eq-overlay-text">Equipo Tecnistore</span></div>
+        <!-- Bloque 2 -->
+        <div style="background:#fff;border-radius:16px;padding:32px 28px;box-shadow:0 8px 32px rgba(0,0,0,0.07);border-top:3px solid var(--color-primary);">
+          <div style="width:56px;height:56px;background:rgba(0,174,232,0.10);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/><path d="M3 6h2M3 10h2M3 14h2M19 6h2M19 10h2M19 14h2"/></svg>
           </div>
-          <div class="eq-info"><div class="eq-name-placeholder"></div><div class="eq-role-placeholder"></div></div>
+          <h3 style="font-size:18px;font-weight:800;margin-bottom:12px;color:var(--color-text);">Redes y Cableado</h3>
+          <p style="font-size:14px;line-height:1.7;color:var(--color-text-muted);">Diseño e instalación de redes LAN, cableado estructurado, fibra óptica y conectividad inalámbrica para entornos corporativos de cualquier escala.</p>
         </div>
-        <div class="eq-card ">
-          <div class="eq-photo-wrap">
-            <div class="eq-photo-bg" style="background:linear-gradient(145deg,#00aee8,#0a3060)"><svg width="80" height="80" viewBox="0 0 24 24" fill="rgba(255,255,255,0.72)" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
-            <div class="eq-overlay"><span class="eq-overlay-text">Equipo Tecnistore</span></div>
+        <!-- Bloque 3 -->
+        <div style="background:#fff;border-radius:16px;padding:32px 28px;box-shadow:0 8px 32px rgba(0,0,0,0.07);border-top:3px solid var(--color-primary);">
+          <div style="width:56px;height:56px;background:rgba(0,174,232,0.10);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <div class="eq-info"><div class="eq-name-placeholder"></div><div class="eq-role-placeholder"></div></div>
+          <h3 style="font-size:18px;font-weight:800;margin-bottom:12px;color:var(--color-text);">Seguridad e Impresión</h3>
+          <p style="font-size:14px;line-height:1.7;color:var(--color-text-muted);">Soluciones de seguridad electrónica, impresión empresarial, licencias de software, energía regulada y mantenimiento técnico especializado.</p>
         </div>
-        <div class="eq-card ">
+      </div>
+
+      <!-- Botones de categorías -->
+      <div style="text-align:center;margin-bottom:16px;">
+        <h3 style="font-size:20px;font-weight:800;color:var(--color-text);margin-bottom:24px;">Productos enfocados en empresas</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+          <a href="/tienda/?cat=Empresas" class="emp-cat-btn emp-cat-btn--solid">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+            Equipos de Cómputo
+          </a>
+          <a href="/tienda/?cat=Impresión" class="emp-cat-btn emp-cat-btn--outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Impresión
+          </a>
+          <a href="/tienda/?cat=Redes" class="emp-cat-btn emp-cat-btn--outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="16" y="2" width="6" height="6" rx="1"/><rect x="9" y="16" width="6" height="6" rx="1"/><path d="M5 8v4c0 1.1.9 2 2 2h10a2 2 0 002-2V8M12 14v2"/></svg>
+            Cableado Estructurado
+          </a>
+          <a href="/tienda/?cat=Redes" class="emp-cat-btn emp-cat-btn--outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            Fibra Óptica
+          </a>
+          <a href="/tienda/?cat=Memorias" class="emp-cat-btn emp-cat-btn--outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="10" y1="10" x2="10" y2="14"/><line x1="14" y1="10" x2="14" y2="14"/><line x1="18" y1="10" x2="18" y2="14"/></svg>
+            Discos y Memorias
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NUESTRO EQUIPO ══ -->
+  <section class="eq-section eq-section--dark">
+    <div class="eq-blob eq-blob--1"></div>
+    <div class="eq-blob eq-blob--2"></div>
+    <div class="eq-blob eq-blob--3"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <h2 class="eq-section-title">Nuestro Equipo</h2>
+      <p class="eq-section-sub">Las personas que hacen posible más de 28 años de excelencia tecnológica.</p>
+      <div class="eq-grid eq-grid--4">
+
+        <div class="eq-card">
           <div class="eq-photo-wrap">
-            <div class="eq-photo-bg" style="background:linear-gradient(145deg,#25D366,#0a4a3d)"><svg width="80" height="80" viewBox="0 0 24 24" fill="rgba(255,255,255,0.72)" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
-            <div class="eq-overlay"><span class="eq-overlay-text">Equipo Tecnistore</span></div>
+            <img src="/images/team/wilson.png" alt="Wilson" class="eq-photo-img">
+            <div class="eq-overlay">
+              <span class="eq-overlay-name">Wilson</span>
+              <span class="eq-overlay-role">Gerencia</span>
+            </div>
           </div>
-          <div class="eq-info"><div class="eq-name-placeholder"></div><div class="eq-role-placeholder"></div></div>
-        </div></div>
+          <div class="eq-info"><p class="eq-name">Wilson</p><p class="eq-role">Gerencia</p></div>
+        </div>
+
+        <div class="eq-card">
+          <div class="eq-photo-wrap">
+            <img src="/images/team/ximena.jpg" alt="Ximena" class="eq-photo-img">
+            <div class="eq-overlay">
+              <span class="eq-overlay-name">Ximena</span>
+              <span class="eq-overlay-role">Comercial</span>
+            </div>
+          </div>
+          <div class="eq-info"><p class="eq-name">Ximena</p><p class="eq-role">Comercial</p></div>
+        </div>
+
+        <div class="eq-card">
+          <div class="eq-photo-wrap">
+            <img src="/images/team/claudia.jpg" alt="Claudia" class="eq-photo-img">
+            <div class="eq-overlay">
+              <span class="eq-overlay-name">Claudia</span>
+              <span class="eq-overlay-role">Ventas</span>
+            </div>
+          </div>
+          <div class="eq-info"><p class="eq-name">Claudia</p><p class="eq-role">Ventas</p></div>
+        </div>
+
+        <div class="eq-card">
+          <div class="eq-photo-wrap">
+            <img src="/images/team/edi.jpg" alt="Edi" class="eq-photo-img">
+            <div class="eq-overlay">
+              <span class="eq-overlay-name">Edi</span>
+              <span class="eq-overlay-role">Técnico</span>
+            </div>
+          </div>
+          <div class="eq-info"><p class="eq-name">Edi</p><p class="eq-role">Técnico</p></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NUESTROS CLIENTES ══ -->
+  <section class="cl-section">
+    <div class="container cl-header">
+      <h2 class="cl-title">Nuestros Clientes</h2>
+      <p class="cl-sub">Empresas que confían en Tecnistore para sus soluciones tecnológicas.</p>
+    </div>
+    <div class="cl-track-wrap" aria-label="Clientes">
+      <div class="cl-track">
+        <!-- fila 1 -->
+        <div class="cl-logo"><div class="cl-ph"></div><span>Siemens</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Avianca</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Bancolombia</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Ecopetrol</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Claro Colombia</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Grupo Éxito</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Corona</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Alpina</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Bavaria</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Postobón</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Cementos Argos</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Davivienda</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Colpatria</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Suramericana</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Nutresa</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>ISA</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>ETB</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>EPM</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Celsia</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Terpel</span></div>
+        <!-- duplicado para bucle infinito -->
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Siemens</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Avianca</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Bancolombia</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Ecopetrol</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Claro Colombia</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Grupo Éxito</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Corona</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Alpina</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Bavaria</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Postobón</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Cementos Argos</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Davivienda</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Colpatria</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Suramericana</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Nutresa</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>ISA</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>ETB</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>EPM</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Celsia</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Terpel</span></div>
+      </div>
+    </div>
+    <div class="cl-track-wrap cl-track-wrap--rev" aria-hidden="true">
+      <div class="cl-track cl-track--rev">
+        <div class="cl-logo"><div class="cl-ph"></div><span>Grupo Bolívar</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Coomeva</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Liberty Seguros</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Femsa</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Sodimac</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Homecenter</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Falabella</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Alkosto</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Ktronix</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Movistar</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Tigo</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>WOM</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Carvajal</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Valores Simesa</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Gases de Occidente</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Codensa</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>TransMilenio</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Aerocivil</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>MinTIC</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>SENA</span></div>
+        <!-- duplicado -->
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Grupo Bolívar</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Coomeva</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Liberty Seguros</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Femsa</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Sodimac</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Homecenter</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Falabella</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Alkosto</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Ktronix</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Movistar</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Tigo</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>WOM</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Carvajal</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Valores Simesa</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Gases de Occidente</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Codensa</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>TransMilenio</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Aerocivil</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>MinTIC</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>SENA</span></div>
+      </div>
+    </div>
+    <div class="cl-track-wrap" style="margin-top:0">
+      <div class="cl-track">
+        <div class="cl-logo"><div class="cl-ph"></div><span>Compensar</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Colsanitas</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Cafam</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Colsubsidio</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Comfama</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Audifarma</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Sura EPS</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Sanitas</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Constructora Bolívar</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Amarilo</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Coninsa</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Pedro Gómez</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Cusezar</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Holcim</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Eternit</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Legis</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Unilever</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Bayer</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>3M Colombia</span></div>
+        <div class="cl-logo"><div class="cl-ph"></div><span>Nestlé</span></div>
+        <!-- duplicado -->
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Compensar</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Colsanitas</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Cafam</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Colsubsidio</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Comfama</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Audifarma</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Sura EPS</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Sanitas</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Constructora Bolívar</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Amarilo</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Coninsa</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Pedro Gómez</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Cusezar</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Holcim</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Eternit</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Legis</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Unilever</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Bayer</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>3M Colombia</span></div>
+        <div class="cl-logo" aria-hidden="true"><div class="cl-ph"></div><span>Nestlé</span></div>
+      </div>
     </div>
   </section>
 
@@ -212,7 +970,7 @@
   <!-- ══ FOOTER ══ -->
   <footer class="site-footer">
     <div class="footer-inner container">
-      <img src="/wp-content/uploads/2021/03/Tnt.png" alt="Tecnistore" class="footer-logo" width="130" loading="lazy">
+      <img src="/images/logo.png" alt="Tecnistore" class="footer-logo" width="130" loading="lazy">
       <div class="footer-lines">
         <div class="footer-lines-label">Lineas de Atencion</div>
         <div class="footer-lines-grid">
