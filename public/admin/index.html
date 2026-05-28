@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/images/logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | Tecnistore</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue: #00aee8; --dark: #060d1a; --mid: #0a1f3d;
+    --border: #e2eaf2; --text: #1a2540; --muted: #6b7a99;
+    --radius: 10px; --font: 'Segoe UI', Arial, sans-serif;
+  }
+  body { font-family: var(--font); background: #f4f7fb; color: var(--text); min-height: 100vh; }
+
+  /* ── LOGIN ── */
+  #login-screen {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; background: linear-gradient(135deg, var(--dark), var(--mid));
+  }
+  .login-box {
+    background: #fff; border-radius: 16px; padding: 40px 36px;
+    width: 360px; box-shadow: 0 24px 64px rgba(0,0,0,0.25);
+  }
+  .login-box h2 { font-size: 22px; font-weight: 900; color: var(--dark); margin-bottom: 6px; }
+  .login-box p { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .login-box input {
+    width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: var(--radius);
+    font-size: 15px; font-family: var(--font); outline: none; transition: border-color .2s; margin-bottom: 12px;
+  }
+  .login-box input:focus { border-color: var(--blue); }
+  .login-box button {
+    width: 100%; padding: 13px; background: var(--blue); color: #fff;
+    font-size: 15px; font-weight: 700; border: none; border-radius: var(--radius);
+    cursor: pointer; font-family: var(--font); transition: opacity .2s;
+  }
+  .login-box button:hover { opacity: .88; }
+  #login-err { color: #e53; font-size: 13px; margin-top: 8px; display: none; }
+
+  /* ── LAYOUT ── */
+  #admin-screen { display: none; }
+  .adm-header {
+    background: var(--dark); color: #fff;
+    padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .adm-header h1 { font-size: 17px; font-weight: 900; }
+  .adm-header-right { display: flex; align-items: center; gap: 12px; }
+  .adm-header a { color: rgba(255,255,255,.6); font-size: 13px; text-decoration: none; }
+  .adm-header a:hover { color: #fff; }
+  .adm-badge {
+    background: var(--blue); color: #fff;
+    font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;
+    letter-spacing: .5px;
+  }
+
+  .adm-body { max-width: 1200px; margin: 0 auto; padding: 28px 20px 60px; }
+
+  /* ── TOOLBAR ── */
+  .adm-toolbar {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+  .adm-toolbar h2 { font-size: 20px; font-weight: 900; flex: 1; }
+  .btn { padding: 10px 18px; border: none; border-radius: var(--radius); cursor: pointer; font-family: var(--font); font-size: 13px; font-weight: 700; transition: opacity .2s; }
+  .btn:hover { opacity: .85; }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-success { background: #25D366; color: #fff; }
+  .btn-danger  { background: #e53535; color: #fff; }
+  .btn-outline { background: #fff; color: var(--text); border: 1.5px solid var(--border); }
+  .btn-warning { background: #f5a623; color: #fff; }
+
+  /* ── STATS ── */
+  .adm-stats { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+  .stat-card {
+    background: #fff; border-radius: var(--radius); padding: 16px 22px;
+    border: 1px solid var(--border); flex: 1; min-width: 140px;
+  }
+  .stat-card .s-val { font-size: 28px; font-weight: 900; color: var(--blue); }
+  .stat-card .s-lbl { font-size: 12px; color: var(--muted); margin-top: 3px; font-weight: 600; }
+
+  /* ── FILTROS ── */
+  .adm-filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; align-items: center; }
+  .adm-filters input, .adm-filters select {
+    padding: 9px 12px; border: 1.5px solid var(--border); border-radius: var(--radius);
+    font-size: 13px; font-family: var(--font); outline: none;
+    transition: border-color .2s; background: #fff;
+  }
+  .adm-filters input:focus, .adm-filters select:focus { border-color: var(--blue); }
+  .adm-filters input { min-width: 220px; }
+
+  /* ── TABLA ── */
+  .adm-table-wrap { background: #fff; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; }
+  thead { background: #f8fafc; }
+  th { padding: 12px 14px; text-align: left; font-size: 11.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; border-bottom: 1px solid var(--border); }
+  td { padding: 12px 14px; border-bottom: 1px solid #f0f4f8; font-size: 13px; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafbfd; }
+  .td-img { width: 52px; height: 52px; object-fit: contain; border-radius: 6px; background: #f5f7fa; padding: 4px; }
+  .td-name { font-weight: 600; max-width: 260px; }
+  .td-cat { background: rgba(0,174,232,.1); color: var(--blue); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  .td-price { font-weight: 800; color: var(--blue); }
+  .td-actions { display: flex; gap: 6px; }
+  .btn-sm { padding: 6px 12px; font-size: 12px; }
+
+  /* ── MODAL FORMULARIO ── */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(5,15,35,.55);
+    display: none; align-items: center; justify-content: center; z-index: 200;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: #fff; border-radius: 14px; width: min(620px, 96vw);
+    max-height: 90vh; overflow-y: auto; padding: 30px 28px;
+    box-shadow: 0 24px 80px rgba(0,0,0,.2);
+    scrollbar-width: thin;
+  }
+  .modal-box h3 { font-size: 18px; font-weight: 900; margin-bottom: 20px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-full { grid-column: 1 / -1; }
+  label { font-size: 12px; font-weight: 700; color: var(--muted); display: block; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .4px; }
+  input[type=text], input[type=number], input[type=url], select, textarea {
+    width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: var(--radius);
+    font-size: 14px; font-family: var(--font); outline: none; transition: border-color .2s; background: #fff;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--blue); }
+  textarea { min-height: 70px; resize: vertical; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 22px; justify-content: flex-end; }
+  .form-hint { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  /* ── EXPORT ── */
+  .export-bar {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 22px; margin-bottom: 24px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .export-bar p { font-size: 13px; color: var(--muted); flex: 1; line-height: 1.5; }
+  .export-bar strong { color: var(--text); }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 999;
+    background: var(--dark); color: #fff;
+    padding: 12px 20px; border-radius: 10px;
+    font-size: 14px; font-weight: 600;
+    transform: translateY(80px); opacity: 0;
+    transition: transform .3s, opacity .3s;
+    pointer-events: none; max-width: 320px;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast.success { background: #17a94e; }
+  .toast.error   { background: #e53535; }
+
+  /* ── Empty ── */
+  .adm-empty { text-align: center; padding: 60px 20px; color: var(--muted); }
+  .adm-empty svg { opacity: .3; margin-bottom: 12px; }
+  .adm-empty p { font-size: 15px; font-weight: 600; }
+
+  @media (max-width: 640px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .adm-toolbar h2 { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN ══ -->
+<div id="login-screen">
+  <div class="login-box">
+    <h2>Tecnistore Admin</h2>
+    <p>Ingresa la contraseña para gestionar productos.</p>
+    <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()">
+    <button onclick="doLogin()">Entrar</button>
+    <p id="login-err">Contraseña incorrecta.</p>
+  </div>
+</div>
+
+<!-- ══ PANEL ADMIN ══ -->
+<div id="admin-screen">
+  <header class="adm-header">
+    <h1>&#128272; Tecnistore &mdash; Gestor de Productos</h1>
+    <div class="adm-header-right">
+      <span class="adm-badge" id="source-badge">LOCAL</span>
+      <a href="/tienda/" target="_blank">Ver Tienda &#8599;</a>
+      <a href="#" onclick="doLogout()">Salir</a>
+    </div>
+  </header>
+
+  <div class="adm-body">
+
+    <!-- Stats -->
+    <div class="adm-stats">
+      <div class="stat-card"><div class="s-val" id="stat-total">0</div><div class="s-lbl">Productos</div></div>
+      <div class="stat-card"><div class="s-val" id="stat-cats">0</div><div class="s-lbl">Categorías</div></div>
+      <div class="stat-card"><div class="s-val" id="stat-disc">0</div><div class="s-lbl">Con descuento</div></div>
+      <div class="stat-card"><div class="s-val" id="stat-source">—</div><div class="s-lbl">Fuente de datos</div></div>
+    </div>
+
+    <!-- Export bar -->
+    <div class="export-bar">
+      <p>
+        <strong>Gestor de productos</strong> — Los cambios se guardan en este navegador.
+        Cuando estés listo, exporta el archivo y reemplaza <code>public/js/products-data.js</code>
+        en tu proyecto para que los cambios sean permanentes.
+      </p>
+      <button class="btn btn-success" onclick="exportData()">&#8659; Exportar products-data.js</button>
+      <button class="btn btn-outline" onclick="resetToOriginal()">&#8635; Restaurar original</button>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="adm-toolbar">
+      <h2>Productos</h2>
+      <div class="adm-filters">
+        <input type="text" id="search-filter" placeholder="Buscar por nombre..." oninput="renderTable()">
+        <select id="cat-filter" onchange="renderTable()"><option value="">Todas las categorías</option></select>
+      </div>
+      <button class="btn btn-primary" onclick="openAddModal()">+ Agregar Producto</button>
+    </div>
+
+    <!-- Tabla -->
+    <div class="adm-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:60px">Img</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Precio Anterior</th>
+            <th>Descuento</th>
+            <th style="width:120px">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="products-tbody"></tbody>
+      </table>
+      <div id="adm-empty" class="adm-empty" hidden>
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <p>No se encontraron productos.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL PRODUCTO ══ -->
+<div class="modal-overlay" id="prod-modal">
+  <div class="modal-box">
+    <h3 id="modal-title">Agregar Producto</h3>
+    <div class="form-grid">
+      <div class="form-full">
+        <label>Nombre del producto *</label>
+        <input type="text" id="f-name" placeholder="Ej: CELULAR SAMSUNG A16 5G">
+      </div>
+      <div>
+        <label>Categoría *</label>
+        <select id="f-cat">
+          <option value="Celulares">Celulares</option>
+          <option value="Tablets">Tablets</option>
+          <option value="Audio">Audio</option>
+          <option value="Accesorios">Accesorios / Periféricos</option>
+          <option value="Portátiles">Portátiles</option>
+          <option value="Empresas">Empresas</option>
+          <option value="Redes">Redes</option>
+          <option value="Impresión">Impresión</option>
+          <option value="Memorias">Memorias y Discos</option>
+          <option value="Línea hogar">Línea Hogar</option>
+          <option value="POS">POS / Punto de Venta</option>
+        </select>
+      </div>
+      <div>
+        <label>Precio *</label>
+        <input type="number" id="f-price" placeholder="Ej: 799000" min="0">
+      </div>
+      <div>
+        <label>Precio anterior (tachado)</label>
+        <input type="number" id="f-old-price" placeholder="Ej: 950000" min="0">
+      </div>
+      <div>
+        <label>Etiqueta de descuento</label>
+        <input type="text" id="f-discount" placeholder="Ej: 16% OFF">
+      </div>
+      <div>
+        <label>Imagen principal (URL) *</label>
+        <input type="url" id="f-img1" placeholder="https://tntltda.com/wp-content/...">
+      </div>
+      <div>
+        <label>Imagen 2 (URL, opcional)</label>
+        <input type="url" id="f-img2" placeholder="https://...">
+      </div>
+      <div>
+        <label>Imagen 3 (URL, opcional)</label>
+        <input type="url" id="f-img3" placeholder="https://...">
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveProduct()">Guardar Producto</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ══ CONFIGURACIÓN ══ */
+var ADMIN_PASSWORD = 'tecnistore2024'; // Cambia esta contraseña
+var STORAGE_KEY    = 'ts-admin-products';
+var products       = [];
+var editingIdx     = -1;
+
+/* ══ LOGIN ══ */
+function doLogin() {
+  var pwd = document.getElementById('pwd-input').value;
+  if (pwd === ADMIN_PASSWORD) {
+    sessionStorage.setItem('ts-admin-auth', '1');
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-screen').style.display = 'block';
+    loadProducts();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+    document.getElementById('pwd-input').value = '';
+  }
+}
+function doLogout() {
+  sessionStorage.removeItem('ts-admin-auth');
+  location.reload();
+}
+if (sessionStorage.getItem('ts-admin-auth') === '1') {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('admin-screen').style.display = 'block';
+  loadProducts();
+}
+
+/* ══ DATOS ══ */
+function loadProducts() {
+  var stored = localStorage.getItem(STORAGE_KEY);
+  if (stored) {
+    try { products = JSON.parse(stored); setSourceBadge('LOCAL (editado)'); }
+    catch (e) { products = []; }
+  } else {
+    /* Carga productos del archivo products-data.js si está disponible */
+    if (typeof ALL_PRODUCTS !== 'undefined') {
+      products = ALL_PRODUCTS.map(function(p) {
+        return { name: p.name, category: p.category, price: p.price, oldPrice: p.oldPrice || p.price, discount: p.discount || '', images: p.images || [] };
+      });
+      setSourceBadge('ORIGINAL');
+    } else {
+      products = [];
+      setSourceBadge('VACÍO');
+    }
+  }
+  populateCatFilter();
+  renderTable();
+  updateStats();
+}
+function setSourceBadge(txt) {
+  document.getElementById('source-badge').textContent = txt;
+  document.getElementById('stat-source').textContent = txt;
+}
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+  setSourceBadge('LOCAL (editado)');
+  updateStats();
+  renderTable();
+}
+function updateStats() {
+  document.getElementById('stat-total').textContent = products.length;
+  var cats = new Set(products.map(function(p){ return p.category; }));
+  document.getElementById('stat-cats').textContent = cats.size;
+  var disc = products.filter(function(p){ return p.discount && p.discount.trim(); }).length;
+  document.getElementById('stat-disc').textContent = disc;
+}
+
+/* ══ FILTROS ══ */
+function populateCatFilter() {
+  var cats = Array.from(new Set(products.map(function(p){ return p.category; }))).sort();
+  var sel = document.getElementById('cat-filter');
+  var cur = sel.value;
+  sel.innerHTML = '<option value="">Todas las categorías</option>';
+  cats.forEach(function(c){ sel.innerHTML += '<option value="' + c + '">' + c + '</option>'; });
+  sel.value = cur;
+}
+
+/* ══ TABLA ══ */
+function renderTable() {
+  var q   = (document.getElementById('search-filter').value || '').trim().toLowerCase();
+  var cat = document.getElementById('cat-filter').value;
+  var filtered = products.filter(function(p, i){ p._idx = i; return true; })
+    .map(function(p, i){ return { p: p, i: i }; })
+    .filter(function(x){
+      if (cat && x.p.category !== cat) return false;
+      if (q && x.p.name.toLowerCase().indexOf(q) === -1) return false;
+      return true;
+    });
+  var tbody = document.getElementById('products-tbody');
+  var empty = document.getElementById('adm-empty');
+  if (!filtered.length) {
+    tbody.innerHTML = '';
+    if (empty) empty.removeAttribute('hidden');
+    return;
+  }
+  if (empty) empty.setAttribute('hidden', '');
+  tbody.innerHTML = filtered.map(function(x){
+    var p = x.p; var i = x.i;
+    var img = p.images && p.images[0] ? '<img class="td-img" src="' + p.images[0] + '" alt="" onerror="this.style.display=\'none\'">' : '<div style="width:52px;height:52px;background:#f5f7fa;border-radius:6px"></div>';
+    return '<tr>' +
+      '<td>' + img + '</td>' +
+      '<td class="td-name">' + p.name + '</td>' +
+      '<td><span class="td-cat">' + p.category + '</span></td>' +
+      '<td class="td-price">$' + (p.price||0).toLocaleString('es-CO') + '</td>' +
+      '<td style="color:#9ba6b8">' + (p.oldPrice && p.oldPrice !== p.price ? '$' + p.oldPrice.toLocaleString('es-CO') : '—') + '</td>' +
+      '<td>' + (p.discount ? '<span style="color:#25a244;font-weight:700">' + p.discount + '</span>' : '<span style="color:#c0cad9">—</span>') + '</td>' +
+      '<td><div class="td-actions">' +
+        '<button class="btn btn-warning btn-sm" onclick="openEditModal(' + i + ')">Editar</button>' +
+        '<button class="btn btn-danger btn-sm" onclick="deleteProduct(' + i + ')">&#x2715;</button>' +
+      '</div></td>' +
+    '</tr>';
+  }).join('');
+}
+
+/* ══ MODAL ══ */
+function openAddModal() {
+  editingIdx = -1;
+  document.getElementById('modal-title').textContent = 'Agregar Producto';
+  clearForm();
+  document.getElementById('prod-modal').classList.add('open');
+}
+function openEditModal(idx) {
+  editingIdx = idx;
+  var p = products[idx];
+  document.getElementById('modal-title').textContent = 'Editar Producto';
+  document.getElementById('f-name').value      = p.name || '';
+  document.getElementById('f-cat').value       = p.category || 'Celulares';
+  document.getElementById('f-price').value     = p.price || '';
+  document.getElementById('f-old-price').value = p.oldPrice || '';
+  document.getElementById('f-discount').value  = p.discount || '';
+  document.getElementById('f-img1').value = (p.images && p.images[0]) ? p.images[0] : '';
+  document.getElementById('f-img2').value = (p.images && p.images[1]) ? p.images[1] : '';
+  document.getElementById('f-img3').value = (p.images && p.images[2]) ? p.images[2] : '';
+  document.getElementById('prod-modal').classList.add('open');
+}
+function closeModal() { document.getElementById('prod-modal').classList.remove('open'); }
+function clearForm() {
+  ['f-name','f-price','f-old-price','f-discount','f-img1','f-img2','f-img3'].forEach(function(id){ document.getElementById(id).value = ''; });
+  document.getElementById('f-cat').value = 'Celulares';
+}
+document.getElementById('prod-modal').addEventListener('click', function(e){ if (e.target === this) closeModal(); });
+
+function saveProduct() {
+  var name  = (document.getElementById('f-name').value || '').trim();
+  var cat   = document.getElementById('f-cat').value;
+  var price = parseInt(document.getElementById('f-price').value, 10) || 0;
+  var old   = parseInt(document.getElementById('f-old-price').value, 10) || price;
+  var disc  = (document.getElementById('f-discount').value || '').trim();
+  var img1  = (document.getElementById('f-img1').value || '').trim();
+  var img2  = (document.getElementById('f-img2').value || '').trim();
+  var img3  = (document.getElementById('f-img3').value || '').trim();
+
+  if (!name)  { showToast('El nombre es obligatorio.', 'error'); return; }
+  if (!price) { showToast('El precio es obligatorio.', 'error'); return; }
+  if (!img1)  { showToast('La imagen principal es obligatoria.', 'error'); return; }
+
+  var images = [img1];
+  if (img2) images.push(img2);
+  if (img3) images.push(img3);
+
+  var prod = { name: name, category: cat, price: price, oldPrice: old, discount: disc, images: images };
+
+  if (editingIdx >= 0) {
+    products[editingIdx] = prod;
+    showToast('Producto actualizado.', 'success');
+  } else {
+    products.unshift(prod);
+    showToast('Producto agregado.', 'success');
+  }
+  save();
+  populateCatFilter();
+  closeModal();
+}
+
+/* ══ ELIMINAR ══ */
+function deleteProduct(idx) {
+  if (!confirm('¿Eliminar "' + products[idx].name + '"?')) return;
+  products.splice(idx, 1);
+  save();
+  populateCatFilter();
+  showToast('Producto eliminado.', 'success');
+}
+
+/* ══ EXPORTAR ══ */
+function exportData() {
+  var js = 'var ALL_PRODUCTS = ' + JSON.stringify(products, null, 2) + ';\n';
+  var blob = new Blob([js], { type: 'application/javascript' });
+  var url  = URL.createObjectURL(blob);
+  var a    = document.createElement('a');
+  a.href = url; a.download = 'products-data.js'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('Archivo descargado. Reemplaza public/js/products-data.js con este archivo.', 'success');
+}
+
+/* ══ RESTAURAR ══ */
+function resetToOriginal() {
+  if (!confirm('¿Restaurar los productos originales y descartar todos los cambios locales?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  loadProducts();
+  showToast('Datos restaurados al original.', 'success');
+}
+
+/* ══ TOAST ══ */
+var toastTimer;
+function showToast(msg, type) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + (type || '');
+  clearTimeout(toastTimer);
+  setTimeout(function(){ t.classList.add('show'); }, 10);
+  toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 3800);
+}
+</script>
+
+<!-- Carga products-data.js para tener el catálogo base disponible -->
+<script src="/js/products-data.js" onerror="console.warn('products-data.js no disponible')"></script>
+</body>
+</html>
