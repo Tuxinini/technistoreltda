@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logitech en Tecnistore | Periféricos oficiales en Bogotá</title>
+  <meta name="description" content="Compra periféricos Logitech originales en Tecnistore. Mice, teclados, webcams, diademas y más para hogar, gaming y oficina. Garantía de fábrica.">
+  <link rel="canonical" href="https://tntltda.com/logitech/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/cart.css">
+  <link rel="stylesheet" href="/css/loader.css">
+  <style>
+    /* ── Hero Logitech ── */
+    .lg-hero {
+      position: relative;
+      height: 420px;
+      background: #000 url('/images/slides/camara-logitech.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .lg-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.68);
+    }
+    .lg-hero-content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+    }
+    .lg-hero-logo {
+      width: 200px;
+      margin-bottom: 18px;
+      filter: brightness(0) invert(1);
+    }
+    .lg-hero-tagline {
+      font-size: 1.05rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      opacity: 0.85;
+    }
+
+    /* ── Tabs ── */
+    .lg-tabs-wrap {
+      background: #f5f5f5;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    .lg-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .lg-tab {
+      flex: 1;
+      padding: 18px 28px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      background: #f5f5f5;
+      color: #555;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .lg-tab:hover { color: #000; }
+    .lg-tab.active {
+      background: #000;
+      color: #fff;
+      border-bottom-color: #00b0f0;
+    }
+
+    /* ── Panels ── */
+    .lg-panel {
+      display: none;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .lg-panel.active {
+      display: block;
+    }
+    .lg-panel.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Sección de panel ── */
+    .lg-section {
+      padding: 48px 0 56px;
+    }
+    .lg-section-title {
+      font-size: 1.55rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 32px;
+      color: #111;
+    }
+    .lg-section-title span {
+      color: #00b0f0;
+    }
+
+    /* ── Grid de productos ── */
+    .lg-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1024px) { .lg-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px)  { .lg-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px)  { .lg-grid { grid-template-columns: 1fr; } }
+
+    /* ── Card de producto ── */
+    .lg-card {
+      background: #fff;
+      border: 1.5px solid #e8e8e8;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.22s, border-color 0.22s, transform 0.22s;
+    }
+    .lg-card:hover {
+      box-shadow: 0 6px 24px rgba(0,176,240,0.18);
+      border-color: #00b0f0;
+      transform: translateY(-3px);
+    }
+    .lg-card-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: contain;
+      padding: 18px;
+      background: #fafafa;
+    }
+    .lg-card-body {
+      padding: 14px 16px 18px;
+    }
+    .lg-card-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #111;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .lg-card-price {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #0057b8;
+    }
+    .lg-card-old {
+      font-size: 0.78rem;
+      color: #999;
+      text-decoration: line-through;
+      margin-left: 6px;
+    }
+    .lg-card-badge {
+      display: inline-block;
+      background: #00b0f0;
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-top: 6px;
+    }
+
+    /* ── Modal ── */
+    .lg-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lg-modal-overlay.open { display: flex; }
+    .lg-modal {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 560px;
+      width: 95%;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: lgModalIn 0.22s ease;
+    }
+    @keyframes lgModalIn {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .lg-modal-header {
+      background: #000;
+      color: #fff;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .lg-modal-header h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+    .lg-modal-close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0 4px;
+    }
+    .lg-modal-img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      padding: 24px;
+      background: #f7f7f7;
+    }
+    .lg-modal-body {
+      padding: 20px 24px 28px;
+    }
+    .lg-modal-name {
+      font-size: 1.1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .lg-modal-price {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #0057b8;
+      margin-bottom: 4px;
+    }
+    .lg-modal-old {
+      font-size: 0.85rem;
+      color: #999;
+      text-decoration: line-through;
+      margin-bottom: 6px;
+    }
+    .lg-modal-badge {
+      display: inline-block;
+      background: #00b0f0;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .lg-modal-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .lg-modal-wa:hover { background: #1da851; }
+    .lg-modal-wa svg { flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- ══ TOP BAR ══ -->
+  <div class="top-bar" role="banner">
+    <div class="top-bar-inner container">
+      <div class="top-bar-left">
+        <span class="tb-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <a href="https://wa.me/573017298980" target="_blank" rel="noopener">+57 301-729-8980</a>
+        </span>
+        <span class="tb-sep">|</span>
+        <span class="tb-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <a href="https://wa.me/573118089616" target="_blank" rel="noopener">+57 311-808-9616</a>
+        </span>
+        <span class="tb-sep">|</span>
+        <span class="tb-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <a href="https://wa.me/573225817129" target="_blank" rel="noopener">+57 322-581-7129</a>
+        </span>
+      </div>
+      <div class="top-bar-right"></div>
+    </div>
+  </div>
+
+  <!-- ══ HEADER ══ -->
+  <header class="site-header" id="inicio">
+    <div class="header-search-row">
+      <div class="header-search-inner container">
+        <a href="/" class="hs-logo" aria-label="Tecnistore inicio">
+          <img src="/images/logo.png" alt="Tecnistore" width="140" height="50">
+        </a>
+        <div class="hs-search-wrap">
+          <input type="search" id="search-input" placeholder="Buscar productos, marcas, categorías..." aria-label="Buscar productos">
+          <button type="button" onclick="window.location.href='/tienda/?q='+document.getElementById('search-input').value" aria-label="Buscar">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            Buscar
+          </button>
+        </div>
+        <button class="hs-cart-btn" onclick="openCart()" aria-label="Carrito de compras">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
+          <span class="hs-cart-label">Carrito</span>
+          <span class="hs-cart-badge" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+    <nav class="nav-container" aria-label="Navegación principal">
+      <div class="nav-inner container">
+        <div class="nav-links-left">
+          <a href="/">INICIO</a>
+          <a href="/empresas/">EMPRESAS</a>
+          <a href="/tienda/">TIENDA</a>
+        </div>
+        <div class="nav-logo-center">
+          <a href="/"><img src="/images/logo.png" alt="Tecnistore" width="110" height="40" loading="eager"></a>
+        </div>
+        <div class="nav-links-right">
+          <a href="/logitech/" style="color:#00b0f0;font-weight:700;border-bottom:2px solid #00b0f0;padding-bottom:2px;">LOGITECH</a>
+          <a href="/#contacto">CONTACTO</a>
+        </div>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
+        <a href="/" onclick="closeMobileMenu()">INICIO</a>
+        <a href="/empresas/" onclick="closeMobileMenu()">EMPRESAS</a>
+        <a href="/tienda/">TIENDA</a>
+        <a href="/logitech/" onclick="closeMobileMenu()" style="color:#00b0f0;font-weight:700;">LOGITECH</a>
+        <a href="/#contacto" onclick="closeMobileMenu()">CONTACTO</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ══ HERO LOGITECH ══ -->
+  <section class="lg-hero" aria-label="Logitech en Tecnistore">
+    <div class="lg-hero-overlay"></div>
+    <div class="lg-hero-content">
+      <img src="/images/marcas/logitech.svg" alt="Logitech" class="lg-hero-logo">
+      <p class="lg-hero-tagline">Periféricos oficiales Logitech &mdash; vendidos por Tecnistore</p>
+    </div>
+  </section>
+
+  <!-- ══ TABS ══ -->
+  <div class="lg-tabs-wrap">
+    <div class="lg-tabs" role="tablist" aria-label="Categorías Logitech">
+      <button class="lg-tab active" role="tab" aria-selected="true"  aria-controls="panel-hogar"   id="tab-hogar"   onclick="switchTab('hogar')">🏠 Hogar</button>
+      <button class="lg-tab"        role="tab" aria-selected="false" aria-controls="panel-gamer"   id="tab-gamer"   onclick="switchTab('gamer')">🎮 Gamer</button>
+      <button class="lg-tab"        role="tab" aria-selected="false" aria-controls="panel-oficina" id="tab-oficina" onclick="switchTab('oficina')">💼 Oficina</button>
+    </div>
+  </div>
+
+  <!-- ══ PANELES ══ -->
+  <main class="container">
+
+    <!-- Panel Hogar -->
+    <div id="panel-hogar" class="lg-panel active" role="tabpanel" aria-labelledby="tab-hogar">
+      <section class="lg-section">
+        <h2 class="lg-section-title">Logitech <span>Hogar</span></h2>
+        <div class="lg-grid" id="grid-hogar"></div>
+      </section>
+    </div>
+
+    <!-- Panel Gamer -->
+    <div id="panel-gamer" class="lg-panel" role="tabpanel" aria-labelledby="tab-gamer">
+      <section class="lg-section">
+        <h2 class="lg-section-title">Logitech <span>Gamer</span></h2>
+        <div class="lg-grid" id="grid-gamer"></div>
+      </section>
+    </div>
+
+    <!-- Panel Oficina -->
+    <div id="panel-oficina" class="lg-panel" role="tabpanel" aria-labelledby="tab-oficina">
+      <section class="lg-section">
+        <h2 class="lg-section-title">Logitech <span>Oficina</span></h2>
+        <div class="lg-grid" id="grid-oficina"></div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ══ MODAL ══ -->
+  <div class="lg-modal-overlay" id="lg-modal-overlay" onclick="handleOverlayClick(event)" role="dialog" aria-modal="true" aria-labelledby="modal-product-name">
+    <div class="lg-modal" id="lg-modal">
+      <div class="lg-modal-header">
+        <h3 id="modal-product-name"></h3>
+        <button class="lg-modal-close" onclick="closeModal()" aria-label="Cerrar">×</button>
+      </div>
+      <img id="modal-img" class="lg-modal-img" src="" alt="">
+      <div class="lg-modal-body">
+        <div class="lg-modal-price" id="modal-price"></div>
+        <div class="lg-modal-old"   id="modal-old"></div>
+        <div class="lg-modal-badge" id="modal-badge"></div>
+        <a id="modal-wa-btn" class="lg-modal-wa" href="#" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/cart.js"></script>
+  <script src="/js/animations.js"></script>
+  <script>
+    /* ── Datos de productos ── */
+    const PRODUCTOS = {
+      hogar: [
+        { name: "MOUSE LOGITECH M170", price: 48900, oldPrice: 61000, discount: "20% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-M170.webp" },
+        { name: "MOUSE LOGITECH M350", price: 97900, oldPrice: 128000, discount: "24% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-M350.webp" },
+        { name: "COMBO TECLADO LOGITECH ALAMBRICO MK120", price: 74900, oldPrice: 102000, discount: "27% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-TECLADO-ALAMBRICO-MK120.webp" },
+        { name: "COMBO DE TECLADO LOGITECH MK220", price: 97900, oldPrice: 109900, discount: "11% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-MK220-.webp" },
+        { name: "COMBO DE TECLADO LOGITECH MK235", price: 95000, oldPrice: 123000, discount: "23% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-MK235-.webp" },
+        { name: "COMBO DE TECLADO LOGITECH MK270", price: 103900, oldPrice: 189000, discount: "45% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-MK270-.webp" },
+        { name: "COMBO DE TECLADO LOGITECH MK295", price: 146900, oldPrice: 199000, discount: "26% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-MK295-.webp" },
+        { name: "COMBO DE TECLADO LOGITECH MK345", price: 134900, oldPrice: 178000, discount: "24% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-MK345.webp" },
+        { name: "COMBO DE TECLADO LOGITECH MK540", price: 169000, oldPrice: 223000, discount: "24% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-MK540-.webp" },
+        { name: "TECLADO LOGITECH INALAMBRICO K270", price: 84900, oldPrice: 109000, discount: "22% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/TECLADO-INALAMBRICO-K270-.webp" },
+        { name: "TECLADO LOGITECH POP KEYS", price: 375900, oldPrice: 438000, discount: "14% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/TECLADO-POP-KEYS-.webp" },
+        { name: "DIADEMA LOGITECH H111", price: 44000, oldPrice: 57000, discount: "23% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/DIADEMA-H111.webp" }
+      ],
+      gamer: [
+        { name: "MOUSE LOGITECH ALAMBRICO G203", price: 128000, oldPrice: 179000, discount: "28% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-ALAMBRICO-G203.jpg" },
+        { name: "MOUSE LOGITECH G305", price: 174000, oldPrice: 233000, discount: "25% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-G305.webp" },
+        { name: "MOUSE LOGITECH G502", price: 397900, oldPrice: 456000, discount: "13% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-G502.webp" },
+        { name: "DIADEMA LOGITECH G435", price: 289000, oldPrice: 347000, discount: "17% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/DIADEMA-G435.webp" }
+      ],
+      oficina: [
+        { name: "MOUSE LOGITECH MX VERTICAL", price: 389000, oldPrice: 456000, discount: "15% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-MX-VERTICAL-1-1.webp" },
+        { name: "MOUSE LOGITECH LIFT LEFT", price: 315900, oldPrice: 399000, discount: "21% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-LIFT-LEFT.webp" },
+        { name: "MOUSE LOGITECH ERGO M575", price: 190000, oldPrice: 245000, discount: "22% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-ERGO-M575-.webp" },
+        { name: "DIADEMA LOGITECH H390", price: 119000, oldPrice: 158000, discount: "25% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/DIADEMA-H390.webp" },
+        { name: "DIADEMA LOGITECH ZONE 300", price: 299900, oldPrice: 357000, discount: "16% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/DIADEMA-ZONE-300.webp" },
+        { name: "CAMARA LOGITECH BRIO 100", price: 169000, oldPrice: 219000, discount: "23% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/CAMARA-BRIO-100-.webp" },
+        { name: "CAMARA LOGITECH MX BRIO", price: 784000, oldPrice: 910000, discount: "14% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/CAMARA-MX-BRIO-.webp" },
+        { name: "CAMARA WEB 4K PREMIUM MX BRIO 705 LOGITECH", price: 769000, oldPrice: 840600, discount: "9% OFF", img: "https://tntltda.com/wp-content/uploads/2024/12/CAMARA-WEB-4K-PREMIUM-MX-BRIO-705-LOGITECH.webp" },
+        { name: "TECLADO LOGITECH MX KEYS MINI ROSA", price: 394900, oldPrice: 440000, discount: "10% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/TECLADO-MX-KEYS-MINI-ROSA-.webp" },
+        { name: "TECLADO LOGITECH WAVE KEYS", price: 259000, oldPrice: 340000, discount: "24% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/TECLADO-WAVE-KEYS-.webp" },
+        { name: "COMBO DE TECLADO LOGITECH PERFORMANCE MK850", price: 289900, oldPrice: 355000, discount: "18% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-PERFORMANCE-MK850-1-1.webp" },
+        { name: "APUNTADOR LOGITECH R500", price: 184900, oldPrice: 254000, discount: "27% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/APUNTADOR-LOGITECH-R500-.webp" }
+      ]
+    };
+
+    function fmt(n) {
+      return '$' + n.toLocaleString('es-CO');
+    }
+
+    function buildGrid(cat) {
+      const grid = document.getElementById('grid-' + cat);
+      if (!grid || grid.children.length > 0) return;
+      PRODUCTOS[cat].forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'lg-card';
+        card.innerHTML = `
+          <img class="lg-card-img" src="${p.img}" alt="${p.name}" loading="lazy">
+          <div class="lg-card-body">
+            <div class="lg-card-name">${p.name}</div>
+            <div>
+              <span class="lg-card-price">${fmt(p.price)}</span>
+              <span class="lg-card-old">${fmt(p.oldPrice)}</span>
+            </div>
+            <span class="lg-card-badge">${p.discount}</span>
+          </div>`;
+        card.addEventListener('click', () => openModal(p));
+        grid.appendChild(card);
+      });
+    }
+
+    /* ── Tabs ── */
+    function switchTab(cat) {
+      document.querySelectorAll('.lg-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.lg-panel').forEach(p => {
+        p.classList.remove('active', 'visible');
+      });
+
+      const tab   = document.getElementById('tab-' + cat);
+      const panel = document.getElementById('panel-' + cat);
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      panel.classList.add('active');
+      buildGrid(cat);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => panel.classList.add('visible'));
+      });
+    }
+
+    /* ── Modal ── */
+    function openModal(p) {
+      document.getElementById('modal-product-name').textContent = p.name;
+      document.getElementById('modal-img').src = p.img;
+      document.getElementById('modal-img').alt = p.name;
+      document.getElementById('modal-price').textContent = fmt(p.price);
+      document.getElementById('modal-old').textContent = fmt(p.oldPrice);
+      document.getElementById('modal-badge').textContent = p.discount;
+      const msg = encodeURIComponent('Hola, me interesa el ' + p.name + ' a ' + fmt(p.price) + '. ¿Está disponible?');
+      document.getElementById('modal-wa-btn').href = 'https://wa.me/573017298980?text=' + msg;
+      document.getElementById('lg-modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('lg-modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('lg-modal-overlay')) closeModal();
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    /* ── Nav hamburger ── */
+    function closeMobileMenu() {
+      const menu = document.getElementById('nav-mobile-menu');
+      const btn  = document.getElementById('nav-hamburger');
+      if (menu) { menu.style.display = 'none'; menu.setAttribute('aria-hidden', 'true'); }
+      if (btn)  { btn.setAttribute('aria-expanded', 'false'); }
+    }
+    const hamburger = document.getElementById('nav-hamburger');
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        const menu = document.getElementById('nav-mobile-menu');
+        const open = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', String(!open));
+        menu.setAttribute('aria-hidden', String(open));
+        menu.style.display = open ? 'none' : 'flex';
+      });
+    }
+
+    /* ── Inicializar primera tab ── */
+    buildGrid('hogar');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => document.getElementById('panel-hogar').classList.add('visible'));
+    });
+  </script>
+</body>
+</html>
