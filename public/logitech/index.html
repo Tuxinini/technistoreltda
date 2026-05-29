@@ -23,8 +23,13 @@
     }
     .lg-hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.70); }
     .lg-hero-content { position: relative; z-index: 1; color: #fff; }
-    .lg-hero-logo { width: 210px; margin-bottom: 18px; filter: brightness(0) invert(1); }
-    .lg-hero-tagline { font-size: 1.05rem; font-weight: 300; letter-spacing: 0.04em; opacity: 0.8; }
+    .lg-hero-logo { width: 200px; margin-bottom: 20px; filter: brightness(0) invert(1); }
+    .lg-hero-title {
+      font-size: 2.4rem; font-weight: 900; text-transform: uppercase;
+      letter-spacing: 0.10em; color: #fff; margin: 0;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+    }
+    @media (max-width: 480px) { .lg-hero-title { font-size: 1.6rem; } }
 
     /* ══ TABS WRAP ══ */
     .lg-tabs-wrap {
@@ -84,24 +89,23 @@
     }
     .lg-cat-banner-bg { position: absolute; inset: 0; }
 
-    /* Hogar: warm amber/terracotta */
+    /* Hogar: madre e hija con computador */
     .lg-cat-banner-bg--hogar {
       background:
-        radial-gradient(ellipse at 50% 110%, rgba(245,158,11,0.5) 0%, transparent 55%),
-        linear-gradient(160deg, #1a0800 0%, #2e1200 45%, #1a0800 100%);
+        linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.38) 60%, rgba(0,0,0,0.55) 100%),
+        url('https://images.unsplash.com/photo-1591951425328-48e7f2e46451?w=1400&q=80') center/cover no-repeat;
     }
-    /* Gamer: pitch black + neon green glow */
+    /* Gamer: gamer en su setup */
     .lg-cat-banner-bg--gamer {
       background:
-        radial-gradient(ellipse at 50% 110%, rgba(0,255,135,0.28) 0%, transparent 55%),
-        radial-gradient(ellipse at 20% 30%, rgba(0,200,80,0.08) 0%, transparent 45%),
-        #000000;
+        linear-gradient(to right, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.65) 100%),
+        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1400&q=80') center/cover no-repeat;
     }
-    /* Oficina: deep navy + blue beam */
+    /* Oficina: profesional en escritorio */
     .lg-cat-banner-bg--oficina {
       background:
-        radial-gradient(ellipse at 50% 110%, rgba(40,120,255,0.4) 0%, transparent 55%),
-        linear-gradient(160deg, #000d24 0%, #001d50 45%, #000d24 100%);
+        linear-gradient(to right, rgba(0,10,32,0.82) 0%, rgba(0,10,32,0.45) 60%, rgba(0,10,32,0.65) 100%),
+        url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1400&q=80') center/cover no-repeat;
     }
 
     .lg-cat-banner-inner {
@@ -345,7 +349,7 @@
     <div class="lg-hero-overlay"></div>
     <div class="lg-hero-content">
       <img src="/images/marcas/logitech.svg" alt="Logitech" class="lg-hero-logo">
-      <p class="lg-hero-tagline">Periféricos oficiales Logitech &mdash; vendidos por Tecnistore</p>
+      <h1 class="lg-hero-title">Productos Logitech</h1>
     </div>
   </section>
 
