@@ -18,18 +18,13 @@
     .lg-hero {
       position: relative;
       height: 420px;
-      background: #000;
+      background: #111 center/cover no-repeat;
       display: flex; align-items: center; justify-content: center; text-align: center;
+      transition: opacity 0.3s ease;
     }
-    .lg-hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.70); }
-    .lg-hero-content { position: relative; z-index: 1; color: #fff; }
-    .lg-hero-logo { width: 200px; margin-bottom: 20px; filter: brightness(0) invert(1); }
-    .lg-hero-title {
-      font-size: 2.4rem; font-weight: 900; text-transform: uppercase;
-      letter-spacing: 0.10em; color: #fff; margin: 0;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.5);
-    }
-    @media (max-width: 480px) { .lg-hero-title { font-size: 1.6rem; } }
+    .lg-hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.50); }
+    .lg-hero-content { position: relative; z-index: 1; }
+    .lg-hero-logo { width: 220px; filter: brightness(0) invert(1); display: block; }
 
     /* ══ TABS WRAP ══ */
     .lg-tabs-wrap {
@@ -349,7 +344,6 @@
     <div class="lg-hero-overlay"></div>
     <div class="lg-hero-content">
       <img src="/images/marcas/logitech.svg" alt="Logitech" class="lg-hero-logo">
-      <h1 class="lg-hero-title">Productos Logitech</h1>
     </div>
   </section>
 
@@ -562,6 +556,22 @@
       });
     }
 
+    /* ── Imágenes del hero por categoría ── */
+    const HERO_IMGS = {
+      hogar:   'https://images.unsplash.com/photo-1591951425328-48e7f2e46451?w=1400&q=80',
+      gamer:   'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1400&q=80',
+      oficina: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1400&q=80'
+    };
+
+    function setHeroImage(cat) {
+      const hero = document.querySelector('.lg-hero');
+      hero.style.opacity = '0';
+      setTimeout(() => {
+        hero.style.backgroundImage = "url('" + HERO_IMGS[cat] + "')";
+        hero.style.opacity = '1';
+      }, 200);
+    }
+
     /* ── Tabs con slide direccional ── */
     const ORDER = ['hogar', 'gamer', 'oficina'];
     let currentCat = 'hogar';
@@ -589,6 +599,7 @@
       document.getElementById('lg-tabs-wrap').setAttribute('data-cat', cat);
 
       buildGrid(cat);
+      setHeroImage(cat);
       currentCat = cat;
     }
 
@@ -634,6 +645,7 @@
 
     /* ── Inicializar ── */
     buildGrid('hogar');
+    document.querySelector('.lg-hero').style.backgroundImage = "url('" + HERO_IMGS['hogar'] + "')";
   </script>
 </body>
 </html>
