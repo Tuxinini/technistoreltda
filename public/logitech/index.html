@@ -78,11 +78,11 @@
 
     /* ══ CATEGORY BANNERS ══ */
     .lg-cat-banner {
-      position: relative; height: 240px;
-      display: flex; align-items: flex-end;
+      position: relative; height: 320px;
+      display: flex; align-items: flex-start;
       overflow: hidden;
     }
-    .lg-cat-banner-bg { position: absolute; inset: 0; }
+    .lg-cat-banner-bg { position: absolute; inset: 0; background-size: cover; background-position: center 25%; }
 
     /* Hogar: madre e hija con computador */
     .lg-cat-banner-bg--hogar {
@@ -105,7 +105,7 @@
 
     .lg-cat-banner-inner {
       position: relative; z-index: 1;
-      width: 100%; padding: 0 0 36px;
+      width: 100%; padding: 36px 0 0;
     }
     .lg-cat-banner-content {
       max-width: 1200px; margin: 0 auto; padding: 0 24px;
@@ -548,22 +548,6 @@
       });
     }
 
-    /* ── Imágenes del hero por categoría ── */
-    const HERO_IMGS = {
-      hogar:   'https://images.unsplash.com/photo-1591951425328-48e7f2e46451?w=1400&q=80',
-      gamer:   'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1400&q=80',
-      oficina: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1400&q=80'
-    };
-
-    function setHeroImage(cat) {
-      const hero = document.querySelector('.lg-hero');
-      hero.style.opacity = '0';
-      setTimeout(() => {
-        hero.style.backgroundImage = "url('" + HERO_IMGS[cat] + "')";
-        hero.style.opacity = '1';
-      }, 200);
-    }
-
     /* ── Tabs con slide direccional ── */
     const ORDER = ['hogar', 'gamer', 'oficina'];
     let currentCat = 'hogar';
@@ -591,7 +575,6 @@
       document.getElementById('lg-tabs-wrap').setAttribute('data-cat', cat);
 
       buildGrid(cat);
-      setHeroImage(cat);
       currentCat = cat;
     }
 
@@ -637,7 +620,6 @@
 
     /* ── Inicializar ── */
     buildGrid('hogar');
-    document.querySelector('.lg-hero').style.backgroundImage = "url('" + HERO_IMGS['hogar'] + "')";
   </script>
 </body>
 </html>
