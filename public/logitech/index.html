@@ -85,11 +85,14 @@
     .lg-cat-banner-img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
-      object-fit: contain; object-position: center center;
+      object-fit: cover;
     }
-    .lg-cat-banner--hogar  { background: #2e1200; }
-    .lg-cat-banner--gamer  { background: #050a06; }
-    .lg-cat-banner--oficina{ background: #000d24; }
+    /* Hogar: retrato vertical — rostros en la parte superior */
+    .lg-cat-banner--hogar .lg-cat-banner-img  { object-position: center top; }
+    /* Gamer: paisaje — cara en zona superior-central */
+    .lg-cat-banner--gamer .lg-cat-banner-img  { object-position: 42% 18%; }
+    /* Oficina: paisaje — cara a la derecha, zona media */
+    .lg-cat-banner--oficina .lg-cat-banner-img{ object-position: 65% 20%; }
     .lg-cat-banner-overlay {
       position: absolute; inset: 0;
     }
@@ -363,7 +366,7 @@
   <!-- Panel Hogar -->
   <div id="panel-hogar" class="lg-panel active slide-from-right" role="tabpanel" aria-labelledby="tab-hogar">
     <div class="lg-cat-banner lg-cat-banner--hogar">
-      <img class="lg-cat-banner-img" src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=1400&q=80" alt="" loading="lazy" aria-hidden="true">
+      <img class="lg-cat-banner-img" src="/images/fondos/logitech-hogar.jpg" alt="" loading="lazy" aria-hidden="true">
       <div class="lg-cat-banner-overlay lg-cat-banner-overlay--hogar"></div>
       <div class="lg-cat-banner-inner">
         <div class="lg-cat-banner-content">
@@ -385,7 +388,7 @@
   <!-- Panel Gamer -->
   <div id="panel-gamer" class="lg-panel" role="tabpanel" aria-labelledby="tab-gamer">
     <div class="lg-cat-banner lg-cat-banner--gamer">
-      <img class="lg-cat-banner-img" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1400&q=80" alt="" loading="lazy" aria-hidden="true">
+      <img class="lg-cat-banner-img" src="/images/fondos/logitech-gamer.jpg" alt="" loading="lazy" aria-hidden="true">
       <div class="lg-cat-banner-overlay lg-cat-banner-overlay--gamer"></div>
       <div class="lg-cat-banner-inner">
         <div class="lg-cat-banner-content">
@@ -407,7 +410,7 @@
   <!-- Panel Oficina -->
   <div id="panel-oficina" class="lg-panel" role="tabpanel" aria-labelledby="tab-oficina">
     <div class="lg-cat-banner lg-cat-banner--oficina">
-      <img class="lg-cat-banner-img" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1400&q=80" alt="" loading="lazy" aria-hidden="true">
+      <img class="lg-cat-banner-img" src="/images/fondos/logitech-oficina.jpg" alt="" loading="lazy" aria-hidden="true">
       <div class="lg-cat-banner-overlay lg-cat-banner-overlay--oficina"></div>
       <div class="lg-cat-banner-inner">
         <div class="lg-cat-banner-content">
