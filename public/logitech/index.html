@@ -78,30 +78,21 @@
 
     /* ══ CATEGORY BANNERS ══ */
     .lg-cat-banner {
-      position: relative; height: 320px;
+      position: relative; height: 340px;
       display: flex; align-items: flex-start;
       overflow: hidden;
     }
-    .lg-cat-banner-bg { position: absolute; inset: 0; background-size: cover; background-position: center 25%; }
-
-    /* Hogar: madre e hija con computador */
-    .lg-cat-banner-bg--hogar {
-      background:
-        linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.38) 60%, rgba(0,0,0,0.55) 100%),
-        url('https://images.unsplash.com/photo-1591951425328-48e7f2e46451?w=1400&q=80') center/cover no-repeat;
+    .lg-cat-banner-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 20%;
     }
-    /* Gamer: gamer en su setup */
-    .lg-cat-banner-bg--gamer {
-      background:
-        linear-gradient(to right, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.65) 100%),
-        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1400&q=80') center/cover no-repeat;
+    .lg-cat-banner-overlay {
+      position: absolute; inset: 0;
     }
-    /* Oficina: profesional en escritorio */
-    .lg-cat-banner-bg--oficina {
-      background:
-        linear-gradient(to right, rgba(0,10,32,0.82) 0%, rgba(0,10,32,0.45) 60%, rgba(0,10,32,0.65) 100%),
-        url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1400&q=80') center/cover no-repeat;
-    }
+    .lg-cat-banner-overlay--hogar  { background: linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.30) 55%, rgba(0,0,0,0.45) 100%); }
+    .lg-cat-banner-overlay--gamer  { background: linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.38) 55%, rgba(0,0,0,0.55) 100%); }
+    .lg-cat-banner-overlay--oficina{ background: linear-gradient(to right, rgba(0,8,28,0.85) 0%, rgba(0,8,28,0.38) 55%, rgba(0,8,28,0.55) 100%); }
 
     .lg-cat-banner-inner {
       position: relative; z-index: 1;
@@ -369,7 +360,8 @@
   <!-- Panel Hogar -->
   <div id="panel-hogar" class="lg-panel active slide-from-right" role="tabpanel" aria-labelledby="tab-hogar">
     <div class="lg-cat-banner lg-cat-banner--hogar">
-      <div class="lg-cat-banner-bg lg-cat-banner-bg--hogar"></div>
+      <img class="lg-cat-banner-img" src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=1400&q=80" alt="" loading="lazy" aria-hidden="true">
+      <div class="lg-cat-banner-overlay lg-cat-banner-overlay--hogar"></div>
       <div class="lg-cat-banner-inner">
         <div class="lg-cat-banner-content">
           <svg class="lg-cat-banner-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -390,7 +382,8 @@
   <!-- Panel Gamer -->
   <div id="panel-gamer" class="lg-panel" role="tabpanel" aria-labelledby="tab-gamer">
     <div class="lg-cat-banner lg-cat-banner--gamer">
-      <div class="lg-cat-banner-bg lg-cat-banner-bg--gamer"></div>
+      <img class="lg-cat-banner-img" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1400&q=80" alt="" loading="lazy" aria-hidden="true">
+      <div class="lg-cat-banner-overlay lg-cat-banner-overlay--gamer"></div>
       <div class="lg-cat-banner-inner">
         <div class="lg-cat-banner-content">
           <svg class="lg-cat-banner-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#00ff87" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4m-2-2v4"/><circle cx="16" cy="11" r="1.2" fill="#00ff87"/><circle cx="18" cy="13" r="1.2" fill="#00ff87"/></svg>
@@ -411,7 +404,8 @@
   <!-- Panel Oficina -->
   <div id="panel-oficina" class="lg-panel" role="tabpanel" aria-labelledby="tab-oficina">
     <div class="lg-cat-banner lg-cat-banner--oficina">
-      <div class="lg-cat-banner-bg lg-cat-banner-bg--oficina"></div>
+      <img class="lg-cat-banner-img" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1400&q=80" alt="" loading="lazy" aria-hidden="true">
+      <div class="lg-cat-banner-overlay lg-cat-banner-overlay--oficina"></div>
       <div class="lg-cat-banner-inner">
         <div class="lg-cat-banner-content">
           <svg class="lg-cat-banner-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#60aaff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
