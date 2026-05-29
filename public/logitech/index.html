@@ -14,276 +14,256 @@
   <link rel="stylesheet" href="/css/cart.css">
   <link rel="stylesheet" href="/css/loader.css">
   <style>
-    /* ── Hero Logitech ── */
+    /* ══ HERO ══ */
     .lg-hero {
       position: relative;
       height: 420px;
       background: #000 url('/images/slides/camara-logitech.png') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      display: flex; align-items: center; justify-content: center; text-align: center;
     }
-    .lg-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.68);
-    }
-    .lg-hero-content {
-      position: relative;
-      z-index: 1;
-      color: #fff;
-    }
-    .lg-hero-logo {
-      width: 200px;
-      margin-bottom: 18px;
-      filter: brightness(0) invert(1);
-    }
-    .lg-hero-tagline {
-      font-size: 1.05rem;
-      font-weight: 300;
-      letter-spacing: 0.04em;
-      opacity: 0.85;
-    }
+    .lg-hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.70); }
+    .lg-hero-content { position: relative; z-index: 1; color: #fff; }
+    .lg-hero-logo { width: 210px; margin-bottom: 18px; filter: brightness(0) invert(1); }
+    .lg-hero-tagline { font-size: 1.05rem; font-weight: 300; letter-spacing: 0.04em; opacity: 0.8; }
 
-    /* ── Tabs ── */
+    /* ══ TABS WRAP ══ */
     .lg-tabs-wrap {
-      background: #f5f5f5;
-      border-bottom: 2px solid #e0e0e0;
+      position: sticky; top: 0; z-index: 100;
+      background: #111; border-bottom: 2px solid #222;
+      transition: background 0.35s, border-color 0.35s;
     }
+    .lg-tabs-wrap[data-cat="hogar"]  { background: #1c0d00; border-bottom-color: #3d1a00; }
+    .lg-tabs-wrap[data-cat="gamer"]  { background: #050a06; border-bottom-color: #0a1a0c; }
+    .lg-tabs-wrap[data-cat="oficina"]{ background: #00102a; border-bottom-color: #001d4d; }
+
     .lg-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      max-width: 600px;
-      margin: 0 auto;
+      display: flex; justify-content: center; max-width: 640px; margin: 0 auto;
     }
     .lg-tab {
-      flex: 1;
-      padding: 18px 28px;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border: none;
-      background: #f5f5f5;
-      color: #555;
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-      transition: all 0.2s;
+      flex: 1; padding: 16px 20px;
+      font-family: 'Lato', sans-serif; font-size: 0.88rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border: none; background: transparent; color: rgba(255,255,255,0.45);
+      cursor: pointer; border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
     }
-    .lg-tab:hover { color: #000; }
-    .lg-tab.active {
-      background: #000;
-      color: #fff;
-      border-bottom-color: #00b0f0;
+    .lg-tab:hover { color: rgba(255,255,255,0.85); }
+    .lg-tab-icon { flex-shrink: 0; }
+
+    .lg-tab--hogar.active  { color: #f59e0b; border-bottom-color: #f59e0b; }
+    .lg-tab--gamer.active  { color: #00ff87; border-bottom-color: #00ff87; }
+    .lg-tab--oficina.active{ color: #60aaff; border-bottom-color: #60aaff; }
+
+    /* ══ PANELS ══ */
+    .lg-panel { display: none; }
+    .lg-panel.active { display: block; }
+
+    .lg-panel.slide-from-right { animation: lgSlideRight 0.32s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .lg-panel.slide-from-left  { animation: lgSlideLeft  0.32s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+    @keyframes lgSlideRight {
+      from { opacity: 0; transform: translateX(48px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes lgSlideLeft {
+      from { opacity: 0; transform: translateX(-48px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .lg-panel.slide-from-right,
+      .lg-panel.slide-from-left { animation: lgFadeIn 0.15s ease forwards; }
+      @keyframes lgFadeIn { from { opacity: 0; } to { opacity: 1; } }
     }
 
-    /* ── Panels ── */
-    .lg-panel {
-      display: none;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .lg-panel.active {
-      display: block;
-    }
-    .lg-panel.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── Sección de panel ── */
-    .lg-section {
-      padding: 48px 0 56px;
-    }
-    .lg-section-title {
-      font-size: 1.55rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 32px;
-      color: #111;
-    }
-    .lg-section-title span {
-      color: #00b0f0;
-    }
-
-    /* ── Grid de productos ── */
-    .lg-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-    @media (max-width: 1024px) { .lg-grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 768px)  { .lg-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 480px)  { .lg-grid { grid-template-columns: 1fr; } }
-
-    /* ── Card de producto ── */
-    .lg-card {
-      background: #fff;
-      border: 1.5px solid #e8e8e8;
-      border-radius: 8px;
+    /* ══ CATEGORY BANNERS ══ */
+    .lg-cat-banner {
+      position: relative; height: 240px;
+      display: flex; align-items: flex-end;
       overflow: hidden;
-      cursor: pointer;
+    }
+    .lg-cat-banner-bg { position: absolute; inset: 0; }
+
+    /* Hogar: warm amber/terracotta */
+    .lg-cat-banner-bg--hogar {
+      background:
+        radial-gradient(ellipse at 50% 110%, rgba(245,158,11,0.5) 0%, transparent 55%),
+        linear-gradient(160deg, #1a0800 0%, #2e1200 45%, #1a0800 100%);
+    }
+    /* Gamer: pitch black + neon green glow */
+    .lg-cat-banner-bg--gamer {
+      background:
+        radial-gradient(ellipse at 50% 110%, rgba(0,255,135,0.28) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 30%, rgba(0,200,80,0.08) 0%, transparent 45%),
+        #000000;
+    }
+    /* Oficina: deep navy + blue beam */
+    .lg-cat-banner-bg--oficina {
+      background:
+        radial-gradient(ellipse at 50% 110%, rgba(40,120,255,0.4) 0%, transparent 55%),
+        linear-gradient(160deg, #000d24 0%, #001d50 45%, #000d24 100%);
+    }
+
+    .lg-cat-banner-inner {
+      position: relative; z-index: 1;
+      width: 100%; padding: 0 0 36px;
+    }
+    .lg-cat-banner-content {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; gap: 20px;
+    }
+    .lg-cat-banner-icon {
+      flex-shrink: 0; opacity: 0.9;
+    }
+    .lg-cat-banner-text h2 {
+      font-size: 1.9rem; font-weight: 900; text-transform: uppercase;
+      letter-spacing: 0.05em; color: #fff; margin: 0 0 6px;
+    }
+    .lg-cat-banner-text p {
+      font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.65);
+      margin: 0; letter-spacing: 0.02em;
+    }
+
+    /* Per-category title accent */
+    .lg-cat-banner--hogar  .lg-cat-banner-text h2 span { color: #f59e0b; }
+    .lg-cat-banner--gamer  .lg-cat-banner-text h2 span { color: #00ff87; }
+    .lg-cat-banner--oficina .lg-cat-banner-text h2 span { color: #60aaff; }
+
+    /* ══ PANEL BACKGROUNDS ══ */
+    #panel-hogar  { background: #fffbf0; }
+    #panel-gamer  { background: #07100a; }
+    #panel-oficina{ background: #f4f8ff; }
+
+    /* ══ SECTION ══ */
+    .lg-section { padding: 44px 0 60px; }
+    .lg-section-title {
+      font-size: 1.3rem; font-weight: 900; text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 28px; color: #111;
+    }
+    #panel-gamer .lg-section-title { color: #d0ffd8; }
+
+    /* ══ GRID ══ */
+    .lg-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 20px;
+    }
+    @media (max-width:1024px){ .lg-grid { grid-template-columns: repeat(3,1fr); } }
+    @media (max-width:768px) { .lg-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width:480px) { .lg-grid { grid-template-columns: 1fr; } }
+
+    /* ══ CARDS — base ══ */
+    .lg-card {
+      background: #fff; border: 1.5px solid #e8e8e8; border-radius: 10px;
+      overflow: hidden; cursor: pointer;
       transition: box-shadow 0.22s, border-color 0.22s, transform 0.22s;
     }
-    .lg-card:hover {
-      box-shadow: 0 6px 24px rgba(0,176,240,0.18);
-      border-color: #00b0f0;
-      transform: translateY(-3px);
-    }
+    .lg-card:hover { transform: translateY(-4px); }
     .lg-card-img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: contain;
-      padding: 18px;
-      background: #fafafa;
+      width: 100%; aspect-ratio: 1; object-fit: contain;
+      padding: 18px; background: #fafafa;
     }
-    .lg-card-body {
-      padding: 14px 16px 18px;
-    }
+    .lg-card-body { padding: 14px 16px 18px; }
     .lg-card-name {
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: #111;
-      margin-bottom: 8px;
-      line-height: 1.35;
+      font-size: 0.80rem; font-weight: 700; text-transform: uppercase;
+      color: #111; margin-bottom: 8px; line-height: 1.38;
     }
-    .lg-card-price {
-      font-size: 1.05rem;
-      font-weight: 900;
-      color: #0057b8;
-    }
+    .lg-card-price { font-size: 1.05rem; font-weight: 900; color: #0057b8; }
     .lg-card-old {
-      font-size: 0.78rem;
-      color: #999;
-      text-decoration: line-through;
-      margin-left: 6px;
+      font-size: 0.75rem; color: #aaa; text-decoration: line-through; margin-left: 6px;
     }
     .lg-card-badge {
-      display: inline-block;
-      background: #00b0f0;
-      color: #fff;
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 3px;
-      margin-top: 6px;
+      display: inline-block; background: #00b0f0; color: #fff;
+      font-size: 0.67rem; font-weight: 700; padding: 2px 7px;
+      border-radius: 3px; margin-top: 6px;
     }
 
-    /* ── Modal ── */
+    /* ── Hogar card theme ── */
+    #panel-hogar .lg-card:hover {
+      box-shadow: 0 8px 28px rgba(245,158,11,0.22);
+      border-color: #f59e0b;
+    }
+    #panel-hogar .lg-card-badge { background: #f59e0b; color: #000; }
+
+    /* ── Gamer card theme ── */
+    #panel-gamer .lg-card {
+      background: #0f1c11; border-color: #1a2e1c;
+    }
+    #panel-gamer .lg-card-img { background: #0a1209; }
+    #panel-gamer .lg-card-name { color: #c8f5d0; }
+    #panel-gamer .lg-card-price { color: #00ff87; }
+    #panel-gamer .lg-card-old { color: #4a6b50; }
+    #panel-gamer .lg-card-badge { background: #00ff87; color: #000; }
+    #panel-gamer .lg-card:hover {
+      box-shadow: 0 0 0 1px #00ff87, 0 8px 32px rgba(0,255,135,0.25);
+      border-color: #00ff87;
+    }
+
+    /* ── Oficina card theme ── */
+    #panel-oficina .lg-card:hover {
+      box-shadow: 0 8px 28px rgba(0,87,184,0.18);
+      border-color: #0057b8;
+    }
+    #panel-oficina .lg-card-badge { background: #0057b8; }
+
+    /* ══ MODAL ══ */
     .lg-modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.65);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.68); z-index: 1000;
+      align-items: center; justify-content: center; padding: 20px;
     }
     .lg-modal-overlay.open { display: flex; }
     .lg-modal {
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      max-width: 560px;
-      width: 95%;
-      max-height: 90vh;
-      overflow-y: auto;
+      background: #fff; border-radius: 12px; overflow: hidden;
+      max-width: 540px; width: 95%; max-height: 90vh; overflow-y: auto;
       animation: lgModalIn 0.22s ease;
     }
     @keyframes lgModalIn {
-      from { opacity: 0; transform: scale(0.93); }
-      to   { opacity: 1; transform: scale(1); }
+      from { opacity: 0; transform: scale(0.92) translateY(12px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
     }
     .lg-modal-header {
-      background: #000;
-      color: #fff;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      background: #0a0a0a; color: #fff; padding: 16px 20px;
+      display: flex; align-items: center; justify-content: space-between;
     }
     .lg-modal-header h3 {
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin: 0;
+      font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; margin: 0;
     }
     .lg-modal-close {
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 1.4rem;
-      cursor: pointer;
-      line-height: 1;
-      padding: 0 4px;
+      background: none; border: none; color: rgba(255,255,255,0.7);
+      cursor: pointer; padding: 4px; line-height: 1; border-radius: 4px;
+      transition: color 0.15s;
     }
+    .lg-modal-close:hover { color: #fff; }
     .lg-modal-img {
-      width: 100%;
-      max-height: 280px;
-      object-fit: contain;
-      padding: 24px;
-      background: #f7f7f7;
+      width: 100%; max-height: 260px; object-fit: contain;
+      padding: 24px; background: #f7f7f7;
     }
-    .lg-modal-body {
-      padding: 20px 24px 28px;
-    }
-    .lg-modal-name {
-      font-size: 1.1rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      color: #111;
-      margin-bottom: 10px;
-    }
-    .lg-modal-price {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: #0057b8;
-      margin-bottom: 4px;
-    }
-    .lg-modal-old {
-      font-size: 0.85rem;
-      color: #999;
-      text-decoration: line-through;
-      margin-bottom: 6px;
-    }
+    .lg-modal-body { padding: 20px 24px 28px; }
+    .lg-modal-price { font-size: 1.55rem; font-weight: 900; color: #0057b8; margin-bottom: 2px; }
+    .lg-modal-old { font-size: 0.85rem; color: #aaa; text-decoration: line-through; margin-bottom: 6px; }
     .lg-modal-badge {
-      display: inline-block;
-      background: #00b0f0;
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 4px;
-      margin-bottom: 20px;
+      display: inline-block; background: #00b0f0; color: #fff;
+      font-size: 0.72rem; font-weight: 700; padding: 3px 9px;
+      border-radius: 4px; margin-bottom: 20px;
     }
     .lg-modal-wa {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 14px;
-      background: #25D366;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-family: 'Lato', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 14px; background: #25D366; color: #fff;
+      border: none; border-radius: 8px; font-family: 'Lato', sans-serif;
+      font-size: 1rem; font-weight: 700; cursor: pointer; text-decoration: none;
       transition: background 0.2s;
     }
     .lg-modal-wa:hover { background: #1da851; }
     .lg-modal-wa svg { flex-shrink: 0; }
+
+    /* ══ FOOTER ══ */
+    .lg-footer {
+      background: #0f1011; color: rgba(255,255,255,0.45);
+      padding: 28px 0; text-align: center; font-size: 0.78rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .lg-footer-logo { width: 110px; margin-bottom: 12px; opacity: 0.6; }
+    .lg-footer p { margin: 4px 0; }
   </style>
 </head>
 <body>
@@ -360,7 +340,7 @@
     </nav>
   </header>
 
-  <!-- ══ HERO LOGITECH ══ -->
+  <!-- ══ HERO ══ -->
   <section class="lg-hero" aria-label="Logitech en Tecnistore">
     <div class="lg-hero-overlay"></div>
     <div class="lg-hero-content">
@@ -370,49 +350,104 @@
   </section>
 
   <!-- ══ TABS ══ -->
-  <div class="lg-tabs-wrap">
+  <div class="lg-tabs-wrap" id="lg-tabs-wrap" data-cat="hogar">
     <div class="lg-tabs" role="tablist" aria-label="Categorías Logitech">
-      <button class="lg-tab active" role="tab" aria-selected="true"  aria-controls="panel-hogar"   id="tab-hogar"   onclick="switchTab('hogar')">🏠 Hogar</button>
-      <button class="lg-tab"        role="tab" aria-selected="false" aria-controls="panel-gamer"   id="tab-gamer"   onclick="switchTab('gamer')">🎮 Gamer</button>
-      <button class="lg-tab"        role="tab" aria-selected="false" aria-controls="panel-oficina" id="tab-oficina" onclick="switchTab('oficina')">💼 Oficina</button>
+
+      <button class="lg-tab lg-tab--hogar active" role="tab" aria-selected="true"
+              aria-controls="panel-hogar" id="tab-hogar" onclick="switchTab('hogar')">
+        <svg class="lg-tab-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Hogar
+      </button>
+
+      <button class="lg-tab lg-tab--gamer" role="tab" aria-selected="false"
+              aria-controls="panel-gamer" id="tab-gamer" onclick="switchTab('gamer')">
+        <svg class="lg-tab-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4m-2-2v4"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>
+        Gamer
+      </button>
+
+      <button class="lg-tab lg-tab--oficina" role="tab" aria-selected="false"
+              aria-controls="panel-oficina" id="tab-oficina" onclick="switchTab('oficina')">
+        <svg class="lg-tab-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Oficina
+      </button>
+
     </div>
   </div>
 
   <!-- ══ PANELES ══ -->
-  <main class="container">
 
-    <!-- Panel Hogar -->
-    <div id="panel-hogar" class="lg-panel active" role="tabpanel" aria-labelledby="tab-hogar">
+  <!-- Panel Hogar -->
+  <div id="panel-hogar" class="lg-panel active slide-from-right" role="tabpanel" aria-labelledby="tab-hogar">
+    <div class="lg-cat-banner lg-cat-banner--hogar">
+      <div class="lg-cat-banner-bg lg-cat-banner-bg--hogar"></div>
+      <div class="lg-cat-banner-inner">
+        <div class="lg-cat-banner-content">
+          <svg class="lg-cat-banner-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <div class="lg-cat-banner-text">
+            <h2>Logitech <span>Hogar</span></h2>
+            <p>Conecta tu hogar. Periféricos simples, coloridos y confiables para toda la familia.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
       <section class="lg-section">
-        <h2 class="lg-section-title">Logitech <span>Hogar</span></h2>
         <div class="lg-grid" id="grid-hogar"></div>
       </section>
     </div>
+  </div>
 
-    <!-- Panel Gamer -->
-    <div id="panel-gamer" class="lg-panel" role="tabpanel" aria-labelledby="tab-gamer">
+  <!-- Panel Gamer -->
+  <div id="panel-gamer" class="lg-panel" role="tabpanel" aria-labelledby="tab-gamer">
+    <div class="lg-cat-banner lg-cat-banner--gamer">
+      <div class="lg-cat-banner-bg lg-cat-banner-bg--gamer"></div>
+      <div class="lg-cat-banner-inner">
+        <div class="lg-cat-banner-content">
+          <svg class="lg-cat-banner-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#00ff87" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4m-2-2v4"/><circle cx="16" cy="11" r="1.2" fill="#00ff87"/><circle cx="18" cy="13" r="1.2" fill="#00ff87"/></svg>
+          <div class="lg-cat-banner-text">
+            <h2>Logitech <span>Gamer</span></h2>
+            <p>Domina el juego. Precisión extrema, cero lag y rendimiento de alto nivel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
       <section class="lg-section">
-        <h2 class="lg-section-title">Logitech <span>Gamer</span></h2>
         <div class="lg-grid" id="grid-gamer"></div>
       </section>
     </div>
+  </div>
 
-    <!-- Panel Oficina -->
-    <div id="panel-oficina" class="lg-panel" role="tabpanel" aria-labelledby="tab-oficina">
+  <!-- Panel Oficina -->
+  <div id="panel-oficina" class="lg-panel" role="tabpanel" aria-labelledby="tab-oficina">
+    <div class="lg-cat-banner lg-cat-banner--oficina">
+      <div class="lg-cat-banner-bg lg-cat-banner-bg--oficina"></div>
+      <div class="lg-cat-banner-inner">
+        <div class="lg-cat-banner-content">
+          <svg class="lg-cat-banner-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#60aaff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <div class="lg-cat-banner-text">
+            <h2>Logitech <span>Oficina</span></h2>
+            <p>Tu productividad, al siguiente nivel. Ergonomía, videoconferencias y flujo de trabajo sin fricción.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
       <section class="lg-section">
-        <h2 class="lg-section-title">Logitech <span>Oficina</span></h2>
         <div class="lg-grid" id="grid-oficina"></div>
       </section>
     </div>
-
-  </main>
+  </div>
 
   <!-- ══ MODAL ══ -->
-  <div class="lg-modal-overlay" id="lg-modal-overlay" onclick="handleOverlayClick(event)" role="dialog" aria-modal="true" aria-labelledby="modal-product-name">
+  <div class="lg-modal-overlay" id="lg-modal-overlay" onclick="handleOverlayClick(event)"
+       role="dialog" aria-modal="true" aria-labelledby="modal-product-name">
     <div class="lg-modal" id="lg-modal">
       <div class="lg-modal-header">
         <h3 id="modal-product-name"></h3>
-        <button class="lg-modal-close" onclick="closeModal()" aria-label="Cerrar">×</button>
+        <button class="lg-modal-close" onclick="closeModal()" aria-label="Cerrar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
       </div>
       <img id="modal-img" class="lg-modal-img" src="" alt="">
       <div class="lg-modal-body">
@@ -427,9 +462,20 @@
     </div>
   </div>
 
+  <!-- ══ FOOTER ══ -->
+  <footer class="lg-footer">
+    <div class="container">
+      <img src="/images/logo.png" alt="Tecnistore" class="lg-footer-logo" loading="lazy">
+      <p>Copyright &copy; <span id="footer-year"></span> Tecnistore &nbsp;|&nbsp; TNT Tecnistore Ltda. Todos los derechos reservados.</p>
+      <p style="margin-top:5px;font-size:10.5px;opacity:0.35;">Desarrollado por <strong>Mecha Labs</strong></p>
+    </div>
+  </footer>
+
   <script src="/js/cart.js"></script>
   <script src="/js/animations.js"></script>
   <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
     /* ── Datos de productos ── */
     const PRODUCTOS = {
       hogar: [
@@ -468,9 +514,7 @@
       ]
     };
 
-    function fmt(n) {
-      return '$' + n.toLocaleString('es-CO');
-    }
+    function fmt(n) { return '$' + n.toLocaleString('es-CO'); }
 
     function buildGrid(cat) {
       const grid = document.getElementById('grid-' + cat);
@@ -481,13 +525,11 @@
 
         const img = document.createElement('img');
         img.className = 'lg-card-img';
-        img.src = p.img;
-        img.alt = p.name;
-        img.loading = 'lazy';
+        img.src = p.img; img.alt = p.name; img.loading = 'lazy';
 
-        const name = document.createElement('div');
-        name.className = 'lg-card-name';
-        name.textContent = p.name;
+        const nameEl = document.createElement('div');
+        nameEl.className = 'lg-card-name';
+        nameEl.textContent = p.name;
 
         const priceWrap = document.createElement('div');
         const priceEl = document.createElement('span');
@@ -505,38 +547,45 @@
 
         const body = document.createElement('div');
         body.className = 'lg-card-body';
-        body.appendChild(name);
+        body.appendChild(nameEl);
         body.appendChild(priceWrap);
         body.appendChild(badge);
 
         card.appendChild(img);
         card.appendChild(body);
-
         card.addEventListener('click', () => openModal(p));
         grid.appendChild(card);
       });
     }
 
-    /* ── Tabs ── */
+    /* ── Tabs con slide direccional ── */
+    const ORDER = ['hogar', 'gamer', 'oficina'];
+    let currentCat = 'hogar';
+
     function switchTab(cat) {
+      if (cat === currentCat) return;
+
+      const newIdx = ORDER.indexOf(cat);
+      const oldIdx = ORDER.indexOf(currentCat);
+      const slideIn = newIdx > oldIdx ? 'slide-from-right' : 'slide-from-left';
+
       document.querySelectorAll('.lg-tab').forEach(t => {
         t.classList.remove('active');
         t.setAttribute('aria-selected', 'false');
       });
       document.querySelectorAll('.lg-panel').forEach(p => {
-        p.classList.remove('active', 'visible');
+        p.classList.remove('active', 'slide-from-right', 'slide-from-left');
       });
 
       const tab   = document.getElementById('tab-' + cat);
       const panel = document.getElementById('panel-' + cat);
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
-      panel.classList.add('active');
-      buildGrid(cat);
+      panel.classList.add('active', slideIn);
+      document.getElementById('lg-tabs-wrap').setAttribute('data-cat', cat);
 
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => panel.classList.add('visible'));
-      });
+      buildGrid(cat);
+      currentCat = cat;
     }
 
     /* ── Modal ── */
@@ -552,19 +601,14 @@
       document.getElementById('lg-modal-overlay').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
-
     function closeModal() {
       document.getElementById('lg-modal-overlay').classList.remove('open');
       document.body.style.overflow = '';
     }
-
     function handleOverlayClick(e) {
       if (e.target === document.getElementById('lg-modal-overlay')) closeModal();
     }
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeModal();
-    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
     /* ── Nav hamburger ── */
     function closeMobileMenu() {
@@ -584,11 +628,8 @@
       });
     }
 
-    /* ── Inicializar primera tab ── */
+    /* ── Inicializar ── */
     buildGrid('hogar');
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => document.getElementById('panel-hogar').classList.add('visible'));
-    });
   </script>
 </body>
 </html>
