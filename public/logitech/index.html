@@ -289,7 +289,7 @@
 <body>
 
   <!-- ══ TOP BAR ══ -->
-  <div class="top-bar" role="banner">
+  <div class="top-bar">
     <div class="top-bar-inner container">
       <div class="top-bar-left">
         <span class="tb-item">
@@ -353,7 +353,7 @@
       <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
         <a href="/" onclick="closeMobileMenu()">INICIO</a>
         <a href="/empresas/" onclick="closeMobileMenu()">EMPRESAS</a>
-        <a href="/tienda/">TIENDA</a>
+        <a href="/tienda/" onclick="closeMobileMenu()">TIENDA</a>
         <a href="/logitech/" onclick="closeMobileMenu()" style="color:#00b0f0;font-weight:700;">LOGITECH</a>
         <a href="/#contacto" onclick="closeMobileMenu()">CONTACTO</a>
       </div>
@@ -478,16 +478,40 @@
       PRODUCTOS[cat].forEach(p => {
         const card = document.createElement('div');
         card.className = 'lg-card';
-        card.innerHTML = `
-          <img class="lg-card-img" src="${p.img}" alt="${p.name}" loading="lazy">
-          <div class="lg-card-body">
-            <div class="lg-card-name">${p.name}</div>
-            <div>
-              <span class="lg-card-price">${fmt(p.price)}</span>
-              <span class="lg-card-old">${fmt(p.oldPrice)}</span>
-            </div>
-            <span class="lg-card-badge">${p.discount}</span>
-          </div>`;
+
+        const img = document.createElement('img');
+        img.className = 'lg-card-img';
+        img.src = p.img;
+        img.alt = p.name;
+        img.loading = 'lazy';
+
+        const name = document.createElement('div');
+        name.className = 'lg-card-name';
+        name.textContent = p.name;
+
+        const priceWrap = document.createElement('div');
+        const priceEl = document.createElement('span');
+        priceEl.className = 'lg-card-price';
+        priceEl.textContent = fmt(p.price);
+        const oldEl = document.createElement('span');
+        oldEl.className = 'lg-card-old';
+        oldEl.textContent = fmt(p.oldPrice);
+        priceWrap.appendChild(priceEl);
+        priceWrap.appendChild(oldEl);
+
+        const badge = document.createElement('span');
+        badge.className = 'lg-card-badge';
+        badge.textContent = p.discount;
+
+        const body = document.createElement('div');
+        body.className = 'lg-card-body';
+        body.appendChild(name);
+        body.appendChild(priceWrap);
+        body.appendChild(badge);
+
+        card.appendChild(img);
+        card.appendChild(body);
+
         card.addEventListener('click', () => openModal(p));
         grid.appendChild(card);
       });
