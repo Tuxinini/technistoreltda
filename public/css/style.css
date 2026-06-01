@@ -766,7 +766,7 @@ h3 { font-size: 20px; font-weight: 700; }
 }
 
 /* ══ SECCIÓN CLIENTES / MARCAS ══ */
-.ts-clients-section { padding: 72px 0; background: var(--color-bg-off); overflow: hidden; }
+.ts-clients-section { padding: 72px 0; background: #ffffff; overflow: hidden; }
 .ts-marquee-wrap {
   overflow: hidden;
   mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
