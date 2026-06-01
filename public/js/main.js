@@ -395,7 +395,7 @@ function tsSetThumbAll(imgIdx,prodIdx){
     if(!empresa||!nit||!contacto||!tel||!email){
       alert('Por favor completa los campos obligatorios (*).');return;
     }
-    var txt='*Cotización Empresarial — Tecnistore*\n\n'+
+    var txt='*Cotización Empresarial — Technistore*\n\n'+
       '🏢 *Empresa:* '+empresa+'\n'+
       '📋 *NIT:* '+nit+'\n'+
       '👤 *Contacto:* '+contacto+(cargo?' ('+cargo+')':'')+'\n'+
