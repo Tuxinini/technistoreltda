@@ -14,6 +14,62 @@
   <link rel="stylesheet" href="/css/equipo.css?v=20260523">
   <style>
     /* ── CSS CRÍTICO EMPRESAS (inline para evitar caché) ── */
+    .emp-hero-desc {
+      max-width: 780px;
+      margin: 40px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(0,174,232,0.22);
+      border-radius: 20px;
+      padding: 8px;
+      backdrop-filter: blur(10px);
+    }
+    .emp-desc-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 22px 24px;
+      border-radius: 14px;
+      transition: background 0.25s;
+    }
+    .emp-desc-row:hover {
+      background: rgba(0,174,232,0.07);
+    }
+    .emp-desc-row + .emp-desc-row {
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .emp-desc-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0,174,232,0.22) 0%, rgba(0,140,200,0.10) 100%);
+      border: 1px solid rgba(0,174,232,0.30);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00aee8;
+      margin-top: 2px;
+    }
+    .emp-desc-row p {
+      font-size: 15.5px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.78;
+      margin: 0;
+      text-align: left;
+    }
+    .emp-desc-row:first-child p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.90);
+    }
+    @media (max-width: 640px) {
+      .emp-hero-desc { padding: 4px; }
+      .emp-desc-row { padding: 18px 16px; gap: 14px; }
+      .emp-desc-icon { width: 38px; height: 38px; border-radius: 10px; }
+      .emp-desc-row p { font-size: 14.5px; }
+    }
     .eq-section--dark {
       background: linear-gradient(180deg, #060d1a 0%, #0a1f3d 100%) !important;
       position: relative !important;
@@ -522,11 +578,11 @@
       <div class="nav-inner container">
         <div class="nav-links-left"><a href="/">INICIO</a><a href="/empresas/" style="color:var(--color-primary)">EMPRESAS</a><a href="/tienda/">TIENDA</a></div>
         <div class="nav-logo-center"><a href="/"><img src="/images/logo.png" alt="Tecnistore" width="110" height="40"></a></div>
-        <div class="nav-links-right"><a href="/#contacto">CONTACTO</a></div>
+        <div class="nav-links-right"><a href="/logitech/" style="color:#00b0f0;font-weight:700;">LOGITECH</a><a href="/#contacto">CONTACTO</a></div>
         <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
       <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
-        <a href="/">INICIO</a><a href="/empresas/">EMPRESAS</a><a href="/tienda/">TIENDA</a><a href="/#contacto">CONTACTO</a>
+        <a href="/">INICIO</a><a href="/empresas/">EMPRESAS</a><a href="/tienda/">TIENDA</a><a href="/logitech/" style="color:#00b0f0;font-weight:700;">LOGITECH</a><a href="/#contacto">CONTACTO</a>
       </div>
     </nav>
   </header>
@@ -536,7 +592,26 @@
     <div class="container eq-hero-inner">
       <span class="eq-hero-badge">TECNISTORE — TNT TECHNISTORE LTDA.</span>
       <h1>Soluciones para<br>Empresas</h1>
-      <p>Mas de 28 anos siendo el aliado tecnologico de empresas en Colombia. Equipos certificados, garantias reales y atencion consultiva especializada.</p>
+      <div class="emp-hero-desc">
+        <div class="emp-desc-row">
+          <div class="emp-desc-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <p>En Technistore llevamos más de 28 años siendo aliados tecnológicos de empresas y corporaciones en Colombia, ofreciendo soluciones integrales de venta y alquiler de equipos tecnológicos para operaciones corporativas, proyectos empresariales y requerimientos masivos.</p>
+        </div>
+        <div class="emp-desc-row">
+          <div class="emp-desc-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <p>Desde el Centro de Alta Tecnología de Bogotá, acompañamos a compañías de diferentes sectores con equipos certificados y garantía real, brindando soluciones confiables para áreas administrativas, comerciales, operativas y de tecnología.</p>
+        </div>
+        <div class="emp-desc-row">
+          <div class="emp-desc-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+          </div>
+          <p>Contamos con un portafolio enfocado en computadores, portátiles, estaciones de trabajo, accesorios y soluciones tecnológicas para empresas que buscan optimizar sus procesos con respaldo, disponibilidad y soporte especializado. Nuestro enfoque combina experiencia, atención personalizada y soluciones adaptadas a las necesidades de cada organización.</p>
+        </div>
+      </div>
     </div>
   </section>
 

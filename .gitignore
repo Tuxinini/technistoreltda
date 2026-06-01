@@ -16,5 +16,6 @@ public/wp-content/uploads/media-images.zip
 public/js/woo-config.js
 config.php
 
-# Archivos WordPress scrapeados
+# Archivos WordPress scrapeados / legado
 public/wp-content/
+public/wp-includes/
