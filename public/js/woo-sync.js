@@ -52,6 +52,24 @@
   /* ──────────────────────────────────────────
      MAPEO WooCommerce → formato interno
      ────────────────────────────────────────── */
+  /* ──────────────────────────────────────────
+     DETECCIÓN LOGITECH
+     ────────────────────────────────────────── */
+  var LG_GAMER   = /\bG\s?\d{3}\b|\bGPRO\b|\bG PRO\b|gaming|gamer/i;
+  var LG_OFICINA = /\bMX\b|ergo|zone|brio|wave.?keys|lift|vertical|apuntador|r500|webcam|h390|h650|h540/i;
+
+  function isLogitechProduct(p) {
+    var name = (p.name || '').toUpperCase();
+    var cats = (p.categories || []).map(function (c) { return (c.name || '').toUpperCase(); });
+    return name.indexOf('LOGITECH') !== -1 || cats.some(function (c) { return c.indexOf('LOGITECH') !== -1; });
+  }
+
+  function logitechSubCat(name) {
+    if (LG_GAMER.test(name))   return 'gamer';
+    if (LG_OFICINA.test(name)) return 'oficina';
+    return 'hogar';
+  }
+
   function mapProduct(p) {
     if (!isInStock(p)) return null;
     if (p.status !== 'publish') return null;
@@ -67,18 +85,20 @@
 
     var images = (p.images || []).map(function (img) { return img.src || ''; }).filter(Boolean);
     var shortDesc = (p.short_description || '').replace(/<[^>]+>/g, '').trim();
+    var logitech  = isLogitechProduct(p);
 
     return {
-      id:        p.id,
-      name:      p.name,
-      category:  resolveCategory(p.categories),
-      price:     Math.round(price),
-      oldPrice:  Math.round(oldPrice),
-      discount:  discount,
-      images:    images,
-      shortDesc: shortDesc,
-      /* Guardamos stock_status para posible badge "Bajo encargo" */
-      stockStatus: p.stock_status
+      id:         p.id,
+      name:       p.name,
+      category:   resolveCategory(p.categories),
+      price:      Math.round(price),
+      oldPrice:   Math.round(oldPrice),
+      discount:   discount,
+      images:     images,
+      shortDesc:  shortDesc,
+      stockStatus: p.stock_status,
+      isLogitech: logitech,
+      lgSubCat:   logitech ? logitechSubCat(p.name) : null
     };
   }
 

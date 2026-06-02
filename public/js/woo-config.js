@@ -4,5 +4,5 @@
    ══════════════════════════════════════════════════════ */
 window.WOO_CONFIG = {
   url:      'https://tntltda.com',
-  cacheTTL: 30
+  cacheTTL: 0   /* 0 = siempre en tiempo real desde WooCommerce */
 };

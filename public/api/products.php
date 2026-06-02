@@ -1,4 +1,24 @@
 <?php
+/* ── Seguridad: CORS — solo permite llamadas desde el propio dominio ── */
+$_SITE    = 'https://tntltda.com';
+$_origin  = $_SERVER['HTTP_ORIGIN']  ?? '';
+$_referer = $_SERVER['HTTP_REFERER'] ?? '';
+
+$_originOk = !$_origin                                          /* mismo dominio (no envía Origin) */
+  || $_origin === $_SITE
+  || $_origin === 'https://www.tntltda.com';
+
+if (!$_originOk) {
+    http_response_code(403);
+    echo json_encode(['error' => 'Acceso no autorizado']);
+    exit;
+}
+
+/* Headers de seguridad */
+if ($_origin) header('Access-Control-Allow-Origin: ' . $_origin);
+header('Access-Control-Allow-Methods: GET');
+header('X-Content-Type-Options: nosniff');
+header('Cache-Control: no-store');
 header('Content-Type: application/json; charset=utf-8');
 
 /*

@@ -465,114 +465,125 @@
     </div>
   </footer>
 
+  <script src="/js/woo-config.js"></script>
+  <script src="/js/woo-sync.js"></script>
   <script src="/js/cart.js"></script>
   <script src="/js/animations.js"></script>
   <script>
     document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-    /* ── Datos de productos ── */
-    const PRODUCTOS = {
-      hogar: [
-        { name: "MOUSE LOGITECH M170", price: 48900, oldPrice: 61000, discount: "20% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-M170.webp" },
-        { name: "MOUSE LOGITECH M350", price: 97900, oldPrice: 128000, discount: "24% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-M350.webp" },
-        { name: "COMBO TECLADO LOGITECH ALAMBRICO MK120", price: 74900, oldPrice: 102000, discount: "27% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-TECLADO-ALAMBRICO-MK120.webp" },
-        { name: "COMBO DE TECLADO LOGITECH MK220", price: 97900, oldPrice: 109900, discount: "11% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-MK220-.webp" },
-        { name: "COMBO DE TECLADO LOGITECH MK235", price: 95000, oldPrice: 123000, discount: "23% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-MK235-.webp" },
-        { name: "COMBO DE TECLADO LOGITECH MK270", price: 103900, oldPrice: 189000, discount: "45% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-MK270-.webp" },
-        { name: "COMBO DE TECLADO LOGITECH MK295", price: 146900, oldPrice: 199000, discount: "26% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-MK295-.webp" },
-        { name: "COMBO DE TECLADO LOGITECH MK345", price: 134900, oldPrice: 178000, discount: "24% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-MK345.webp" },
-        { name: "COMBO DE TECLADO LOGITECH MK540", price: 169000, oldPrice: 223000, discount: "24% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-MK540-.webp" },
-        { name: "TECLADO LOGITECH INALAMBRICO K270", price: 84900, oldPrice: 109000, discount: "22% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/TECLADO-INALAMBRICO-K270-.webp" },
-        { name: "TECLADO LOGITECH POP KEYS", price: 375900, oldPrice: 438000, discount: "14% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/TECLADO-POP-KEYS-.webp" },
-        { name: "DIADEMA LOGITECH H111", price: 44000, oldPrice: 57000, discount: "23% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/DIADEMA-H111.webp" }
-      ],
-      gamer: [
-        { name: "MOUSE LOGITECH ALAMBRICO G203", price: 128000, oldPrice: 179000, discount: "28% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-ALAMBRICO-G203.jpg" },
-        { name: "MOUSE LOGITECH G305", price: 174000, oldPrice: 233000, discount: "25% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-G305.webp" },
-        { name: "MOUSE LOGITECH G502", price: 397900, oldPrice: 456000, discount: "13% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-G502.webp" },
-        { name: "DIADEMA LOGITECH G435", price: 289000, oldPrice: 347000, discount: "17% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/DIADEMA-G435.webp" }
-      ],
-      oficina: [
-        { name: "MOUSE LOGITECH MX VERTICAL", price: 389000, oldPrice: 456000, discount: "15% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-MX-VERTICAL-1-1.webp" },
-        { name: "MOUSE LOGITECH LIFT LEFT", price: 315900, oldPrice: 399000, discount: "21% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-LIFT-LEFT.webp" },
-        { name: "MOUSE LOGITECH ERGO M575", price: 190000, oldPrice: 245000, discount: "22% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/MOUSE-ERGO-M575-.webp" },
-        { name: "DIADEMA LOGITECH H390", price: 119000, oldPrice: 158000, discount: "25% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/DIADEMA-H390.webp" },
-        { name: "DIADEMA LOGITECH ZONE 300", price: 299900, oldPrice: 357000, discount: "16% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/DIADEMA-ZONE-300.webp" },
-        { name: "CAMARA LOGITECH BRIO 100", price: 169000, oldPrice: 219000, discount: "23% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/CAMARA-BRIO-100-.webp" },
-        { name: "CAMARA LOGITECH MX BRIO", price: 784000, oldPrice: 910000, discount: "14% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/CAMARA-MX-BRIO-.webp" },
-        { name: "CAMARA WEB 4K PREMIUM MX BRIO 705 LOGITECH", price: 769000, oldPrice: 840600, discount: "9% OFF", img: "https://tntltda.com/wp-content/uploads/2024/12/CAMARA-WEB-4K-PREMIUM-MX-BRIO-705-LOGITECH.webp" },
-        { name: "TECLADO LOGITECH MX KEYS MINI ROSA", price: 394900, oldPrice: 440000, discount: "10% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/TECLADO-MX-KEYS-MINI-ROSA-.webp" },
-        { name: "TECLADO LOGITECH WAVE KEYS", price: 259000, oldPrice: 340000, discount: "24% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/TECLADO-WAVE-KEYS-.webp" },
-        { name: "COMBO DE TECLADO LOGITECH PERFORMANCE MK850", price: 289900, oldPrice: 355000, discount: "18% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/COMBO-DE-TECLADO-PERFORMANCE-MK850-1-1.webp" },
-        { name: "APUNTADOR LOGITECH R500", price: 184900, oldPrice: 254000, discount: "27% OFF", img: "https://tntltda.com/wp-content/uploads/2025/01/APUNTADOR-LOGITECH-R500-.webp" }
-      ]
-    };
+    /* ── Datos de productos (se llenan desde WooCommerce) ── */
+    var PRODUCTOS = { hogar: [], gamer: [], oficina: [] };
 
     function fmt(n) { return '$' + n.toLocaleString('es-CO'); }
 
+    /* ── Adapta producto WooCommerce al formato de la tarjeta ── */
+    function normalize(p) {
+      return {
+        name:     p.name,
+        price:    p.price,
+        oldPrice: p.oldPrice,
+        discount: p.discount || '',
+        img:      (p.images && p.images[0]) ? p.images[0] : '',
+        shortDesc: p.shortDesc || ''
+      };
+    }
+
     function buildGrid(cat) {
-      const grid = document.getElementById('grid-' + cat);
-      if (!grid || grid.children.length > 0) return;
-      PRODUCTOS[cat].forEach(p => {
-        const card = document.createElement('div');
+      var grid = document.getElementById('grid-' + cat);
+      if (!grid) return;
+      var items = PRODUCTOS[cat];
+
+      if (!items || items.length === 0) {
+        grid.innerHTML = '<p style="color:rgba(255,255,255,0.4);padding:32px;text-align:center;">No hay productos disponibles en esta categoría.</p>';
+        return;
+      }
+
+      grid.innerHTML = '';
+      items.forEach(function(p) {
+        var card = document.createElement('div');
         card.className = 'lg-card';
 
-        const img = document.createElement('img');
+        var img = document.createElement('img');
         img.className = 'lg-card-img';
         img.src = p.img; img.alt = p.name; img.loading = 'lazy';
 
-        const nameEl = document.createElement('div');
+        var nameEl = document.createElement('div');
         nameEl.className = 'lg-card-name';
         nameEl.textContent = p.name;
 
-        const priceWrap = document.createElement('div');
-        const priceEl = document.createElement('span');
+        var priceWrap = document.createElement('div');
+        var priceEl = document.createElement('span');
         priceEl.className = 'lg-card-price';
         priceEl.textContent = fmt(p.price);
-        const oldEl = document.createElement('span');
+        var oldEl = document.createElement('span');
         oldEl.className = 'lg-card-old';
-        oldEl.textContent = fmt(p.oldPrice);
+        if (p.oldPrice && p.oldPrice !== p.price) oldEl.textContent = fmt(p.oldPrice);
         priceWrap.appendChild(priceEl);
         priceWrap.appendChild(oldEl);
 
-        const badge = document.createElement('span');
-        badge.className = 'lg-card-badge';
-        badge.textContent = p.discount;
-
-        const body = document.createElement('div');
+        var body = document.createElement('div');
         body.className = 'lg-card-body';
         body.appendChild(nameEl);
         body.appendChild(priceWrap);
-        body.appendChild(badge);
+
+        if (p.discount) {
+          var badge = document.createElement('span');
+          badge.className = 'lg-card-badge';
+          badge.textContent = p.discount;
+          body.appendChild(badge);
+        }
 
         card.appendChild(img);
         card.appendChild(body);
-        card.addEventListener('click', () => openModal(p));
+        card.addEventListener('click', function() { openModal(p); });
         grid.appendChild(card);
       });
     }
 
+    function showGridsLoading() {
+      ['hogar','gamer','oficina'].forEach(function(cat) {
+        var g = document.getElementById('grid-' + cat);
+        if (g) g.innerHTML = '<p style="color:rgba(255,255,255,0.35);padding:32px;text-align:center;">Cargando productos...</p>';
+      });
+    }
+
+    /* ── Carga desde WooCommerce ── */
+    function loadFromWoo() {
+      if (typeof initWooProducts !== 'function') { buildGrid('hogar'); return; }
+      showGridsLoading();
+      initWooProducts(function(products) {
+        var lg = products.filter(function(p) { return p.isLogitech; });
+        PRODUCTOS.hogar   = lg.filter(function(p) { return p.lgSubCat === 'hogar';   }).map(normalize);
+        PRODUCTOS.gamer   = lg.filter(function(p) { return p.lgSubCat === 'gamer';   }).map(normalize);
+        PRODUCTOS.oficina = lg.filter(function(p) { return p.lgSubCat === 'oficina'; }).map(normalize);
+        buildGrid(currentCat);
+      }, function() {
+        buildGrid(currentCat);
+      });
+    }
+
     /* ── Tabs con slide direccional ── */
-    const ORDER = ['hogar', 'gamer', 'oficina'];
-    let currentCat = 'hogar';
+    var ORDER = ['hogar', 'gamer', 'oficina'];
+    var currentCat = 'hogar';
 
     function switchTab(cat) {
       if (cat === currentCat) return;
 
-      const newIdx = ORDER.indexOf(cat);
-      const oldIdx = ORDER.indexOf(currentCat);
-      const slideIn = newIdx > oldIdx ? 'slide-from-right' : 'slide-from-left';
+      var newIdx = ORDER.indexOf(cat);
+      var oldIdx = ORDER.indexOf(currentCat);
+      var slideIn = newIdx > oldIdx ? 'slide-from-right' : 'slide-from-left';
 
-      document.querySelectorAll('.lg-tab').forEach(t => {
+      document.querySelectorAll('.lg-tab').forEach(function(t) {
         t.classList.remove('active');
         t.setAttribute('aria-selected', 'false');
       });
-      document.querySelectorAll('.lg-panel').forEach(p => {
+      document.querySelectorAll('.lg-panel').forEach(function(p) {
         p.classList.remove('active', 'slide-from-right', 'slide-from-left');
       });
 
-      const tab   = document.getElementById('tab-' + cat);
-      const panel = document.getElementById('panel-' + cat);
+      var tab   = document.getElementById('tab-' + cat);
+      var panel = document.getElementById('panel-' + cat);
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
       panel.classList.add('active', slideIn);
@@ -588,9 +599,9 @@
       document.getElementById('modal-img').src = p.img;
       document.getElementById('modal-img').alt = p.name;
       document.getElementById('modal-price').textContent = fmt(p.price);
-      document.getElementById('modal-old').textContent = fmt(p.oldPrice);
-      document.getElementById('modal-badge').textContent = p.discount;
-      const msg = encodeURIComponent('Hola, me interesa el ' + p.name + ' a ' + fmt(p.price) + '. ¿Está disponible?');
+      document.getElementById('modal-old').textContent = (p.oldPrice && p.oldPrice !== p.price) ? fmt(p.oldPrice) : '';
+      document.getElementById('modal-badge').textContent = p.discount || '';
+      var msg = encodeURIComponent('Hola, me interesa el ' + p.name + ' a ' + fmt(p.price) + '. ¿Está disponible?');
       document.getElementById('modal-wa-btn').href = 'https://wa.me/573017298980?text=' + msg;
       document.getElementById('lg-modal-overlay').classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -623,7 +634,7 @@
     }
 
     /* ── Inicializar ── */
-    buildGrid('hogar');
+    loadFromWoo();
   </script>
 </body>
 </html>
