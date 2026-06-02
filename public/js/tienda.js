@@ -204,6 +204,21 @@ function tsAddToCart() {
 }
 
 /* ──────────────────────────────────────────
+   ZOOM DE IMAGEN EN MODAL
+   ────────────────────────────────────────── */
+(function () {
+  document.addEventListener('mousemove', function (e) {
+    var wrap = document.getElementById('ts-zoom-wrap');
+    var img  = document.getElementById('ts-modal-main-img');
+    if (!wrap || !img) return;
+    var rect = wrap.getBoundingClientRect();
+    var x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%';
+    var y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+    img.style.transformOrigin = x + ' ' + y;
+  });
+})();
+
+/* ──────────────────────────────────────────
    INIT
    ────────────────────────────────────────── */
 (function(){
